@@ -541,18 +541,13 @@ export interface Transfer_Inventario{
 export interface Usuario{
 	id?:number;
 	usuario?:string;
-	nombre?:string;
-	id_organizacion?:number;
-	id_imagen?:number;
-	tipo?:string;
-	id_device_notification?:string;
 	contrasena?:string;
-	telefono?:string;
 	correo_electronico?:string;
-	factura_rfc?:string;
-	factura_razon_social?:string;
-	factura_codigo_postal?:string;
-	factura_correo_electronico?:string;
+	telefono?:string;
+	nombre?:string;
+	apellido_paterno?:string;
+	apellido_materno?:string;
+	tipo_de_usuario?:string;
 	tiempo_creacion?:Date;
 	tiempo_actualizacion?:Date;
 }
