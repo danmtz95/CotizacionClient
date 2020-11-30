@@ -1,0 +1,175 @@
+<div class="card p-2 shadow rounded">
+
+	<div class="header-body mb-3">
+		<div class="row align-items-end">
+			<div class="col">
+				<h3 class="header-title"> {{ 'usuario' | titlecase }}</h3>
+			</div>
+			<div class="col-auto">
+				<button type="button" class="mr-2 btn btn-secondary lift" (click)="show_import=true">Importar</button>
+				<button type="button" class="mr-2 btn btn-secondary lift" (click)="exportFile()">Exportar</button>
+				<button type="button" class="ml-2 btn btn-secondary lift" [routerLink]="['/add-usuario']"> Add usuario</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- div>
+		<div class="row">
+
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Id</label>
+						<input type="number" name="id" [(ngModel)]="usuario_search.eq.id" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Usuario</label>
+						<input type="text" name="usuario" [(ngModel)]="usuario_search.lk.usuario" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Nombre</label>
+						<input type="text" name="nombre" [(ngModel)]="usuario_search.lk.nombre" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Id centro medico</label>
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Id organizacion</label>
+						<select name="id_organizacion" [(ngModel)]="usuario_search.eq.id_organizacion" class="form-control">
+						<option [ngValue]="null">Select</option>
+						<option *ngFor="let c of organizacion_list" [value]="c.id">{{c.nombre}}</option>
+					</select>
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Id imagen</label>
+						<select name="id_imagen" [(ngModel)]="usuario_search.eq.id_imagen" class="form-control">
+						<option [ngValue]="null">Select</option>
+						<option *ngFor="let c of imagen_list" [value]="c.id">{{c.filename}}</option>
+					</select>
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Tipo</label>
+						<select name="tipo" [(ngModel)]="usuario_search.lk.tipo" class="form-control">
+						<option [ngValue]="null">Select</option>
+						<option value="PACIENTE">PACIENTE</option>
+						<option value="DOCTOR">DOCTOR</option>
+						<option value="RECEPCIONISTA">RECEPCIONISTA</option>
+						<option value="ADMIN">ADMIN</option>
+						<option value="ASISTENTE">ASISTENTE</option>
+						<option value="ROOT">ROOT</option>
+					</select>
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Id tipo precio</label>
+						<input type="number" name="id_tipo_precio" [(ngModel)]="usuario_search.eq.id_tipo_precio" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Id device notification</label>
+						<input type="text" name="id_device_notification" [(ngModel)]="usuario_search.lk.id_device_notification" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Contrasena</label>
+						<input type="text" name="contrasena" [(ngModel)]="usuario_search.lk.contrasena" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Telefono</label>
+						<input type="text" name="telefono" [(ngModel)]="usuario_search.lk.telefono" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Correo electronico</label>
+						<input type="text" name="correo_electronico" [(ngModel)]="usuario_search.lk.correo_electronico" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Factura rfc</label>
+						<input type="text" name="factura_rfc" [(ngModel)]="usuario_search.lk.factura_rfc" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Factura razon social</label>
+						<input type="text" name="factura_razon_social" [(ngModel)]="usuario_search.lk.factura_razon_social" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Factura codigo postal</label>
+						<input type="text" name="factura_codigo_postal" [(ngModel)]="usuario_search.lk.factura_codigo_postal" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Factura correo electronico</label>
+						<input type="text" name="factura_correo_electronico" [(ngModel)]="usuario_search.lk.factura_correo_electronico" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Id aseguranza</label>
+						<input type="number" name="id_aseguranza" [(ngModel)]="usuario_search.eq.id_aseguranza" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Numero aseguranza</label>
+						<input type="number" name="numero_aseguranza" [(ngModel)]="usuario_search.eq.numero_aseguranza" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Tiempo creacion</label>
+						<input type="datetime-local" name="tiempo_creacion" [(ngModel)]="usuario_search.eq.tiempo_creacion" class="form-control">
+					</div>
+				<div class="col-6 col-md-3 form-group">
+					<label class="">Tiempo actualizacion</label>
+						<input type="datetime-local" name="tiempo_actualizacion" [(ngModel)]="usuario_search.eq.tiempo_actualizacion" class="form-control">
+					</div>
+
+			<div class="col-6 col-md-3">
+				<button type="button" class="w-100 btn btn-primary" (click)="search()">Buscar</button>
+			</div>
+		</div>
+	</div -->
+
+	<div  class="card p-3 mt-3">
+		<!-- div class="row">
+				TEMPLATE_LIST_TABLE_HEADERS
+		</div -->
+		<app-loading [is_loading]="is_loading"></app-loading>
+		<div class="table-responsive">
+			<table class="table table-sm table-nowrap mb-0 table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>usuario</th>
+						<th>nombre</th>
+						<th>tipo</th>
+						<th>contrasena</th>
+						<th>telefono</th>
+						<th>correo_electronico</th>
+
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let usuario of usuario_list">
+						<td><a [routerLink]="['/edit-usuario',usuario.id]">{{usuario.id}}</a></td>
+						<td>{{usuario.usuario}}</td>
+						<td>{{usuario.nombre}}</td>
+						<td>{{usuario.tipo}}</td>
+						<td>{{usuario.contrasena}}</td>
+						<td>{{usuario.telefono}}</td>
+						<td>{{usuario.correo_electronico}}</td>
+					</tr>
+					<tr *ngIf="usuario_list == null || usuario_list.length == 0 && !is_loading" colspan="TEMPLATE_HEADERS_SIZE">
+						<div class="alert alert-light m-3" role="alert">No elements found</div>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<app-pagination [path]="'/list-usuario'" [pages]="pages" [totalPages]="totalPages" [currentPage]="currentPage"></app-pagination>
+</div>
+<app-modal [(show)]="show_import">
+    <div class="card p-3">
+        <h2>Import excel</h2>
+        <div class="from-group mb-3">
+            <label>Excel data</label>
+            <input name="file" type="file" (change)="onFileChanged($event)" accept="*/*" class="form-control">
+        </div>
+        <div class="row mt-3">
+            <div class="col-6">
+                <button type="button" class="btn btn-secondary w-100" (click)="show_import=false">Cancel</button>
+            </div>
+            <div class="col-6">
+                <button type="button" class="btn btn-primary w-100" (click)="uploadFile()" [disabled]="file==null">Upload</button>
+            </div>
+        </div>
+    </div>
+</app-modal>
+

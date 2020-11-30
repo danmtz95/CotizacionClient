@@ -1,0 +1,5 @@
+<div *ngIf="show && message" [ngClass]="{'alert-modal':true,'hightlight':hightlight}" >
+	<div [ngClass]="class_obj"  role="alert">
+		{{message.message}}  <i class="fas fa-window-close align-middle" style="font-size: 24px;color: red;" (click)="show=false"></i>
+</div>
+<!-- [ngClass]="{aler:true,'alert-danger':message.tipo=='alert-danger','alert-success':message.tipo=='alert.success'}" -->

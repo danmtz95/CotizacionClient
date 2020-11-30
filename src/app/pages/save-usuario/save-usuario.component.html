@@ -1,0 +1,55 @@
+<div class="card p-2 bordered shadow">
+	<div class="header-body mb-3">
+		<div class="row align-items-end">
+			<div class="col">
+				<!-- <h6 class="header-pretitle">{{usuario.id ? 'Update':'Add New'}}</h6> -->
+				<h3 class="header-title"> {{ usuario.id ? usuario.id :'usuario' | titlecase }}</h3>
+			</div>
+		</div>
+	</div>
+
+	<form ngNativeValidate (submit)="save()">
+		<div class="card p-3">
+			<div class="row p-3">
+				<div class="col-6 col-md-4">
+					<label class="">Usuario</label>
+					<input type="text" name="usuario" [(ngModel)]="usuario.usuario" class="form-control">
+				</div>
+				<div class="col-6 col-md-4">
+					<label class="">Nombre</label>
+					<input type="text" name="nombre" [(ngModel)]="usuario.nombre" class="form-control">
+				</div>
+
+				<div class="col-6 col-md-4">
+					<label class="">Tipo</label>
+					<select name="tipo" [(ngModel)]="usuario.tipo" class="form-control">
+						<option [ngValue]="null">Select</option>
+						<option value="PACIENTE">PRODUCCION</option>
+						<option value="RECEPCIONISTA">RECEPCION</option>
+						<option value="ADMIN">ADMIN</option>
+					</select>
+				</div>
+
+				<div class="col-6 col-md-4">
+					<label class="">Contrasena</label>
+					<input type="text" name="contrasena" [(ngModel)]="usuario.contrasena" class="form-control">
+				</div>
+				<div class="col-6 col-md-4">
+					<label class="">Telefono</label>
+					<input type="text" name="telefono" [(ngModel)]="usuario.telefono" class="form-control">
+				</div>
+				<div class="col-6 col-md-4">
+					<label class="">Correo electronico</label>
+					<input type="text" name="correo_electronico" [(ngModel)]="usuario.correo_electronico" class="form-control">
+				</div>
+
+
+			</div>
+			<div class="row p-3">
+				<div class="col-12 text-right">
+					<button type="submit"  [disabled]="is_loading" class="btn btn-primary">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

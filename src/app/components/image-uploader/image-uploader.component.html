@@ -1,0 +1,15 @@
+<div>
+	<label class="mb-0">
+		<div *ngIf="image; else defaultImage" class="">
+			<!-- avatar avatar-4by3 -->
+			<div [ngClass]="containerClasses"> <!-- ngStyle={'width':width,'height':height,'background-image': 'url('+rest.urlBase+'/image.php?id='+image+')'} -->
+				<img [src]="rest.urlBase+'/image.php?id='+image" class="img-thumbnail"> <!-- class="avatar-img rounded" -->
+			</div>
+		</div>
+		<ng-template #defaultImage>
+			<div class="logo_container" style="width:64px;height:64px;background-image: url(./assets/upload.png)"></div>
+		</ng-template>
+		<input style="display:none" type="file" (change)="uploadImage($event)" accept="image/*">
+	</label>
+</div>
+

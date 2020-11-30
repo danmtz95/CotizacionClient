@@ -1,0 +1,9 @@
+
+.alert-modal
+{
+	position: fixed;
+	z-index: 999;
+	bottom: 0;
+	right: 20px;
+	min-width: 200px;
+}

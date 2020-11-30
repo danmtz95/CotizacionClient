@@ -1,0 +1,153 @@
+<nav class="navbar d-flex flex-row navbar-expand-md navbar-dark borde-bottom padnull d-print-none">
+	<div class="bd-highlight pull-left">
+		<!-- <img src="./assets/logo/Mehr-Software-16.png" [routerLink]="['/dashboard']" class="logoMenu"
+			alt="Sample image" /> -->
+		<div class="row ml-3">
+
+			<button class="btn font-color " type="button">
+				<i class="fas fa-home"></i> Dashboard
+			</button>
+
+			<!-- -->
+			<div class="dropdown">
+				<button class="btn font-color dropdown-toggle" type="button" id="DropdownOrdenes"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-tasks"></i> Ordenes
+				</button>
+				<div class="dropdown-menu" aria-labelledby="DropdownOrdenes">
+					<!--a class="dropdown-item" [routerLink]="['/list-orden']">Ordenes</a-->
+					<a class="dropdown-item" [routerLink]="['/list-orden-detalle']">Ordenes</a>
+					<a class="dropdown-item" [routerLink]="['/add-orden']">Agregar Orden</a>
+					<a class="dropdown-item" [routerLink]="['/revisar-ordenes']">Importar Ordenes</a>
+					<!-- a class="dropdown-item" [routerLink]="['/list-planeacion']">Planeacion Producción</a -->
+					<a class="dropdown-item" [routerLink]="['/list-orden-detalle-produccion']">Orden en producción</a>
+					<a class="dropdown-item" [routerLink]="['/list-pedido']">Pedidos</a>
+					<a class="dropdown-item" [routerLink]="['/view-horas']">Ver horas</a>
+					<a class="dropdown-item" [routerLink]="['/reporte123']">Reporte123</a>
+					<a class="dropdown-item" [routerLink]="['/requerimiento-proyeccion']">Requerimiento/Proyeccion</a>
+					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
+				</div>
+			</div>
+			<button [routerLink]="['/list-distribuidor']" class="btn font-color dropdown-toggle">
+				<i class="fas fa-users"></i> Distribuidors
+			</button>
+			<div class="dropdown">
+				<button class="btn font-color dropdown-togg	dropdownProducto"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-seedling"></i> BOM
+				</button>
+				<div class="dropdown-menu" aria-labelledby="DropdownProducto">
+					<a class="dropdown-item" [routerLink]="['/list-producto']">BOM</a>
+					<a class="dropdown-item" [routerLink]="['/list-ramo']">SKU</a>
+
+					<a class="dropdown-item" [routerLink]="['/list-color']">Color</a>
+					<a class="dropdown-item" [routerLink]="['/list-flor']">Flor</a>
+					<a class="dropdown-item" [routerLink]="['/list-material']">Material de Empaque</a>
+					<a class="dropdown-item" [routerLink]="['/list-proyeccion-de-corte']">Proyeccion de corte</a>
+					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="btn font-color dropdown-togg	dropdownInventario"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-box"></i> Inventario
+				</button>
+				<div class="dropdown-menu" aria-labelledby="DropdownInventario">
+
+					<a class="dropdown-item" [routerLink]="['/list-inventario-total']">Inventario Total</a>
+					<a class="dropdown-item" [routerLink]="['/list-recibo-inventario']">Recepción de tallos</a>
+					<a class="dropdown-item" [routerLink]="['/list-inventario']">Inventario tallos</a>
+					<a class="dropdown-item" [routerLink]="['/add-recibo-inventario']">Recibir Tallos</a>
+					<a class="dropdown-item" [routerLink]="['/list-inventario-material']">Materiales</a>
+					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="btn font-color dropdown-togg	opdownProducto"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-id-badge"></i> Personal
+				</button>
+				<div class="dropdown-menu" aria-labelledby="DropdownPersonal">
+					<a class="dropdown-item" [routerLink]="['/asistencia-personal']">Asistencia de Personal</a>
+					<a class="dropdown-item" [routerLink]="['/list-personal']">Personal</a>
+					<a class="dropdown-item" [routerLink]="['/list-proyeccion-de-asistencia']">Proyeccion de asistencia</a>
+
+
+					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="btn font-color dropdown-togg	dropdownRequisicion"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-id-badge"></i> Requisición
+				</button>
+				<div class="dropdown-menu" aria-labelledby="DropdownRequisicion">
+
+					<a class="dropdown-item" [routerLink]="['/list-requisicion']">Requisicion</a>
+					<a class="dropdown-item" [routerLink]="['/list-requisicion-flor']">Requisicion de flor</a>
+					<a class="dropdown-item" [routerLink]="['/list-requisicion-material']">Requisicion de material</a>
+					<!-- <a class="dropdown-item" [routerLink]="['/list-personal']">Personal</a> -->
+
+
+					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="btn font-color dropdown-togg	dropdownRequisicion"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-id-badge"></i> Producción
+				</button>
+				<div class="dropdown-menu" aria-labelledby="DropdownRequisicion">
+					<!-- <a class="dropdown-item" [routerLink]="['/list-produccion']">Producción</a>
+					<a class="dropdown-item" [routerLink]="['/list-almacen-produccion']">Salida Almacen</a> -->
+					<a class="dropdown-item" routerLink="/list-tarima">Tarima</a>
+					<!-- <a class="dropdown-item" [routerLink]="['/list-requisicion-material']">Requisicion de material</a> -->
+					<!-- <a class="dropdown-item" [routerLink]="['/list-personal']">Personal</a> -->
+					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
+				</div>
+			</div>
+			<div class="dropdown">
+				<button class="btn font-color dropdown-togg	dropdownEnvio"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-truck-moving"></i> Envios
+				</button>
+				<div class="dropdown-menu" aria-labelledby="DropdownEnvio">
+					<!-- <a class="dropdown-item" [routerLink]="['/list-produccion']">Producción</a>
+					<a class="dropdown-item" [routerLink]="['/list-almacen-produccion']">Salida Almacen</a> -->
+					<a class="dropdown-item" routerLink="/list-envio">Envio</a>
+					<!-- <a class="dropdown-item" [routerLink]="['/list-requisicion-material']">Requisicion de material</a> -->
+					<!-- <a class="dropdown-item" [routerLink]="['/list-personal']">Personal</a> -->
+					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+	<!-- <div *ngIf="clinica" class="p-2 bd-highlight alling collapse navbar-collapse hidden-xs"><i class="fa fa-clinic-medical ml-2 mr-2"></i><a>{{clinica.nombre}}</a></div> -->
+	<div class="d-flex bd-highlight ml-auto">
+
+		<!-- <div class="p-1 bd-highlight collapse navbar-collapse"><img src="./assets/icon/Mehr-Software-34.png"
+				class="logoUser" /></div> -->
+		<!-- <div class="p-2 bd-highlight alling collapse navbar-collapse hidden-xs"><a>{{nombre}}</a></div> -->
+		<button class="btn btn-primary rounded my-2 my-sm-0" type="button"  (click)="showLogoutModal()">
+			Cerrar Sesión
+			<!-- <span class="navbar-toggler-icon"></span> -->
+		</button>
+	</div>
+</nav>
+<app-modal [show]="show_logout">
+	<!--button type="button" *ngIf="idOrganizacion" (click)="dismissModal()">Cerrar</button -->
+			<div class="modal-content text-center ">
+				<div class="modal-header">
+					<h4 class="modal-title">Logout <i class="fa fa-lock ml-3"></i></h4>
+				</div>
+				<div class="modal-body">
+					<p>Seguro que quieres salir del sistema?</p>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary rounded" (click)="show_logout=false">Cancelar</button>
+					<button class="btn btn-primary rounded" (click)="logout()">Confirmar</button>
+				</div>
+			</div>
+</app-modal>

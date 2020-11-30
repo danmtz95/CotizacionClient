@@ -1,0 +1,53 @@
+.logo{
+    text-align: center;
+    
+    
+    }
+    .img{
+      width:320px;
+    /* height: 160px; */
+    }
+    /* .col-centered{
+      float: none;
+      margin: 0 auto;
+      margin-top: 25px; /* Added src="../../../assets//logo/Mehr-Software-08.png"
+    }  */
+    .auth-box{
+      background:#fff;
+    padding: 20px;
+    /* box-shadow: 0px 0px 12px 0px rgba(50,50,50,0.2); */
+    border-radius: 8px;
+    box-shadow: 1px 0 20px rgba(0,0,0,.08);
+    max-width: 400px;
+    }
+    
+    .auth-wrapper{
+      min-height:100vh;
+
+      position: relative;
+    }
+    .justify-content-center {
+      -webkit-box-pack: center !important;
+      justify-content: center !important;
+    }
+    
+    .aling-items-center{
+      -webkit-box-align: center !important;
+    align-items: center !important;
+    }
+    .d-flex {
+      display: -webkit-box !important;
+      display: flex !important;
+    }
+    * {
+      outline: 0;
+    }
+    *, ::after, ::before {
+      box-sizing: border-box;
+    }
+    .m-b-20 {
+      margin-bottom: 20px;
+    }
+    .button{
+      width: 100%;
+    }
