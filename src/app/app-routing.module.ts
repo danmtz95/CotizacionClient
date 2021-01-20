@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component'
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 import { LoginComponent } from './pages/login/login.component'
 import { ListProductoComponent } from './pages/list-producto/list-producto.component'
+import { SaveProductoComponent } from './pages/save-producto/save-producto.component'
 
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
 			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 			{ path: 'dashboard', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'list-producto', component: ListProductoComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'list-producto', component: ListProductoComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'add-producto', component: SaveProductoComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'list-usuario', component: ListUsuarioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'add-usuario', component: SaveUsuarioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'edit-usuario/:id', component: SaveUsuarioComponent, pathMatch: 'full', canActivate: [AuthGuard], },

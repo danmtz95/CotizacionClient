@@ -542,6 +542,7 @@ export interface Usuario{
 	id?:number;
 	usuario?:string;
 	contrasena?:string;
+	tipo?:string;
 	correo_electronico?:string;
 	telefono?:string;
 	nombre?:string;

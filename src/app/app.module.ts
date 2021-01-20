@@ -26,6 +26,7 @@ import {ToastErrorComponent } from './components/toast-error/toast-error.compone
 import { BaseComponent } from './pages/base/base.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { SaveProductoComponent } from './pages/save-producto/save-producto.component';
 
 @NgModule({
 	declarations: [
@@ -41,6 +42,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
  		BaseComponent,
  		ModalComponent,
  		PaginationComponent,
+ 		SaveProductoComponent,
 			],
 	imports: [
 		BrowserModule,
