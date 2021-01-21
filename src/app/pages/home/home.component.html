@@ -1,24 +1,7 @@
-<!-- NAVBAR -->
-<div class="page">
-	<header class="position">
-		<app-header title="" ></app-header>
-	</header>
-	<!-- FIN NAVBAR -->
-	<div>		
-		<div class="page_content background-color-blue padding-top">
-			<!-- MENU -->
-			<!-- <div class="pt-2 flex-wrap justify-content-start">
-				<app-menu></app-menu>
-			</div> -->
-			<!-- FIN MENU -->
-			<!-- CONTENIDO -->
-			<main class="p-2">
-				<div class="">
-						<router-outlet></router-outlet>
-				</div>
-
-			</main>
-			<!-- FIN CONTENIDO -->
-		</div>
+<div id="wrapper">
+	<app-header title=""></app-header>
+	<div id="page-wrapper">
+		<router-outlet></router-outlet>
 	</div>
 </div>
+

@@ -1,153 +1,290 @@
-<nav class="navbar d-flex flex-row navbar-expand-md navbar-dark borde-bottom padnull d-print-none">
-	<div class="bd-highlight pull-left">
-		<!-- <img src="./assets/logo/Mehr-Software-16.png" [routerLink]="['/dashboard']" class="logoMenu"
-			alt="Sample image" /> -->
-		<div class="row ml-3">
-
-			<button class="btn font-color " type="button">
-				<i class="fas fa-home"></i> Dashboard
-			</button>
-
-			<!-- -->
-			<div class="dropdown">
-				<button class="btn font-color dropdown-toggle" type="button" id="DropdownOrdenes"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-tasks"></i> Ordenes
-				</button>
-				<div class="dropdown-menu" aria-labelledby="DropdownOrdenes">
-					<!--a class="dropdown-item" [routerLink]="['/list-orden']">Ordenes</a-->
-					<a class="dropdown-item" [routerLink]="['/list-orden-detalle']">Ordenes</a>
-					<a class="dropdown-item" [routerLink]="['/add-orden']">Agregar Orden</a>
-					<a class="dropdown-item" [routerLink]="['/revisar-ordenes']">Importar Ordenes</a>
-					<!-- a class="dropdown-item" [routerLink]="['/list-planeacion']">Planeacion Producción</a -->
-					<a class="dropdown-item" [routerLink]="['/list-orden-detalle-produccion']">Orden en producción</a>
-					<a class="dropdown-item" [routerLink]="['/list-pedido']">Pedidos</a>
-					<a class="dropdown-item" [routerLink]="['/view-horas']">Ver horas</a>
-					<a class="dropdown-item" [routerLink]="['/reporte123']">Reporte123</a>
-					<a class="dropdown-item" [routerLink]="['/requerimiento-proyeccion']">Requerimiento/Proyeccion</a>
-					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
-				</div>
-			</div>
-			<button [routerLink]="['/list-distribuidor']" class="btn font-color dropdown-toggle">
-				<i class="fas fa-users"></i> Distribuidors
-			</button>
-			<div class="dropdown">
-				<button class="btn font-color dropdown-togg	dropdownProducto"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-seedling"></i> BOM
-				</button>
-				<div class="dropdown-menu" aria-labelledby="DropdownProducto">
-					<a class="dropdown-item" [routerLink]="['/list-producto']">BOM</a>
-					<a class="dropdown-item" [routerLink]="['/list-ramo']">SKU</a>
-
-					<a class="dropdown-item" [routerLink]="['/list-color']">Color</a>
-					<a class="dropdown-item" [routerLink]="['/list-flor']">Flor</a>
-					<a class="dropdown-item" [routerLink]="['/list-material']">Material de Empaque</a>
-					<a class="dropdown-item" [routerLink]="['/list-proyeccion-de-corte']">Proyeccion de corte</a>
-					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
-				</div>
-			</div>
-			<div class="dropdown">
-				<button class="btn font-color dropdown-togg	dropdownInventario"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-box"></i> Inventario
-				</button>
-				<div class="dropdown-menu" aria-labelledby="DropdownInventario">
-
-					<a class="dropdown-item" [routerLink]="['/list-inventario-total']">Inventario Total</a>
-					<a class="dropdown-item" [routerLink]="['/list-recibo-inventario']">Recepción de tallos</a>
-					<a class="dropdown-item" [routerLink]="['/list-inventario']">Inventario tallos</a>
-					<a class="dropdown-item" [routerLink]="['/add-recibo-inventario']">Recibir Tallos</a>
-					<a class="dropdown-item" [routerLink]="['/list-inventario-material']">Materiales</a>
-					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
-				</div>
-			</div>
-			<div class="dropdown">
-				<button class="btn font-color dropdown-togg	opdownProducto"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-id-badge"></i> Personal
-				</button>
-				<div class="dropdown-menu" aria-labelledby="DropdownPersonal">
-					<a class="dropdown-item" [routerLink]="['/asistencia-personal']">Asistencia de Personal</a>
-					<a class="dropdown-item" [routerLink]="['/list-personal']">Personal</a>
-					<a class="dropdown-item" [routerLink]="['/list-proyeccion-de-asistencia']">Proyeccion de asistencia</a>
-
-
-					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
-				</div>
-			</div>
-			<div class="dropdown">
-				<button class="btn font-color dropdown-togg	dropdownRequisicion"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-id-badge"></i> Requisición
-				</button>
-				<div class="dropdown-menu" aria-labelledby="DropdownRequisicion">
-
-					<a class="dropdown-item" [routerLink]="['/list-requisicion']">Requisicion</a>
-					<a class="dropdown-item" [routerLink]="['/list-requisicion-flor']">Requisicion de flor</a>
-					<a class="dropdown-item" [routerLink]="['/list-requisicion-material']">Requisicion de material</a>
-					<!-- <a class="dropdown-item" [routerLink]="['/list-personal']">Personal</a> -->
-
-
-					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
-				</div>
-			</div>
-			<div class="dropdown">
-				<button class="btn font-color dropdown-togg	dropdownRequisicion"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-id-badge"></i> Producción
-				</button>
-				<div class="dropdown-menu" aria-labelledby="DropdownRequisicion">
-					<!-- <a class="dropdown-item" [routerLink]="['/list-produccion']">Producción</a>
-					<a class="dropdown-item" [routerLink]="['/list-almacen-produccion']">Salida Almacen</a> -->
-					<a class="dropdown-item" routerLink="/list-tarima">Tarima</a>
-					<!-- <a class="dropdown-item" [routerLink]="['/list-requisicion-material']">Requisicion de material</a> -->
-					<!-- <a class="dropdown-item" [routerLink]="['/list-personal']">Personal</a> -->
-					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
-				</div>
-			</div>
-			<div class="dropdown">
-				<button class="btn font-color dropdown-togg	dropdownEnvio"
-					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					<i class="fas fa-truck-moving"></i> Envios
-				</button>
-				<div class="dropdown-menu" aria-labelledby="DropdownEnvio">
-					<!-- <a class="dropdown-item" [routerLink]="['/list-produccion']">Producción</a>
-					<a class="dropdown-item" [routerLink]="['/list-almacen-produccion']">Salida Almacen</a> -->
-					<a class="dropdown-item" routerLink="/list-envio">Envio</a>
-					<!-- <a class="dropdown-item" [routerLink]="['/list-requisicion-material']">Requisicion de material</a> -->
-					<!-- <a class="dropdown-item" [routerLink]="['/list-personal']">Personal</a> -->
-					<!-- <a class="dropdown-item" href="#">Something else here</a> -->
-				</div>
-			</div>
-
-
-		</div>
-	</div>
-	<!-- <div *ngIf="clinica" class="p-2 bd-highlight alling collapse navbar-collapse hidden-xs"><i class="fa fa-clinic-medical ml-2 mr-2"></i><a>{{clinica.nombre}}</a></div> -->
-	<div class="d-flex bd-highlight ml-auto">
-
-		<!-- <div class="p-1 bd-highlight collapse navbar-collapse"><img src="./assets/icon/Mehr-Software-34.png"
-				class="logoUser" /></div> -->
-		<!-- <div class="p-2 bd-highlight alling collapse navbar-collapse hidden-xs"><a>{{nombre}}</a></div> -->
-		<button class="btn btn-primary rounded my-2 my-sm-0" type="button"  (click)="showLogoutModal()">
-			Cerrar Sesión
-			<!-- <span class="navbar-toggler-icon"></span> -->
+<nav class="navbar navbar-default top-navbar" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse"
+			data-target=".sidebar-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
 		</button>
+		<a class="navbar-brand waves-effect waves-dark" href="index.html"><i
+				class="large material-icons">track_changes</i> <strong>target</strong></a>
+
+		<div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
 	</div>
+
+	<ul class="nav navbar-top-links navbar-right">
+		<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown4"><i
+					class="fa fa-envelope fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a>
+		</li>
+		<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown3"><i
+					class="fa fa-tasks fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
+		<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown2"><i
+					class="fa fa-bell fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
+		<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i
+					class="fa fa-user fa-fw"></i> <b>John Doe</b> <i
+					class="material-icons right">arrow_drop_down</i></a></li>
+	</ul>
 </nav>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+	<li><a href="#"><i class="fa fa-user fa-fw"></i> My Profile</a>
+	</li>
+	<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+	</li>
+	<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+	</li>
+</ul>
+<ul id="dropdown2" class="dropdown-content w250">
+	<li>
+		<a href="#">
+		<div>
+			<i class="fa fa-comment fa-fw"></i> New Comment
+			<span class="pull-right text-muted small">4 min</span>
+		</div>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">
+		<div>
+			<i class="fa fa-twitter fa-fw"></i> 3 New Followers
+			<span class="pull-right text-muted small">12 min</span>
+		</div>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">
+		<div>
+			<i class="fa fa-envelope fa-fw"></i> Message Sent
+			<span class="pull-right text-muted small">4 min</span>
+		</div>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">
+		<div>
+			<i class="fa fa-tasks fa-fw"></i> New Task
+			<span class="pull-right text-muted small">4 min</span>
+		</div>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">
+		<div>
+			<i class="fa fa-upload fa-fw"></i> Server Rebooted
+			<span class="pull-right text-muted small">4 min</span>
+		</div>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a class="text-center" href="#">
+			<strong>See All Alerts</strong>
+			<i class="fa fa-angle-right"></i>
+		</a>
+	</li>
+</ul>
+<ul id="dropdown3" class="dropdown-content dropdown-tasks w250">
+	<li>
+		<a href="#">
+			<div>
+				<p>
+					<strong>Task 1</strong>
+					<span class="pull-right text-muted">60% Complete</span>
+				</p>
+				<div class="progress progress-striped active">
+					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60"
+						aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+						<span class="sr-only">60% Complete (success)</span>
+					</div>
+				</div>
+			</div>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">
+			<div>
+				<p>
+					<strong>Task 2</strong>
+					<span class="pull-right text-muted">28% Complete</span>
+				</p>
+				<div class="progress progress-striped active">
+					<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="28" aria-valuemin="0"
+						aria-valuemax="100" style="width: 28%">
+						<span class="sr-only">28% Complete</span>
+					</div>
+				</div>
+			</div>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">
+			<div>
+				<p>
+					<strong>Task 3</strong>
+					<span class="pull-right text-muted">60% Complete</span>
+				</p>
+				<div class="progress progress-striped active">
+					<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+						aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+						<span class="sr-only">60% Complete (warning)</span>
+					</div>
+				</div>
+			</div>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">
+			<div>
+				<p>
+					<strong>Task 4</strong>
+					<span class="pull-right text-muted">85% Complete</span>
+				</p>
+				<div class="progress progress-striped active">
+					<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="85"
+						aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+						<span class="sr-only">85% Complete (danger)</span>
+					</div>
+				</div>
+			</div>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+</ul>
+<ul id="dropdown4" class="dropdown-content dropdown-tasks w250 taskList">
+	<li>
+		<a href="#">
+		<div>
+			<strong>John Doe</strong>
+			<span class="pull-right text-muted">
+				<em>Today</em>
+			</span>
+		</div>
+		<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...</p>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">
+		<div>
+			<strong>John Smith</strong>
+			<span class="pull-right text-muted">
+				<em>Yesterday</em>
+			</span>
+		</div>
+		<p>Lorem Ipsum has been the industry's standard dummy text ever since an kwilnw...</p>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a href="#">
+			<div>
+				<strong>John Smith</strong>
+				<span class="pull-right text-muted">
+					<em>Yesterday</em>
+				</span>
+			</div>
+			<p>Lorem Ipsum has been the industry's standard dummy text ever since the...</p>
+		</a>
+	</li>
+	<li class="divider"></li>
+	<li>
+		<a class="text-center" href="#">
+			<strong>Read All Messages</strong>
+			<i class="fa fa-angle-right"></i>
+		</a>
+	</li>
+</ul>
+
+<!--/. NAV TOP  -->
+<nav class="navbar-default navbar-side" role="navigation">
+	<div class="sidebar-collapse">
+		<ul class="nav" id="main-menu">
+
+			<li>
+				<a class="active-menu waves-effect waves-dark" href="index.html"><i class="fa fa-dashboard"></i>
+					Dashboard</a>
+			</li>
+			<li>
+				<a href="ui-elements.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> UI
+					Elements</a>
+			</li>
+			<li>
+				<a href="chart.html" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>
+					Charts</a>
+			</li>
+			<li>
+				<a href="tab-panel.html" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> Tabs &
+					Panels</a>
+			</li>
+
+			<li>
+				<a href="table.html" class="waves-effect waves-dark"><i class="fa fa-table"></i> Responsive
+					Tables</a>
+			</li>
+			<li>
+				<a href="form.html" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Forms </a>
+			</li>
+
+
+			<li>
+				<a href="#" class="waves-effect waves-dark"><i class="fa fa-sitemap"></i> Multi-Level
+					Dropdown<span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level">
+					<li>
+						<a href="#">Second Level Link</a>
+					</li>
+					<li>
+						<a href="#">Second Level Link</a>
+					</li>
+					<li>
+						<a href="#">Second Level Link<span class="fa arrow"></span></a>
+						<ul class="nav nav-third-level">
+							<li>
+								<a href="#">Third Level Link</a>
+							</li>
+							<li>
+								<a href="#">Third Level Link</a>
+							</li>
+							<li>
+								<a href="#">Third Level Link</a>
+							</li>
+
+						</ul>
+
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="empty.html" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Empty
+					Page</a>
+			</li>
+		</ul>
+
+	</div>
+
+</nav>
+<!-- /. NAV SIDE  -->
 <app-modal [show]="show_logout">
 	<!--button type="button" *ngIf="idOrganizacion" (click)="dismissModal()">Cerrar</button -->
-			<div class="modal-content text-center ">
-				<div class="modal-header">
-					<h4 class="modal-title">Logout <i class="fa fa-lock ml-3"></i></h4>
-				</div>
-				<div class="modal-body">
-					<p>Seguro que quieres salir del sistema?</p>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-primary rounded" (click)="show_logout=false">Cancelar</button>
-					<button class="btn btn-primary rounded" (click)="logout()">Confirmar</button>
-				</div>
-			</div>
+	<div class="modal-content text-center ">
+		<div class="modal-header">
+			<h4 class="modal-title">Logout <i class="fa fa-lock ml-3"></i></h4>
+		</div>
+		<div class="modal-body">
+			<p>Seguro que quieres salir del sistema?</p>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary rounded" (click)="show_logout=false">Cancelar</button>
+			<button class="btn btn-primary rounded" (click)="logout()">Confirmar</button>
+		</div>
+	</div>
 </app-modal>

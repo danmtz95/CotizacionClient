@@ -27,7 +27,7 @@ import { BaseComponent } from './pages/base/base.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SaveProductoComponent } from './pages/save-producto/save-producto.component';
-
+import { MenuComponent } from './components/menu/menu.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -37,12 +37,13 @@ import { SaveProductoComponent } from './pages/save-producto/save-producto.compo
  		DashboardComponent,
  		LoginComponent,
  		HeaderComponent,
-			LoadingComponent,
-			ToastErrorComponent,
+		LoadingComponent,
+		ToastErrorComponent,
  		BaseComponent,
  		ModalComponent,
  		PaginationComponent,
- 		SaveProductoComponent,
+		SaveProductoComponent,
+		MenuComponent,
 			],
 	imports: [
 		BrowserModule,
