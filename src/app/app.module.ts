@@ -28,6 +28,16 @@ import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { SaveProductoComponent } from './pages/save-producto/save-producto.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { ListOrganizacionComponent } from './pages/list-organizacion/list-organizacion.component';
+import { SaveOrganizacionComponent } from './pages/save-organizacion/save-organizacion.component';
+import { ListSucursalComponent } from './pages/list-sucursal/list-sucursal.component';
+import { SaveSucursalComponent } from './pages/save-sucursal/save-sucursal.component';
+import { ListClienteComponent } from './pages/list-cliente/list-cliente.component';
+import { SaveClienteComponent } from './pages/save-cliente/save-cliente.component';
+import { ListProveedorComponent } from './pages/list-proveedor/list-proveedor.component';
+import { SaveProveedorComponent } from './pages/save-proveedor/save-proveedor.component';
+import { ListCotizacionComponent } from './pages/list-cotizacion/list-cotizacion.component';
+import { SaveCotizacionComponent } from './pages/save-cotizacion/save-cotizacion.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -44,6 +54,16 @@ import { MenuComponent } from './components/menu/menu.component';
  		PaginationComponent,
 		SaveProductoComponent,
 		MenuComponent,
+		ListOrganizacionComponent,
+		SaveOrganizacionComponent,
+		ListSucursalComponent,
+		SaveSucursalComponent,
+		ListClienteComponent,
+		SaveClienteComponent,
+		ListProveedorComponent,
+		SaveProveedorComponent,
+		ListCotizacionComponent,
+		SaveCotizacionComponent,
 			],
 	imports: [
 		BrowserModule,

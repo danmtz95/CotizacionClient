@@ -1,10 +1,10 @@
 <div class="header">
 	<h2 class="page-header">
-		Usuarios
+		Proveedores
 	</h2>
 	<ol class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">Usuarios</a></li>
+		<li><a href="#">Proveedores</a></li>
 		<li class="active">Data</li>
 	</ol>
 </div>
@@ -15,11 +15,11 @@
 			<div class="card">
 				<div class="card-action">
 					<div class="col s6 text-left">
-						Usuarios
+						Proveedores
 					</div>
 					<div class="col s6 text-right">
 						<a type="button" class="waves-effect waves-light btn-success btn "
-							[routerLink]="['/add-usuario']"><i class="fa fa-plus"></i> Agregar Usuario</a>
+							[routerLink]="['/add-proveedor']"><i class="fa fa-plus"></i> Agregar Proveedor</a>
 					</div>
 				</div>
 
@@ -28,34 +28,32 @@
 						<table class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
-									<th>id</th>
-									<th>usuario</th>
-									<th>nombre</th>
-									<th>tipo</th>
-									<th>contrasena</th>
-									<th>telefono</th>
-									<th>correo_electronico</th>
+									<th>ID</th>
+									<th>Nombre</th>
+									<th>Dirección</th>
+									<th>Teléfono</th>
+									<th>Contacto</th>
+									<th>RFC</th>
+									<th>Nota</th>
 									<th>Acciones</th>
-
-
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="let usuario of usuario_list">
-									<td><a [routerLink]="['/edit-usuario',usuario.id]">{{usuario.id}}</a></td>
-									<td>{{usuario.usuario}}</td>
-									<td>{{usuario.nombre}}</td>
-									<td>{{usuario.tipo_de_usuario}}</td>
-									<td>{{usuario.contrasena}}</td>
-									<td>{{usuario.telefono}}</td>
-									<td>{{usuario.correo_electronico}}</td>
+								<tr *ngFor="let proveedor of proveedor_list">
+									<td><a [routerLink]="['/edit-usuario',proveedor.id]">{{proveedor.id}}</a></td>
+									<td>{{proveedor.nombre}}</td>
+									<td>{{proveedor.direccion}}</td>
+									<td>{{proveedor.telefono}}</td>
+									<td>{{proveedor.contacto}}</td>
+									<td>{{proveedor.rfc}}</td>
+									<td>{{proveedor.nota}}</td>
 									<td>
 										<a class="waves-effect waves-light btn-success btn icon-size-1"
-											[routerLink]="['/edit-usuario',usuario.id]"><i
+											[routerLink]="['/edit-proveedor',proveedor.id]"><i
 												class="material-icons icon-size-1">mode_edit</i></a>
 									</td>
 								</tr>
-								<tr *ngIf="usuario_list == null || usuario_list.length == 0 && !is_loading"
+								<tr *ngIf="proveedor_list == null || proveedor_list.length == 0 && !is_loading"
 									colspan="TEMPLATE_HEADERS_SIZE">
 									<td colspan="8" class="text-center">
 										<div class="alert alert-light m-3" role="alert">No elements found</div>
@@ -65,7 +63,7 @@
 							</tbody>
 						</table>
 					</div>
-					<app-pagination [path]="'/list-usuario'" [pages]="pages" [totalPages]="totalPages"
+					<app-pagination [path]="'/list-proveedor'" [pages]="pages" [totalPages]="totalPages"
 						[currentPage]="currentPage">
 					</app-pagination>
 					<footer>

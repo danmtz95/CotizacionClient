@@ -3,20 +3,19 @@ import { RestService } from '../../services/rest.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { BaseComponent } from '../base/base.component';
 import { forkJoin } from 'rxjs';
-
-import {Usuario} from '../../models/RestModels';
+import {Cliente, Usuario} from '../../models/RestModels';
 import {Organizacion} from '../../models/RestModels';
 import {Imagen} from '../../models/RestModels';
 
 
 @Component({
-	selector: 'app-save-usuario',
-	templateUrl: './save-usuario.component.html',
-	styleUrls: ['./save-usuario.component.css']
+  selector: 'app-save-cliente',
+  templateUrl: './save-cliente.component.html',
+  styleUrls: ['./save-cliente.component.css']
 })
-export class SaveUsuarioComponent extends BaseComponent implements OnInit {
+export class SaveClienteComponent extends BaseComponent implements OnInit {
 
-	usuario:Usuario	= {};
+	cliente:Cliente	= {};
 
 
 	organizacion_list:Organizacion[] = [];
@@ -29,24 +28,22 @@ export class SaveUsuarioComponent extends BaseComponent implements OnInit {
 		{
 			//this.company = this.rest.getCompanyFromSession();
 
-			let id_usuario = parseInt( params.get('id') );
+			let id_cliente = parseInt( params.get('id') );
 			let session = this.rest. getUsuarioSesion();
-
 				this.is_loading = true;
-				if( id_usuario )
+				if( id_cliente )
 				{
 					forkJoin({
-						usuario : this.rest.usuario.get( id_usuario),
-
+						cliente : this.rest.cliente.get( id_cliente ),
 					})
 					.subscribe((responses)=>
 					{
-						this.usuario= responses.usuario;
+						this.cliente= responses.cliente;
 						this.is_loading = false;
 					},(error)=>this.showError(error));
 				}else{
-					this.usuario.id_organizacion = session.id_organizacion;
-					this.usuario.id_sucursal = session.id_sucursal;
+					this.cliente.id_organizacion = session.id_organizacion;
+					this.cliente.id_sucursal = session.id_sucursal;
 					this.is_loading = false;
 				}
 
@@ -57,18 +54,18 @@ export class SaveUsuarioComponent extends BaseComponent implements OnInit {
 	{
 		this.is_loading = true;
 
-		if( this.usuario.id	)
+		if( this.cliente.id	)
 		{
-			this.rest.usuario.update( this.usuario ).subscribe((usuario)=>{
+			this.rest.cliente.update( this.cliente ).subscribe((cliente)=>{
 				this.is_loading = false;
-				this.router.navigate(['/list-usuario']);
+				this.router.navigate(['/list-cliente']);
 			},(error)=>this.showError(error));
 		}
 		else
 		{
-			this.rest.usuario.create( this.usuario ).subscribe((usuario)=>{
+			this.rest.cliente.create( this.cliente ).subscribe((cliente)=>{
 				this.is_loading = false;
-				this.router.navigate(['/list-usuario']);
+				this.router.navigate(['/list-cliente']);
 			},(error)=>this.showError(error));
 		}
 	}

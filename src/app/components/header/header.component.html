@@ -22,7 +22,7 @@
 		<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown2"><i
 					class="fa fa-bell fa-fw"></i> <i class="material-icons right">arrow_drop_down</i></a></li>
 		<li><a class="dropdown-button waves-effect waves-dark" href="#!" data-activates="dropdown1"><i
-					class="fa fa-user fa-fw"></i> <b>John Doe</b> <i
+					class="fa fa-user fa-fw"></i> <b>Daniboi :)</b> <i
 					class="material-icons right">arrow_drop_down</i></a></li>
 	</ul>
 </nav>
@@ -32,7 +32,7 @@
 	</li>
 	<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 	</li>
-	<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+	<li><a (click)="logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 	</li>
 </ul>
 <ul id="dropdown2" class="dropdown-content w250">
@@ -214,8 +214,13 @@
 					Dashboard</a>
 			</li>
 			<li>
-				<a href="ui-elements.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> UI
-					Elements</a>
+				<a href="ui-elements.html" class="waves-effect waves-dark" [routerLink]="['/list-usuario']"><i class="fa fa-users"></i> Usuarios</a>
+			</li>
+			<li>
+				<a href="ui-elements.html" class="waves-effect waves-dark" [routerLink]="['/list-cliente']"><i class="fa fa-users"></i> Clientes</a>
+			</li>
+			<li>
+				<a href="ui-elements.html" class="waves-effect waves-dark" [routerLink]="['/list-proveedor']"><i class="fa fa-users"></i> Proveedores</a>
 			</li>
 			<li>
 				<a href="chart.html" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i>

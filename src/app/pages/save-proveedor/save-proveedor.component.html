@@ -1,11 +1,11 @@
 <div class="header">
 	<h2 class="page-header">
-		{{ usuario.id ? usuario.nombre :'Agregar Usuario' | titlecase }}
+		{{ proveedor.id ? proveedor.nombre :'Agregar Proveedor' | titlecase }}
 	</h2>
 	<ol class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">Usuarios</a></li>
-		<li class="active">{{usuario.id? 'Editar':'Crear'}}</li>
+		<li><a href="#">Proveedores</a></li>
+		<li class="active">{{proveedor.id? 'Editar':'Crear'}}</li>
 	</ol>
 
 </div>
@@ -16,57 +16,51 @@
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-action">
-					Información del usuario
+					Información del proveedor
 				</div>
 				<div class="card-content">
 					<form ngNativeValidate (submit)="save()" class="col s12">
 						<div class="row">
-							<div class=" col s4">
-								<label for="usuario">Usuario</label>
-								<input id="usuario" name="usuario" type="text" class="validate"
-									[(ngModel)]="usuario.usuario">
-
-							</div>
-							<div class=" col s4">
-								<label for="contrasena">contraseña</label>
-								<input id="contrasena" name="contrasena" type="text" class="validate" [(ngModel)]="usuario.contrasena">
-							</div>
-							<div class=" col s4">
-								<label for="first_name">tipo</label>
-								<input id="tipo" name="tipo" type="text" class="validate"
-									[(ngModel)]="usuario.tipo_de_usuario">
-							</div>
-						</div>
-						<div class="row">
-							<div class=" col s4">
+							<div class=" col s6">
 								<label for="nombre">Nombre</label>
-								<input id="nombre" type="text" name="nombre" class="validate"
-									[(ngModel)]="usuario.nombre">
+								<input id="nombre" name="nombre" type="text" class="validate"
+									[(ngModel)]="proveedor.nombre">
+
 							</div>
-							<div class=" col s4">
-								<label for="apellido_paterno">apellido paterno</label>
-								<input id="apellido_paterno" type="text" name="apellido_paterno" class="validate"
-									[(ngModel)]="usuario.apellido_paterno">
+							<div class=" col s6">
+								<label for="direccion">Dirección</label>
+								<input id="direccion" name="direccion" type="text" class="validate" [(ngModel)]="proveedor.direccion">
 							</div>
-							<div class=" col s4">
-								<label for="apellido_materno">apellido materno</label>
-								<input id="apellido_materno" type="text" name="apellido_materno" class="validate"
-									[(ngModel)]="usuario.apellido_materno">
-							</div>
+
 						</div>
 						<div class="row">
-							<div class=" col s6">
-								<label for="correo_electronico">correo electronico</label>
-								<input id="correo_electronico" name="correo_electronico" type="text" class="validate" [(ngModel)]="usuario.correo_electronico">
-
+							<div class=" col s4">
+								<label for="telefono">Telefono</label>
+								<input id="telefono" type="number" name="telefono" class="validate"
+									[(ngModel)]="proveedor.telefono">
 							</div>
-							<div class=" col s6">
-								<label for="telefono">telefono</label>
-								<input id="telefono" name="telefono" type="text" class="validate"
-									[(ngModel)]="usuario.telefono">
+							<div class=" col s4">
+								<label for="contacto">contacto</label>
+								<input id="contacto" type="text" name="contacto" class="validate"
+									[(ngModel)]="proveedor.contacto">
+							</div>
+							<div class=" col s4">
+								<label for="rfc">RFC</label>
+								<input id="rfc" name="rfc" type="text" class="validate" [(ngModel)]="proveedor.rfc">
+
 							</div>
 
 						</div>
+						<div class="row">
+							<div class=" col s12">
+								<label for="nota">Nota</label>
+								<textarea id="nota" name="nota" type="text" class="validate"
+									[(ngModel)]="proveedor.nota"></textarea>
+							</div>
+
+
+						</div>
+
 						<div class="row p-3">
 							<div class="col-12 text-right">
 								<button type="submit" [disabled]="is_loading" class="waves-effect waves-light btn-success btn icon-size-1"><i class="fa fa-save icon-size-1"></i> Guardar</button>
@@ -82,7 +76,7 @@
 
 	<!--
 	<div class="col-6 col-md-4">
-		<label class="">Usuario</label>
+		<label class="">proveedor</label>
 		<input type="text" name="usuario" [(ngModel)]="usuario.usuario" class="form-control">
 	</div>
 	<div class="col-6 col-md-4">

@@ -4,46 +4,21 @@ import * as XLSX from 'xlsx';
 import { map } from 'rxjs/operators';
 import { Rest, RestResponse } from './Rest';
 import { LoginResponse } from '../models/Respuestas';
-import { Bitacora, Caja, Equivalencia, Orden_Detalle_Produccion_Cajas, Ramo_Produccion, Requisicion_Flor, Requisicion_Material, Transfer } from '../models/RestModels';
-import { Asistencia_Personal } from '../models/RestModels';
-import { Orden_Detalle_Personal } from '../models/RestModels';
+import { Bitacora,} from '../models/RestModels';
 import { NumberDictionary, StringDictionary } from '../models/models';
-
 import { Cliente } from '../models/RestModels';
-import { Color } from '../models/RestModels';
 import { Distribuidor } from '../models/RestModels';
-import { Envio } from '../models/RestModels';
 import { File_Type } from '../models/RestModels';
-import { Flor } from '../models/RestModels';
-import { Flor_Variedad } from '../models/RestModels';
 import { Imagen } from '../models/RestModels';
-import { Inventario } from '../models/RestModels';
-import { Inventario_Material_Movimiento } from '../models/RestModels';
-import { Orden } from '../models/RestModels';
-import { Orden_Personal } from '../models/RestModels';
-import { Orden_Detalle } from '../models/RestModels';
 import { Organizacion } from '../models/RestModels';
-import { Pedido } from '../models/RestModels';
-import { Proyeccion_De_Asistencia } from '../models/RestModels';
-import { Proyeccion_De_Corte } from '../models/RestModels';
-import { Ramo, Ramo_Detalle, Reemplazo_Flor } from '../models/RestModels';
-
 import { Sesion } from '../models/RestModels';
-import { Sucursal, Personal, Producto, Pronostico_Corte } from '../models/RestModels';
-import { Recibo_Inventario } from '../models/RestModels';
-import { Tarima } from '../models/RestModels';
+import { Sucursal,  Producto, } from '../models/RestModels';
 import { Usuario } from '../models/RestModels';
-import { Inventario_Material } from '../models/RestModels';
-import { Material } from '../models/RestModels';
 import { Attachment } from '../models/RestModels'
-import { OrdenInfo, OrdenDetalleInfo, OrdenInventarioInfo, ProductoEquivalenciaInfo, InventarioInfo, PersonalAsistenciaInfo, RamoInfo, TransferInfo, GraphData } from '../models/models';
-import { ProductoInfo } from '../models/models';
-import { PedidoInfo, FloresRequeridas } from '../models/models';
 import { Distribuidor_Direccion } from '../models/RestModels';
-import { Archivo_Cargado, Requisicion } from '../models/RestModels';
-import { RequisicionInfo, TarimaInfo, CajaInfo } from '../models/models';
-import { EnvioInfo } from '../models/models';
-import { ReciboInventarioInfo } from '../models/models';
+import { Requisicion } from '../models/RestModels';
+import { Proveedor } from '../models/RestModels';
+
 //import { forkJoin } from 'rxjs';
 
 import { NgxCsvParser } from 'ngx-csv-parser';
@@ -73,60 +48,19 @@ export class RestService {
 	public urlBase: string = this.getUrlBase();
 
 	/* Rest variable declarations */
-	public ramo_produccion: Rest<Ramo_Produccion, Ramo_Produccion> = this.initRest('ramo_produccion');
 	public bitacora: Rest<Bitacora, Bitacora> = this.initRest('bitacora');
-	public caja: Rest<Caja, Caja> = this.initRest('caja');
-	public caja_info: Rest<Caja, CajaInfo> = this.initRest('cajaInfo');
-	public cliente: Rest<Cliente, Cliente> = this.initRest('cliente');
-	public color: Rest<Color, Color> = this.initRest('color');
-	public distribuidor: Rest<Distribuidor, Distribuidor> = this.initRest('distribuidor');
-	public envio: Rest<Envio, EnvioInfo> = this.initRest('envio_info');
 	public file_type: Rest<File_Type, File_Type> = this.initRest('file_type');
-	public flor: Rest<Flor, Flor> = this.initRest('flor');
-	public flor_variedad: Rest<Flor_Variedad, Flor_Variedad> = this.initRest('flor_variedad');
-	public inventario: Rest<Inventario, Inventario> = this.initRest('inventario');
-	public inventario_material_movimiento: Rest<Inventario_Material_Movimiento, Inventario_Material_Movimiento> = this.initRest('inventario_material_movimiento');
-	public inventario_info: Rest<Inventario, InventarioInfo> = this.initRest('inventario_info');
-	public inventario_total: Rest<Inventario, Inventario> = this.initRest('inventarioReporte');
-	public material: Rest<Material, Material> = this.initRest('material');
-	public orden: Rest<Orden, Orden> = this.initRest('orden');
-	public orden_personal: Rest<Orden_Personal, Orden_Personal> = this.initRest('orden_personal');
 	public organizacion: Rest<Organizacion, Organizacion> = this.initRest('organizacion');
-	public pedido: Rest<Pedido, Pedido> = this.initRest('pedido');
-	public personal: Rest<Personal, Personal> = this.initRest('personal');
 	public producto: Rest<Producto, Producto> = this.initRest('producto');
-	public pronostico_corte: Rest<Pronostico_Corte, Pronostico_Corte> = this.initRest('pronostico_corte');
-	public proyeccion_de_asistencia: Rest<Proyeccion_De_Asistencia, Proyeccion_De_Asistencia> = this.initRest('proyeccion_de_asistencia');
-	public proyeccion_de_corte: Rest<Proyeccion_De_Corte, Proyeccion_De_Corte> = this.initRest('proyeccion_de_corte');
-
-	public ramo_info: Rest<Ramo, RamoInfo> = this.initRest('ramo');
-	public ramo_detalle: Rest<Ramo_Detalle, Ramo_Detalle> = this.initRest('ramo_detalle');
-	public recibo_inventario_info: Rest<Recibo_Inventario, ReciboInventarioInfo> = this.initRest('recibo_inventario');
-	public reemplazo_flor: Rest<Reemplazo_Flor, Reemplazo_Flor> = this.initRest('reemplazo_flor');
 	public sesion: Rest<Sesion, Sesion> = this.initRest('sesion');
 	public sucursal: Rest<Sucursal, Sucursal> = this.initRest('sucursal');
-	public tarima: Rest<Tarima, TarimaInfo> = this.initRest('tarima');
 	public usuario: Rest<Usuario, Usuario> = this.initRest('usuario');
-	public orden_info: Rest<Orden, OrdenInfo> = this.initRest('ordenInfo');
-	public orden_detalle_info: Rest<Orden_Detalle, OrdenDetalleInfo> = this.initRest('ordenDetalleInfo');
-	public orden_detalle_personal: Rest<Orden_Detalle_Personal, Orden_Detalle_Personal> = this.initRest('orden_detalle_personal');
-
-	public producto_info: Rest<Producto, ProductoInfo> = this.initRest('productoInfo');
-	public producto_equivalencia: Rest<Equivalencia, ProductoEquivalenciaInfo> = this.initRest('equivalenciaInfo');
-	public producto_equivalencia2: Rest<Equivalencia, ProductoEquivalenciaInfo> = this.initRest('equivalenciaInfo');
-	public equivalencia: Rest<Equivalencia, Equivalencia> = this.initRest('equivalencia');
-	public orden_inventario: Rest<Orden, OrdenInventarioInfo> = this.initRest('ordenInventarioInfo');
-	public inventario_material: Rest<Inventario_Material, Inventario_Material> = this.initRest('inventario_material');
-	public pedidoInfo: Rest<Pedido, PedidoInfo> = this.initRest('pedidoInfo');
+	public cliente: Rest<Cliente, Cliente> = this.initRest('cliente');
+	public proveedor: Rest<Proveedor, Proveedor> = this.initRest('proveedor');
+	// public producto_info: Rest<Producto, ProductoInfo> = this.initRest('productoInfo');
 	public distribuidor_direccion: Rest<Distribuidor_Direccion, Distribuidor_Direccion> = this.initRest('distribuidor_direccion');
-	public archivo_cargado: Rest<Archivo_Cargado, Archivo_Cargado> = this.initRest('archivo_cargado');
-	public asistencia_personal: Rest<Asistencia_Personal, Asistencia_Personal> = this.initRest('asistencia_personal');
-	public personal_asistencia_info: Rest<Asistencia_Personal, PersonalAsistenciaInfo> = this.initRest('personal_asistencia_info');
-	public requisicion_flor: Rest<Requisicion_Flor, Requisicion_Flor> = this.initRest('requisicion_flor');
-	public requisicion_material: Rest<Requisicion_Material, Requisicion_Material> = this.initRest('requisicion_material');
-	public transfer_info: Rest<Transfer, TransferInfo> = this.initRest('transfer_info');
-	public orden_detalle_produccion_cajas: Rest<Orden_Detalle_Produccion_Cajas, Orden_Detalle_Produccion_Cajas> = this.initRest('orden_detalle_produccion_cajas');
-	public requisicion_info: Rest<Requisicion, RequisicionInfo> = this.initRest('requisicionInfo');
+
+
 
 	constructor(private http: HttpClient, public ngxCsvParser: NgxCsvParser) {
 		//Produccion por cambiarx`x
