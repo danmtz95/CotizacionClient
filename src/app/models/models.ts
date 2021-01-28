@@ -1,4 +1,4 @@
-import { Distribuidor, Producto, Producto_Detalle, Requisicion} from './RestModels';
+import { Distribuidor, Producto_Detalle, Requisicion} from './RestModels';
 
 export interface StringDictionary<T> {
 	[key: string]: T;

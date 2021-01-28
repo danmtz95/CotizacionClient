@@ -1,1 +1,102 @@
-<p>list-cotizacion works!</p>
+<div class="header">
+	<h2 class="page-header">
+		Cotizaciones
+	</h2>
+	<ol class="breadcrumb">
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Cotizaciones</a></li>
+		<li class="active">Data</li>
+	</ol>
+</div>
+<div id="page-inner">
+	<div class="row">
+		<div class="col-md-12">
+			<!-- Advanced Tables -->
+			<div class="card">
+				<div class="card-action">
+					<div class="col s6 text-left">
+						Cotizaciones
+					</div>
+					<div class="col s6 text-right">
+						<a type="button" class="waves-effect waves-light btn-success btn "
+							[routerLink]="['/add-cotizacion']"><i class="fa fa-plus"></i> Agregar Cotización</a>
+					</div>
+				</div>
+
+				<div class="card-content">
+					<div class="table-responsive">
+						<table class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Fecha</th>
+									<th>Cliente</th>
+									<th>Costo</th>
+									<th>Flete</th>
+									<th>Iva</th>
+									<th>Costo Total</th>
+									<th>Nota</th>
+									<th>Fecha de Entrega</th>
+									<th>Estado</th>
+									<th>Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr *ngFor="let cotizacion of cotizacion_list">
+									<td><a [routerLink]="['/edit-usuario',cotizacion.id]">{{cotizacion.id}}</a></td>
+									<td>{{cotizacion.fecha_creacion}}</td>
+									<td>{{cotizacion.id_cliente}}</td>
+									<td>{{cotizacion.costo}}</td>
+									<td>{{cotizacion.flete}}</td>
+									<td>{{cotizacion.iva}}</td>
+									<td>{{cotizacion.costo_total}}</td>
+									<td>{{cotizacion.nota}}</td>
+									<td>{{cotizacion.fecha_de_entrega}}</td>
+									<td>{{cotizacion.estado}}</td>
+									<td>
+										<a class="waves-effect waves-light btn-success btn icon-size-1"
+											[routerLink]="['/edit-cotizacion',cotizacion.id]"><i
+												class="material-icons icon-size-1">mode_edit</i></a>
+									</td>
+								</tr>
+								<tr *ngIf="cotizacion_list == null || cotizacion_list.length == 0 && !is_loading"
+									colspan="TEMPLATE_HEADERS_SIZE">
+									<td colspan="8" class="text-center">
+										<div class="alert alert-light m-3" role="alert">No elements found</div>
+
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<app-pagination [path]="'/list-cotizacion'" [pages]="pages" [totalPages]="totalPages"
+						[currentPage]="currentPage">
+					</app-pagination>
+					<footer>
+						<!-- <p>All right reserved. Template by: <a
+								href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
+					</footer>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<app-modal [(show)]="show_import">
+	<div class="card p-3">
+		<h2>Import excel</h2>
+		<div class="from-group mb-3">
+			<label>Excel data</label>
+			<input name="file" type="file" (change)="onFileChanged($event)" accept="*/*" class="form-control">
+		</div>
+		<div class="row mt-3">
+			<div class="col-6">
+				<button type="button" class="btn btn-secondary w-100" (click)="show_import=false">Cancel</button>
+			</div>
+			<div class="col-6">
+				<button type="button" class="btn btn-primary w-100" (click)="uploadFile()"
+					[disabled]="file==null">Upload</button>
+			</div>
+		</div>
+	</div>
+</app-modal>

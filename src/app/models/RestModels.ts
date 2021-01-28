@@ -211,3 +211,19 @@ export interface Proveedor{
 	tiempo_creacion?:Date;
 	tiempo_actualizacion?:Date;
 }
+export interface Cotizacion{
+	id?:number;
+	id_organizacion?:number;
+	id_sucursal?:number;
+	id_usuario_solicito?:number;
+	id_cliente?:number;
+	costo?:number;
+	flete?:number;
+	costo_total?:number;
+	iva?:number;
+	estado?:string;
+	fecha_de_entrega?:Date;
+	nota?:string;
+	fecha_actualizacion?:Date;
+	fecha_creacion?:Date;
+}

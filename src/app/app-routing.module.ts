@@ -12,6 +12,8 @@ import { ListProveedorComponent } from './pages/list-proveedor/list-proveedor.co
 import { SaveProveedorComponent } from './pages/save-proveedor/save-proveedor.component'
 import { ListServicioComponent } from './pages/list-servicio/list-servicio.component'
 import { SaveServicioComponent } from './pages/save-servicio/save-servicio.component'
+import { ListCotizacionComponent } from './pages/list-cotizacion/list-cotizacion.component'
+import { SaveCotizacionComponent } from './pages/save-cotizacion/save-cotizacion.component'
 
 
 const routes: Routes = [
@@ -35,6 +37,9 @@ const routes: Routes = [
 			{ path: 'list-servicio', component: ListServicioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'add-servicio', component: SaveServicioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'edit-servicio/:id', component: SaveServicioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'list-cotizacion', component: ListCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'add-cotizacion', component: SaveCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'edit-cotizacion/:id', component: SaveCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			//			,{ path:'list-transfer/:id' , component: ListTransferComponent, pathMatch: 'full',canActivate:[AuthGuard] }
 
 		],
