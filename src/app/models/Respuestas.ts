@@ -1,7 +1,7 @@
 /////
 //
 import {
-Sesion ,Usuario, Servicio,Servicio_Recurso
+Sesion ,Usuario, Servicio,Servicio_Recurso, Cotizacion, Cotizacion_Detalle
 } from './RestModels';
 
 
@@ -83,3 +83,13 @@ export interface Servicio_Recurso_Info{
 	servicio: Servicio;
 	recursos: Recurso_Info[];
 };
+
+export interface Cotizacion_Detalle_Info{
+	servicio: Servicio;
+	cotizacion_detalle: Cotizacion_Detalle;
+}
+
+export interface Cotizacion_Info{
+	cotizacion: Cotizacion;
+	cotizacion_detalles: Cotizacion_Detalle_Info[];
+}

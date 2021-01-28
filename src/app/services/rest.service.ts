@@ -3,7 +3,7 @@ import { Observable, BehaviorSubject, fromEvent } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { map } from 'rxjs/operators';
 import { Rest, RestResponse } from './Rest';
-import { LoginResponse, Servicio_Recurso_Info } from '../models/Respuestas';
+import { Cotizacion_Info, LoginResponse, Servicio_Recurso_Info } from '../models/Respuestas';
 import { Bitacora, Cotizacion, Servicio,} from '../models/RestModels';
 import { NumberDictionary, StringDictionary } from '../models/models';
 import { Cliente } from '../models/RestModels';
@@ -59,6 +59,7 @@ export class RestService {
 	public servicio_recurso: Rest<Servicio_Recurso_Info, Servicio_Recurso_Info> = this.initRest('servicio_recurso');
 	public servicio: Rest<Servicio, Servicio> = this.initRest('servicio');
 	public cotizacion: Rest<Cotizacion, Cotizacion> = this.initRest('cotizacion');
+	public cotizacion_info: Rest<Cotizacion_Info, Cotizacion_Info> = this.initRest('cotizacion_info');
 
 
 	constructor(private http: HttpClient, public ngxCsvParser: NgxCsvParser) {

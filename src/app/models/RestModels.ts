@@ -215,7 +215,7 @@ export interface Cotizacion{
 	id?:number;
 	id_organizacion?:number;
 	id_sucursal?:number;
-	id_usuario_solicito?:number;
+	id_usuario?:number;
 	id_cliente?:number;
 	costo?:number;
 	flete?:number;
@@ -227,3 +227,14 @@ export interface Cotizacion{
 	fecha_actualizacion?:Date;
 	fecha_creacion?:Date;
 }
+
+export interface Cotizacion_Detalle{
+	id?:number;
+	id_cotizacion?:number;
+	id_servicio?:number;
+	cantidad?:number;
+	precio?:number;
+	fecha_actualizacion?:Date;
+	fecha_creacion?:Date;
+}
+

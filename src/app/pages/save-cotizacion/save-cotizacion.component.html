@@ -1,1 +1,221 @@
-<p>save-cotizacion works!</p>
+<div class="header">
+	<h2 class="page-header">
+		{{ cotizacion_info.cotizacion.id ? 'folio: {{cotizacion_info.cotizacion.id}}' :'Agregar Cotizacion' | titlecase
+		}}
+	</h2>
+	<ol class="breadcrumb">
+		<li><a href="#">Home</a></li>
+		<li><a href="#">cotizaciones</a></li>
+		<li class="active">{{cotizacion_info.cotizacion.id? 'Editar':'Crear'}}</li>
+	</ol>
+
+</div>
+<div id="page-inner">
+
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-action">
+					Información de la cotizacion
+				</div>
+				<div class="card-content">
+					<form ngNativeValidate (submit)="save()" class="col s12">
+						<div class="row">
+							<div class=" col s4">
+								<label for="id_cliente">Cliente</label>
+								<select class="form-control" name="tipo"
+									[(ngModel)]="cotizacion_info.cotizacion.id_cliente">
+									<option [value]="null" hidden>Seleccione</option>
+									<option *ngFor="let cliente of cliente_list" [value]="cliente.id">
+										{{cliente_diccionario[cliente.id].nombre}}</option>
+								</select>
+							</div>
+
+
+						</div>
+						<div class="row">
+
+							<div class=" col s3">
+								<label for="costo">Costo</label>
+								<input id="costo" name="costo" type="text" class="validate" disabled
+									[(ngModel)]="cotizacion_info.cotizacion.costo">
+							</div>
+							<div class=" col s3">
+								<label for="flete">Flete</label>
+								<input id="flete" name="flete" type="text" class="validate"
+									[(ngModel)]="cotizacion_info.cotizacion.flete">
+							</div>
+							<div class=" col s3">
+								<label for="iva">Iva</label>
+								<input id="iva" name="iva" type="text" class="validate"
+									[(ngModel)]="cotizacion_info.cotizacion.iva">
+							</div>
+							<div class=" col s3">
+								<label for="costo_total">Costo Total</label>
+								<input id="costo_total" name="costo_total" type="text" class="validate" disabled
+									[(ngModel)]="cotizacion_info.cotizacion.costo_total">
+							</div>
+							<div class=" col s4">
+								<!-- <label for="telefono">Telefono</label>
+								<input id="telefono" type="number" name="telefono" class="validate"
+									[(ngModel)]="cotizacion.telefono"> -->
+							</div>
+							<div class=" col s4">
+								<!-- <label for="contacto">contacto</label>
+								<input id="contacto" type="text" name="contacto" class="validate"
+									[(ngModel)]="cotizacion.contacto"> -->
+							</div>
+							<div class=" col s4">
+								<!-- <label for="rfc">RFC</label>
+								<input id="rfc" name="rfc" type="text" class="validate" [(ngModel)]="cotizacion.rfc"> -->
+
+							</div>
+
+						</div>
+						<div class="row">
+							<!-- <div class=" col s12">
+								<label for="nota">Nota</label>
+								<textarea id="nota" name="nota" type="text" class="validate"
+									[(ngModel)]="cotizacion.nota"></textarea>
+							</div> -->
+
+
+						</div>
+						<div class="row">
+							<!-- <div class=" col s12">
+								<label for="nota">Nota</label>
+								<textarea id="nota" name="nota" type="text" class="validate"
+									[(ngModel)]="cotizacion.nota"></textarea>
+							</div> -->
+
+
+						</div>
+
+
+					</form>
+					<div class="clearBoth"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="card">
+		<div class="card-action">
+			<div class="row text-left">
+				<ng-container>
+					<div class="col s6 p-0 m-0">
+						<!-- <label for="nota">Buscar Servicio</label> -->
+						<div class="dropdown">
+							<label>Agregar Productos</label>
+							<input type="text" name="search_servicio" [(ngModel)]="search_item"
+								(keyup)="changeSearchServicio($event)" class="form-control" placeholder="Buscar">
+							<div *ngIf="search_servicios.length && search_item!= ''" class="border">
+								<div class="border" *ngFor="let servicio of search_servicios;let i=index"
+									(click)="agregarServicio(servicio)">
+									<div class="dropdown-item search">
+										{{servicio.nombre|uppercase}}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</ng-container>
+			</div>
+		</div>
+
+		<div class="card-content">
+			<div class="table-responsive">
+
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Cantidad</th>
+							<th>Precio</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let cotizacion_detalle of cotizacion_info.cotizacion_detalles">
+							<!-- <td><a [routerLink]="['/edit-usuario',cotizacion.id]">{{cotizacion.id}}</a></td> -->
+							<td>{{cotizacion_detalle.servicio.nombre}}</td>
+							<td>{{cotizacion_detalle.cotizacion_detalle.cantidad}}</td>
+							<td>{{cotizacion_detalle.cotizacion_detalle.precio}}</td>
+							<!-- <td>{{cotizacion.costo}}</td> -->
+							<!-- <td>{{cotizacion.flete}}</td>
+							<td>{{cotizacion.iva}}</td>
+							<td>{{cotizacion.costo_total}}</td>
+							<td>{{cotizacion.nota}}</td>
+							<td>{{cotizacion.fecha_de_entrega}}</td>
+							<td>{{cotizacion.estado}}</td> -->
+							<td>
+								<!-- <a class="waves-effect waves-light btn-success btn icon-size-1"
+									[routerLink]="['/edit-cotizacion',cotizacion.id]"><i
+										class="material-icons icon-size-1">mode_edit</i></a> -->
+							</td>
+						</tr>
+						<tr *ngIf="cotizacion_info == null || cotizacion_info.cotizacion_detalles.length == 0 && !is_loading"
+							colspan="TEMPLATE_HEADERS_SIZE">
+							<td colspan="4" class="text-center">
+								<div class="alert alert-light m-3" role="alert">No elements found</div>
+
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<app-pagination [path]="'/list-proveedor'" [pages]="pages" [totalPages]="totalPages"
+				[currentPage]="currentPage">
+			</app-pagination>
+			<footer>
+				<!-- <p>All right reserved. Template by: <a
+						href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
+			</footer>
+		</div>
+	</div>
+	<!--
+	<div class="col-6 col-md-4">
+		<label class="">cotizacion</label>
+		<input type="text" name="usuario" [(ngModel)]="usuario.usuario" class="form-control">
+	</div>
+	<div class="col-6 col-md-4">
+		<label class="">Nombre</label>
+		<input type="text" name="nombre" [(ngModel)]="usuario.nombre" class="form-control">
+	</div>
+
+	<div class="col-6 col-md-4">
+		<label class="">Tipo</label>
+		<select name="tipo" [(ngModel)]="usuario.tipo" class="form-control">
+			<option [ngValue]="null">Select</option>
+			<option value="PACIENTE">PRODUCCION</option>
+			<option value="RECEPCIONISTA">RECEPCION</option>
+			<option value="ADMIN">ADMIN</option>
+		</select>
+	</div>
+
+	<div class="col-6 col-md-4">
+		<label class="">Contrasena</label>
+		<input type="text" name="contrasena" [(ngModel)]="usuario.contrasena" class="form-control">
+	</div>
+	<div class="col-6 col-md-4">
+		<label class="">Telefono</label>
+		<input type="text" name="telefono" [(ngModel)]="usuario.telefono" class="form-control">
+	</div>
+	<div class="col-6 col-md-4">
+		<label class="">Correo electronico</label>
+		<input type="text" name="correo_electronico" [(ngModel)]="usuario.correo_electronico" class="form-control">
+	</div>
+
+
+</div>
+
+</div>
+</form> -->
+
+	<footer>
+		<!-- <p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
+	</footer>
+</div>
