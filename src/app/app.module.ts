@@ -26,7 +26,6 @@ import {ToastErrorComponent } from './components/toast-error/toast-error.compone
 import { BaseComponent } from './pages/base/base.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import { SaveProductoComponent } from './pages/save-producto/save-producto.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ListOrganizacionComponent } from './pages/list-organizacion/list-organizacion.component';
 import { SaveOrganizacionComponent } from './pages/save-organizacion/save-organizacion.component';
@@ -38,6 +37,8 @@ import { ListProveedorComponent } from './pages/list-proveedor/list-proveedor.co
 import { SaveProveedorComponent } from './pages/save-proveedor/save-proveedor.component';
 import { ListCotizacionComponent } from './pages/list-cotizacion/list-cotizacion.component';
 import { SaveCotizacionComponent } from './pages/save-cotizacion/save-cotizacion.component';
+import { ListServicioComponent } from './pages/list-servicio/list-servicio.component';
+import { SaveServicioComponent } from './pages/save-servicio/save-servicio.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -52,7 +53,6 @@ import { SaveCotizacionComponent } from './pages/save-cotizacion/save-cotizacion
  		BaseComponent,
  		ModalComponent,
  		PaginationComponent,
-		SaveProductoComponent,
 		MenuComponent,
 		ListOrganizacionComponent,
 		SaveOrganizacionComponent,
@@ -64,6 +64,8 @@ import { SaveCotizacionComponent } from './pages/save-cotizacion/save-cotizacion
 		SaveProveedorComponent,
 		ListCotizacionComponent,
 		SaveCotizacionComponent,
+		ListServicioComponent,
+		SaveServicioComponent,
 			],
 	imports: [
 		BrowserModule,

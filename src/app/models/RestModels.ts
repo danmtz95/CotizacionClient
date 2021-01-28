@@ -108,24 +108,27 @@ export interface Organizacion{
 	tiempo_actualizacion?:Date;
 }
 
-export interface Producto{
+export interface Servicio{
 	id?:number;
+	id_organizacion?:number;
+	id_sucursal?:number;
 	id_imagen?:number;
-	estatus?:string;
-	nombre?:string;
-	aparecio_por_primera_vez_en_archivo?:string;
-	necesita_revision?:string;
-	tipo_manga?:string;
-	tipo_de_caja?:string;
-	cajas_por_tarima?:number;
 	codigo?:string;
-	ramos_por_caja?:number;
-	estructura?:string;
-	ramos_por_hora?:number;
-	cajas_por_hora?:number;
-	costo_mano_obra?:number;
-	sustitucion_de_flor?:string;
-	descripcion?:string;
+	precio?:number;
+	tipo?:string;
+	nombre?:string;
+	fecha_creacion?:Date;
+	fecha_actualizacion?:Date;
+}
+
+export interface Servicio_Recurso{
+	id?:number;
+	id_servicio_primario?:number;
+	id_servicio_secundario?:number;
+	cantidad?:number;
+	estatus?:string;
+	fecha_creacion?:Date;
+	fecha_actualizacion?:Date;
 }
 
 export interface Producto_Detalle{

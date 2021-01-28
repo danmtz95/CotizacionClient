@@ -3,8 +3,8 @@ import { Observable, BehaviorSubject, fromEvent } from 'rxjs';
 import * as XLSX from 'xlsx';
 import { map } from 'rxjs/operators';
 import { Rest, RestResponse } from './Rest';
-import { LoginResponse } from '../models/Respuestas';
-import { Bitacora,} from '../models/RestModels';
+import { LoginResponse, Servicio_Recurso_Info } from '../models/Respuestas';
+import { Bitacora, Servicio,} from '../models/RestModels';
 import { NumberDictionary, StringDictionary } from '../models/models';
 import { Cliente } from '../models/RestModels';
 import { Distribuidor } from '../models/RestModels';
@@ -12,7 +12,7 @@ import { File_Type } from '../models/RestModels';
 import { Imagen } from '../models/RestModels';
 import { Organizacion } from '../models/RestModels';
 import { Sesion } from '../models/RestModels';
-import { Sucursal,  Producto, } from '../models/RestModels';
+import { Sucursal } from '../models/RestModels';
 import { Usuario } from '../models/RestModels';
 import { Attachment } from '../models/RestModels'
 import { Distribuidor_Direccion } from '../models/RestModels';
@@ -51,15 +51,13 @@ export class RestService {
 	public bitacora: Rest<Bitacora, Bitacora> = this.initRest('bitacora');
 	public file_type: Rest<File_Type, File_Type> = this.initRest('file_type');
 	public organizacion: Rest<Organizacion, Organizacion> = this.initRest('organizacion');
-	public producto: Rest<Producto, Producto> = this.initRest('producto');
 	public sesion: Rest<Sesion, Sesion> = this.initRest('sesion');
 	public sucursal: Rest<Sucursal, Sucursal> = this.initRest('sucursal');
 	public usuario: Rest<Usuario, Usuario> = this.initRest('usuario');
 	public cliente: Rest<Cliente, Cliente> = this.initRest('cliente');
 	public proveedor: Rest<Proveedor, Proveedor> = this.initRest('proveedor');
-	// public producto_info: Rest<Producto, ProductoInfo> = this.initRest('productoInfo');
-	public distribuidor_direccion: Rest<Distribuidor_Direccion, Distribuidor_Direccion> = this.initRest('distribuidor_direccion');
-
+	public servicio_recurso: Rest<Servicio_Recurso_Info, Servicio_Recurso_Info> = this.initRest('servicio_recurso');
+	public servicio: Rest<Servicio, Servicio> = this.initRest('servicio');
 
 
 	constructor(private http: HttpClient, public ngxCsvParser: NgxCsvParser) {

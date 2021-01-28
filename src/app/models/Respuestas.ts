@@ -1,7 +1,7 @@
 /////
 //
 import {
-Sesion ,Usuario ,
+Sesion ,Usuario, Servicio,Servicio_Recurso
 } from './RestModels';
 
 
@@ -73,3 +73,13 @@ export enum Roles {
   paciente = 'PACIENTE'
 }
 
+
+export interface Recurso_Info{
+	servicio: Servicio;
+	servicio_recurso: Servicio_Recurso;
+};
+
+export interface Servicio_Recurso_Info{
+	servicio: Servicio;
+	recursos: Recurso_Info[];
+};
