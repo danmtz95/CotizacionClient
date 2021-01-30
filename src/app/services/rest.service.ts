@@ -59,7 +59,7 @@ export class RestService {
 	public servicio_recurso: Rest<Servicio_Recurso_Info, Servicio_Recurso_Info> = this.initRest('servicio_recurso');
 	public servicio: Rest<Servicio, Servicio> = this.initRest('servicio');
 	public cotizacion: Rest<Cotizacion, Cotizacion> = this.initRest('cotizacion');
-	public cotizacion_info: Rest<Cotizacion_Info, Cotizacion_Info> = this.initRest('cotizacion_info');
+	public cotizacion_info: Rest<Cotizacion, Cotizacion_Info> = this.initRest('cotizacion_info');
 
 
 	constructor(private http: HttpClient, public ngxCsvParser: NgxCsvParser) {

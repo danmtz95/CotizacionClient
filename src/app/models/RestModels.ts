@@ -173,6 +173,8 @@ export interface Sucursal{
 	estado?:string;
 	codigo_postal?:number;
 	direccion?:string;
+	correo_electronico?:string;
+	pagina_web?:string;
 	saludo_ticket?:string;
 	tiempo_creacion?:Date;
 	tiempo_actualizacion?:Date;
@@ -217,11 +219,15 @@ export interface Cotizacion{
 	id_sucursal?:number;
 	id_usuario?:number;
 	id_cliente?:number;
+	vigencia?:number;
+	anticipo?:number;
+	tipo_de_pago?:string;
 	costo?:number;
 	flete?:number;
 	costo_total?:number;
 	iva?:number;
 	estado?:string;
+	estado_de_compra?:string;
 	fecha_de_entrega?:Date;
 	nota?:string;
 	fecha_actualizacion?:Date;

@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-
 import { CommonModule } from '@angular/common';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -11,7 +12,6 @@ import { AccessModule } from './modules/access/access.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularDateHttpInterceptor } from './services/AngularDateHttpInterceptor'
 import { ChartsModule } from 'ng2-charts';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SaveUsuarioComponent} from './pages/save-usuario/save-usuario.component';
@@ -22,7 +22,6 @@ import { LoginComponent } from './pages/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import {ToastErrorComponent } from './components/toast-error/toast-error.component';
-
 import { BaseComponent } from './pages/base/base.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -39,6 +38,7 @@ import { ListCotizacionComponent } from './pages/list-cotizacion/list-cotizacion
 import { SaveCotizacionComponent } from './pages/save-cotizacion/save-cotizacion.component';
 import { ListServicioComponent } from './pages/list-servicio/list-servicio.component';
 import { SaveServicioComponent } from './pages/save-servicio/save-servicio.component';
+import { MaterialModule } from './material/material.module';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -79,6 +79,9 @@ import { SaveServicioComponent } from './pages/save-servicio/save-servicio.compo
 		FormsModule,
 		NgxCsvParserModule,
 		NgxChartsModule,
+		MatAutocompleteModule,
+		MatSliderModule,
+		MaterialModule,
 	],
 	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AngularDateHttpInterceptor, multi: true }],
 	bootstrap: [AppComponent]

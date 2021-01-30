@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { RestService } from '../../services/rest.service';
 import { Router, ActivatedRoute } from "@angular/router";
 import { BaseComponent } from '../base/base.component';
@@ -8,6 +9,7 @@ import {Organizacion} from '../../models/RestModels';
 import {Imagen} from '../../models/RestModels';
 import { NumberDictionary } from 'src/app/models/models';
 import { Cotizacion_Info } from 'src/app/models/Respuestas';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-save-cotizacion',
@@ -16,15 +18,17 @@ import { Cotizacion_Info } from 'src/app/models/Respuestas';
 })
 
 export class SaveCotizacionComponent extends BaseComponent implements OnInit {
-
+	control = new FormControl();
 	cotizacion_info:Cotizacion_Info= {
 		cotizacion:{
 			'id': null,
 			'id_cliente':null,
+			'id_usuario':null,
 			'flete':null,
 			'costo':null,
 			'iva':null,
 			'costo_total':null,
+			'tipo_de_pago':null,
 			'fecha_de_entrega':null,
 			'nota':'',
 		},
@@ -48,6 +52,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 
 			let id_cotizacion = parseInt( params.get('id') );
 			this.session = this.rest. getUsuarioSesion();
+			console.log('session',this.session);
 				this.is_loading = true;
 				if( id_cotizacion )
 				{
@@ -67,7 +72,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 				}else{
 					this.cotizacion_info.cotizacion.id_organizacion = this.session.id_organizacion;
 					this.cotizacion_info.cotizacion.id_sucursal = this.session.id_sucursal;
-					this.cotizacion_info.cotizacion.id_usuario = this.session.id_usuario;
+					this.cotizacion_info.cotizacion.id_usuario = this.session.id;
 					forkJoin({
 						usuario : this.rest.usuario.search({}),
 						cliente : this.rest.cliente.search({})
@@ -76,7 +81,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 					{
 						this.cliente_list = responses.cliente.data;
 
-						responses.usuario.data.forEach((cliente)=>{
+						responses.cliente.data.forEach((cliente)=>{
 							this.cliente_diccionario[ cliente.id ] = cliente;
 						});
 
@@ -122,8 +127,70 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 		// this.search = '';
 		this.search_servicios = [];
 
-		// this.updateCantidades();
+		this.calcularTotalCotizacion();
 		console.log('Agregando Servicio', servicio);
+	}
+
+	calcularTotalCotizacion() {
+		let costo = 0;
+		let costo_total = 0;
+		let iva = this.cotizacion_info.cotizacion.iva?this.cotizacion_info.cotizacion.iva:0;
+		let flete = this.cotizacion_info.cotizacion.flete?this.cotizacion_info.cotizacion.flete:0;
+		let costo_iva = 0;
+
+
+		for (let i of this.cotizacion_info.cotizacion_detalles) {
+			if(i.cotizacion_detalle.precio == null){
+				i.cotizacion_detalle.precio = i.servicio.precio;
+			}
+
+			//subtota/
+			costo += i.cotizacion_detalle.precio * i.cotizacion_detalle.cantidad;
+		}
+
+		this.cotizacion_info.cotizacion.costo = costo;
+		costo_iva = costo*(0.1*iva);
+		this.cotizacion_info.cotizacion.costo_total = (costo + costo_iva + flete);
+
+	}
+
+	aumentarCantidad(servicio:Servicio)
+	{
+
+		let index = this.cotizacion_info.cotizacion_detalles.findIndex(i=> i.servicio.id == servicio.id );
+
+		if( index > -1  )
+		{
+			this.cotizacion_info.cotizacion_detalles[index].cotizacion_detalle.cantidad ;
+		}
+
+
+		this.calcularTotalCotizacion();
+		console.log('Agregando Servicio', servicio);
+	}
+	aumentarPrecio(servicio:Servicio)
+	{
+
+		let index = this.cotizacion_info.cotizacion_detalles.findIndex(i=> i.servicio.id == servicio.id );
+
+		if( index > -1  )
+		{
+			this.cotizacion_info.cotizacion_detalles[index].cotizacion_detalle.precio ;
+		}
+
+
+		this.calcularTotalCotizacion();
+		console.log('Agregando Servicio', servicio);
+	}
+
+	eliminar(sd) {
+		let index = this.cotizacion_info.cotizacion_detalles.findIndex(i => i.servicio.id == sd.servicio.id);
+		if (index > -1)
+			this.cotizacion_info.cotizacion_detalles.splice(index, 1);
+		else
+			console.log("Se elimino el articulo no. :",index);
+
+		this.calcularTotalCotizacion();
 	}
 
 
