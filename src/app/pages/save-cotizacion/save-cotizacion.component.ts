@@ -58,13 +58,19 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 				{
 					forkJoin({
 						cotizacion_info : this.rest.cotizacion_info.get( id_cotizacion ),
-						usuario : this.rest.usuario.search({})
+						usuario : this.rest.usuario.search({}),
+						cliente : this.rest.cliente.search({})
 					})
 					.subscribe((responses)=>
 					{
 						this.cotizacion_info= responses.cotizacion_info;
+						this.cliente_list = responses.cliente.data;
 						responses.usuario.data.forEach((usuario)=>{
 							this.usuario_diccionario[ usuario.id ] = usuario;
+						});
+
+						responses.cliente.data.forEach((cliente)=>{
+							this.cliente_diccionario[ cliente.id ] = cliente;
 						});
 
 						this.is_loading = false;
@@ -200,6 +206,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 
 		if( this.cotizacion_info.cotizacion.id	)
 		{
+			console.log('coti',this.cotizacion_info);
 			this.rest.cotizacion_info.update( this.cotizacion_info ).subscribe((cotizacion_info)=>{
 				this.is_loading = false;
 				this.router.navigate(['/list-cotizacion']);

@@ -219,6 +219,7 @@ export interface Cotizacion{
 	id_sucursal?:number;
 	id_usuario?:number;
 	id_cliente?:number;
+	atencion?:string;
 	vigencia?:number;
 	anticipo?:number;
 	tipo_de_pago?:string;
