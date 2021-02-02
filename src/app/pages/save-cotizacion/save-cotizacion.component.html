@@ -46,14 +46,18 @@
 										{{cliente_diccionario[cliente.id].nombre}}</option> -->
 								</select>
 							</div>
+							<div class=" col s2">
+								<label for="atencion">Atencion </label>
+								<input id="atencion" placeholder="A quien se dirige" name="atencion" type="text" class="validate"
+									[(ngModel)]="cotizacion_info.cotizacion.atencion">
+							</div>
 
-
-							<div class=" col s3">
+							<div class=" col s2">
 								<label for="vigencia">Vigencia (Dias) </label>
 								<input id="vigencia" placeholder="Vigencia en dias" name="vigencia" type="number" class="validate"
 									[(ngModel)]="cotizacion_info.cotizacion.vigencia">
 							</div>
-							<div class=" col s3">
+							<div class=" col s2">
 								<label for="anticipo">Anticipo (%)</label>
 								<input id="anticipo" placeholder="Porcentaje de anticipo" name="anticipo" type="number" class="validate"
 									[(ngModel)]="cotizacion_info.cotizacion.anticipo">
