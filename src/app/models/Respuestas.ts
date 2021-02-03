@@ -74,14 +74,14 @@ export enum Roles {
 }
 
 
-export interface Recurso_Info{
-	servicio: Servicio;
+export interface Servicio_Recurso_Info{
+	servicio_secundario: Servicio;
 	servicio_recurso: Servicio_Recurso;
 };
 
-export interface Servicio_Recurso_Info{
+export interface Servicio_Info{
 	servicio: Servicio;
-	recursos: Recurso_Info[];
+	servicio_detalles: Servicio_Recurso_Info[];
 };
 
 export interface Cotizacion_Detalle_Info{

@@ -1,17 +1,15 @@
 <div class="header">
 	<h2 class="page-header">
-		{{ servicio_recurso.servicio.id ? servicio_recurso.servicio.nombre :'Agregar Servicio' | titlecase }}
+		{{ servicio_info.servicio.id ? servicio_info.servicio.nombre :'Agregar Servicio' | titlecase }}
 	</h2>
 	<ol class="breadcrumb">
 		<li><a href="#">Home</a></li>
 		<li><a href="#">Servicios</a></li>
-		<li class="active">{{servicio_recurso.servicio.id? 'Editar':'Crear'}}</li>
+		<li class="active">{{servicio_info.servicio.id? 'Editar':'Crear'}}</li>
 	</ol>
 
 </div>
 <div id="page-inner">
-
-
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="card">
@@ -24,101 +22,29 @@
 							<div class=" col s4">
 								<label for="nombre">Nombre</label>
 								<input id="nombre" name="nombre" type="text" class="validate"
-									[(ngModel)]="servicio_recurso.servicio.nombre">
+									[(ngModel)]="servicio_info.servicio.nombre">
 							</div>
 							<div class=" col s4">
 								<label for="codigo">Codigo</label>
 								<input id="codigo" name="codigo" type="text" step="any"
-									[(ngModel)]="servicio_recurso.servicio.codigo" class="validate">
+									[(ngModel)]="servicio_info.servicio.codigo" class="validate">
 							</div>
 							<div class=" col s4">
 								<label for="precio">Precio</label>
 								<input id="precio" name="precio" type="number" step="any"
-									[(ngModel)]="servicio_recurso.servicio.precio" class="validate">
+									[(ngModel)]="servicio_info.servicio.precio" class="validate">
 							</div>
 							<div class=" col s4">
 								<label for="tipo">Tipo de servicio*</label>
-								<select class="form-control" name="tipo" [(ngModel)]="servicio_recurso.servicio.tipo">
-									<option [value]="null">Seleccione el tipo de producto</option>
+								<select class="form-control" name="tipo" [(ngModel)]="servicio_info.servicio.tipo">
+									<option [value]="null" hidden>Seleccione el tipo de producto</option>
 									<option value="SERVICIO">Servicio</option>
 									<option value="PRODUCTO_FISICO">Producto Fisico</option>
 								</select>
 							</div>
-
 						</div>
 						<div class="row">
-
 						</div>
-						<div class="row">
-							<ng-container *ngIf="servicio_recurso.servicio.tipo == 'SERVICIO'">
-								<div class=" col s12">
-									<label for="nota">Nota</label>
-									<div class="dropdown">
-										<label>Agregar Productos</label>
-										<input type="text" name="search_servicio" [(ngModel)]="search_item"
-											(keyup)="changeSearchServicio($event)" class="form-control"
-											placeholder="Buscar">
-										<div *ngIf="search_servicios.length && search_item!= ''"
-											class="dropdown-menu show w-100 no-selectable-text">
-											<div *ngFor="let servicio of search_servicios;let i=index"
-												(click)="agregarServicio(servicio)">
-												<div class="dropdown-item search">
-													{{servicio.nombre|uppercase}}
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</ng-container>
-
-						</div>
-
-						<!-- <div class="row">
-							<div class=" col s12">
-								<div class="card-content">
-									<div class="table-responsive">
-										<table class="table table-striped table-bordered table-hover">
-											<thead>
-												<tr>
-													<th>ID</th>
-													<th>Nombre</th>
-													<th>Dirección</th>
-													<th>Teléfono</th>
-													<th>Contacto</th>
-													<th>RFC</th>
-													<th>Nota</th>
-													<th>Acciones</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr *ngFor="let proveedor of proveedor_list">
-													<td><a [routerLink]="['/edit-usuario',proveedor.id]">{{proveedor.id}}</a></td>
-													<td>{{proveedor.nombre}}</td>
-													<td>{{proveedor.direccion}}</td>
-													<td>{{proveedor.telefono}}</td>
-													<td>{{proveedor.contacto}}</td>
-													<td>{{proveedor.rfc}}</td>
-													<td>{{proveedor.nota}}</td>
-													<td>
-														<a class="waves-effect waves-light btn-success btn icon-size-1"
-															[routerLink]="['/edit-proveedor',proveedor.id]"><i
-																class="material-icons icon-size-1">mode_edit</i></a>
-													</td>
-												</tr>
-												<tr *ngIf="proveedor_list == null || proveedor_list.length == 0 && !is_loading"
-													colspan="TEMPLATE_HEADERS_SIZE">
-													<td colspan="8" class="text-center">
-														<div class="alert alert-light m-3" role="alert">No elements found</div>
-
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div> -->
-
 						<div class="row p-3">
 							<div class="col-12 text-right">
 								<button type="submit" [disabled]="is_loading"
@@ -126,52 +52,97 @@
 										class="fa fa-save icon-size-1"></i> Guardar</button>
 							</div>
 						</div>
-
 					</form>
 					<div class="clearBoth"></div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="card" *ngIf="servicio_info.servicio.tipo=='SERVICIO'">
+		<div class="card-action">
+			<div class="row text-left">
+				<ng-container>
+					<div class="col s6 p-0 m-0">
+						<!-- <label for="nota">Buscar Servicio</label> -->
+						<form class="example-form">
+							<div class="">
+								Productos
+							</div>
+							<input type="text" placeholder="Buscar productos"
+								[matAutocomplete]="auto" (keyup)="changeSearchServicio($event)">
+							<mat-autocomplete #auto="matAutocomplete">
+								<mat-option *ngFor="let servicio of search_servicios"
+									(click)="agregarServicio(servicio)">
+									{{servicio.nombre}}
+								</mat-option>
+							</mat-autocomplete>
+						</form>
+					</div>
+				</ng-container>
+			</div>
+		</div>
 
-	<!--
-	<div class="col-6 col-md-4">
-		<label class="">servicio_recurso.servicio</label>
-		<input type="text" name="usuario" [(ngModel)]="usuario.usuario" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Nombre</label>
-		<input type="text" name="nombre" [(ngModel)]="usuario.nombre" class="form-control">
-	</div>
+		<div class="card-content ">
+			<div class="table-responsive">
 
-	<div class="col-6 col-md-4">
-		<label class="">Tipo</label>
-		<select name="tipo" [(ngModel)]="usuario.tipo" class="form-control">
-			<option [ngValue]="null">Select</option>
-			<option value="PACIENTE">PRODUCCION</option>
-			<option value="RECEPCIONISTA">RECEPCION</option>
-			<option value="ADMIN">ADMIN</option>
-		</select>
-	</div>
+				<table class="table table-striped table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Nombre</th>
+							<th>Cantidad</th>
+							<!-- <th>Precio</th> -->
+							<th class="text-center">Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let servicio_recurso of servicio_info.servicio_detalles;let i=index">
+							<!-- <td><a [routerLink]="['/edit-usuario',cotizacion.id]">{{cotizacion.id}}</a></td> -->
+							<td>{{servicio_recurso.servicio_secundario.nombre}}</td>
+							<td>
+								<input type="text" [name]="'cantidad_'+i"
+									[(ngModel)]="servicio_recurso.servicio_recurso.cantidad"
+									(change)="aumentarCantidadServicio(servicio_recurso)">
+							</td>
+							<!-- <td> -->
+								<!-- <input type="text" [name]="'precio_'+i"
+									[(ngModel)]="servicio_recurso.servicio_recurso.precio"
+									(change)="aumentarPrecio(cotizacion_detalle)"> -->
 
-	<div class="col-6 col-md-4">
-		<label class="">Contrasena</label>
-		<input type="text" name="contrasena" [(ngModel)]="usuario.contrasena" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Telefono</label>
-		<input type="text" name="telefono" [(ngModel)]="usuario.telefono" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Correo electronico</label>
-		<input type="text" name="correo_electronico" [(ngModel)]="usuario.correo_electronico" class="form-control">
-	</div>
+							<!-- </td> -->
+							<!-- <td>{{cotizacion.costo}}</td> -->
+							<!-- <td>{{co
+								tizacion.flete}}</td>
+							<td>{{cotizacion.iva}}</td>
+							<td>{{cotizacion.costo_total}}</td>
+							<td>{{cotizacion.nota}}</td>
+							<td>{{cotizacion.fecha_de_entrega}}</td>
+							<td>{{cotizacion.estado}}</td> -->
+							<td class="text-center">
+								<button class="waves-effect waves-light btn-danger btn btn-sm"
+									(click)="eliminarServicio(servicio_recurso)"><i
+										class="icon-size-1 material-icons">close</i></button>
+							</td>
+						</tr>
+						<tr *ngIf="servicio_info == null || servicio_info.servicio_detalles.length == 0 && !is_loading"
+							colspan="TEMPLATE_HEADERS_SIZE">
+							<td colspan="4" class="text-center">
+								<div class="alert alert-light m-3" role="alert">No elements found</div>
 
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
-</div>
-
-</div>
-</form> -->
+			</div>
+			<app-pagination [path]="'/list-proveedor'" [pages]="pages" [totalPages]="totalPages"
+				[currentPage]="currentPage">
+			</app-pagination>
+			<footer>
+				<!-- <p>All right reserved. Template by: <a
+						href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
+			</footer>
+		</div>
+	</div>
 
 	<footer>
 		<!-- <p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
