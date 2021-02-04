@@ -14,6 +14,10 @@ import { ListServicioComponent } from './pages/list-servicio/list-servicio.compo
 import { SaveServicioComponent } from './pages/save-servicio/save-servicio.component'
 import { ListCotizacionComponent } from './pages/list-cotizacion/list-cotizacion.component'
 import { SaveCotizacionComponent } from './pages/save-cotizacion/save-cotizacion.component'
+import { ListServicioCategoriaComponent } from './pages/list-servicio-categoria/list-servicio-categoria.component'
+import { SaveServicioCategoriaComponent } from './pages/save-servicio-categoria/save-servicio-categoria.component'
+import { ListUnidadDeMedidaComponent } from './pages/list-unidad-de-medida/list-unidad-de-medida.component'
+import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-unidad-de-medida.component'
 
 
 const routes: Routes = [
@@ -40,6 +44,12 @@ const routes: Routes = [
 			{ path: 'list-cotizacion', component: ListCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'add-cotizacion', component: SaveCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'edit-cotizacion/:id', component: SaveCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'list-servicio-categoria', component: ListServicioCategoriaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'add-servicio-categoria', component: SaveServicioCategoriaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'edit-servicio-categoria/:id', component: SaveServicioCategoriaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'list-unidad-de-medida', component: ListUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'add-unidad-de-medida', component: SaveUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'edit-unidad-de-medida/:id', component: SaveUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			//			,{ path:'list-transfer/:id' , component: ListTransferComponent, pathMatch: 'full',canActivate:[AuthGuard] }
 
 		],

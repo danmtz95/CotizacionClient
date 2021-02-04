@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { BaseComponent } from '../base/base.component';
-import { Servicio } from '../../models/RestModels';
-import { Servicio_Info} from '../../models/Respuestas';
+import { Proveedor, Servicio, Servicio_Categoria, Unidad_De_Medida } from '../../models/RestModels';
+import { Servicio_Info } from '../../models/Respuestas';
 import { from } from 'rxjs';
 import { Location } from '@angular/common';
 import { RestService } from '../../services/rest.service';
 import { Router, ActivatedRoute } from "@angular/router"
 import { Title } from '@angular/platform-browser';
+import { NumberDictionary } from 'src/app/models/models';
 
 @Component({
 	selector: 'app-save-servicio',
@@ -19,11 +20,14 @@ export class SaveServicioComponent extends BaseComponent implements OnInit {
 	servicio_info: Servicio_Info = {
 		servicio: {
 			'id': null,
+			'id_proveedor': null,
+			'id_unidad_de_medida': null,
+			'id_categoria': null,
 			'nombre': '',
 			'codigo': '',
 			'tipo': null,
 		},
-		servicio_detalles:[]
+		servicio_detalles: []
 	};
 
 	search_item: string = '';
@@ -32,17 +36,38 @@ export class SaveServicioComponent extends BaseComponent implements OnInit {
 	session = null;
 	id_servicio: number = null;
 
+	proveedor_list: Proveedor[] = [];
+	proveedor_diccionario: NumberDictionary<Proveedor> = {};
+	categoria_list: Servicio_Categoria[] = [];
+	categoria_diccionario: NumberDictionary<Servicio_Categoria> = {};
+	unidad_de_medida_list: Unidad_De_Medida[] = [];
+	unidad_de_medida_diccionario: NumberDictionary<Unidad_De_Medida> = {};
 	ngOnInit() {
 		this.route.paramMap.subscribe(params => {
-			let id_servicio = parseInt( params.get('id') );
+			let id_servicio = parseInt(params.get('id'));
 			this.session = this.rest.getUsuarioSesion();
 			this.is_loading = true;
 			if (id_servicio) {
 				forkJoin({
 					servicio_info: this.rest.servicio_info.get(id_servicio),
+					proveedor: this.rest.proveedor.search({}),
+					categoria: this.rest.servicio_categoria.search({}),
+					unidad_de_medida: this.rest.unidad_de_medida.search({}),
 				})
 					.subscribe((responses) => {
 						this.servicio_info = responses.servicio_info;
+						this.proveedor_list = responses.proveedor.data;
+						responses.proveedor.data.forEach((proveedor) => {
+							this.proveedor_diccionario[proveedor.id] = proveedor;
+						});
+						this.categoria_list = responses.categoria.data;
+						responses.categoria.data.forEach((categoria) => {
+							this.categoria_diccionario[categoria.id] = categoria;
+						});
+						this.unidad_de_medida_list = responses.unidad_de_medida.data;
+						responses.unidad_de_medida.data.forEach((unidad_de_medida) => {
+							this.unidad_de_medida_diccionario[unidad_de_medida.id] = unidad_de_medida;
+						});
 
 						this.is_loading = false;
 					}, (error) => this.showError(error));
@@ -51,7 +76,28 @@ export class SaveServicioComponent extends BaseComponent implements OnInit {
 				this.servicio_info.servicio.id_organizacion = this.session.id_organizacion;
 				this.servicio_info.servicio.id_sucursal = this.session.id;
 				//this.rest.precio_servicio.getAll({ id_servicio: this.id })
+				forkJoin({
+					proveedor: this.rest.proveedor.search({}),
+					categoria: this.rest.servicio_categoria.search({}),
+					unidad_de_medida: this.rest.unidad_de_medida.search({}),
 
+				})
+					.subscribe((responses) => {
+						this.proveedor_list = responses.proveedor.data;
+						responses.proveedor.data.forEach((proveedor) => {
+							this.proveedor_diccionario[proveedor.id] = proveedor;
+						});
+						this.categoria_list = responses.categoria.data;
+						responses.categoria.data.forEach((categoria) => {
+							this.categoria_diccionario[categoria.id] = categoria;
+						});
+						this.unidad_de_medida_list = responses.unidad_de_medida.data;
+						responses.unidad_de_medida.data.forEach((unidad_de_medida) => {
+							this.unidad_de_medida_diccionario[unidad_de_medida.id] = unidad_de_medida;
+						});
+
+						this.is_loading = false;
+					}, (error) => this.showError(error));
 				this.is_loading = false;
 
 			}

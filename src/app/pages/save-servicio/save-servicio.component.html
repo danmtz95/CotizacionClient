@@ -7,57 +7,157 @@
 		<li><a href="#">Servicios</a></li>
 		<li class="active">{{servicio_info.servicio.id? 'Editar':'Crear'}}</li>
 	</ol>
-
 </div>
 <div id="page-inner">
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="card">
 				<div class="card-action">
-					Información del servicio
+					<div class="row">
+
+						<div class="col s6">Información del servicio</div>
+						<div class="col s6 text-right">
+							<button type="submit" form="servicioForm" [disabled]="is_loading"
+								class="waves-effect waves-light btn-success btn icon-size-1"><i
+									class="fa fa-save icon-size-1"></i> Guardar</button>
+						</div>
+
+					</div>
+
 				</div>
 				<div class="card-content">
-					<form ngNativeValidate (submit)="save()" class="col s12">
+					<form id="servicioForm" ngNativeValidate (submit)="save()" class="col s12">
 						<div class="row">
 							<div class=" col s4">
 								<label for="nombre">Nombre</label>
-								<input id="nombre" name="nombre" type="text" class="validate"
-									[(ngModel)]="servicio_info.servicio.nombre">
+								<input placeholder="Nombre del producto/servicio " id="nombre" name="nombre" type="text"
+									class="validate" [(ngModel)]="servicio_info.servicio.nombre">
 							</div>
 							<div class=" col s4">
 								<label for="codigo">Codigo</label>
-								<input id="codigo" name="codigo" type="text" step="any"
-									[(ngModel)]="servicio_info.servicio.codigo" class="validate">
+								<input placeholder="Codigo del producto/servicio" id="codigo" name="codigo" type="text"
+									step="any" [(ngModel)]="servicio_info.servicio.codigo" class="validate">
+							</div>
+
+							<div class=" col s4">
+								<label for="costo">Costo</label>
+								<input placeholder="Costo del producto/servicio" id="costo" name="costo" type="number"
+									step="any" [(ngModel)]="servicio_info.servicio.costo" class="validate">
 							</div>
 							<div class=" col s4">
-								<label for="precio">Precio</label>
-								<input id="precio" name="precio" type="number" step="any"
-									[(ngModel)]="servicio_info.servicio.precio" class="validate">
+								<label for="precio_especial">Precio Especial</label>
+								<input placeholder="Precio especial del producto/servicio" id="precio_especial"
+									name="precio_especial" type="number" step="any"
+									[(ngModel)]="servicio_info.servicio.precio_especial" class="validate">
+							</div>
+							<div class=" col s4">
+								<label for="precio_venta">Precio Venta</label>
+								<input placeholder="Precio de venta del producto/servicio" id="precio_venta"
+									name="precio_venta" type="number" step="any"
+									[(ngModel)]="servicio_info.servicio.precio_venta" class="validate">
+							</div>
+							<div class=" col s4">
+								<label for="iva">Iva (%)</label>
+								<input placeholder="porcentaje de iva del producto/servicio" id="iva"
+									name="iva" type="number" step="any"
+									[(ngModel)]="servicio_info.servicio.iva" class="validate">
 							</div>
 							<div class=" col s4">
 								<label for="tipo">Tipo de servicio*</label>
 								<select class="form-control" name="tipo" [(ngModel)]="servicio_info.servicio.tipo">
 									<option [value]="null" hidden>Seleccione el tipo de producto</option>
-									<option value="SERVICIO">Servicio</option>
-									<option value="PRODUCTO_FISICO">Producto Fisico</option>
+									<option value="SERVICIO">SERVICIO</option>
+									<option value="PRODUCTO_FISICO">PRODUCTO</option>
 								</select>
 							</div>
+
+
+
 						</div>
-						<div class="row">
-						</div>
-						<div class="row p-3">
+						<!-- <div class="row">
+						</div> -->
+						<!-- <div class="row p-3">
 							<div class="col-12 text-right">
 								<button type="submit" [disabled]="is_loading"
 									class="waves-effect waves-light btn-success btn icon-size-1"><i
 										class="fa fa-save icon-size-1"></i> Guardar</button>
 							</div>
-						</div>
+						</div> -->
 					</form>
 					<div class="clearBoth"></div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<!-- Informacion Adicional -->
+	<div class="card" *ngIf="servicio_info.servicio.tipo=='PRODUCTO_FISICO'">
+		<div class="card-action">
+
+
+
+			Información Adicional
+			<!-- <div class="col s6 text-right">
+					<button type="submit" form="servicioForm" [disabled]="is_loading"
+						class="waves-effect waves-light btn-success btn icon-size-1"><i
+							class="fa fa-save icon-size-1"></i> Guardar</button>
+				</div> -->
+
+		</div>
+		<div class="card-content">
+
+			<div class="row">
+				<div class=" col s4">
+					<label for="url_imagen">Url Imagen</label>
+					<input placeholder="Ingrese Url de la imagen del producto" id="url_imagen" name="url_imagen" type="text"
+						class="validate" [(ngModel)]="servicio_info.servicio.url_imagen">
+				</div>
+				<div class="col s4">
+					<label for="codigo_sat">Codigo sat</label>
+					<input placeholder="Codigo de SAT" id="codigo_sat" name="codigo_sat" type="text" step="any"
+						[(ngModel)]="servicio_info.servicio.codigo_sat" class="validate">
+				</div>
+				<div class="col s4">
+					<label for="marca">Marca</label>
+					<input placeholder="Marca del producto" id="marca" name="marca" type="text" step="any"
+						[(ngModel)]="servicio_info.servicio.marca" class="validate">
+				</div>
+
+			</div>
+			<div class="row">
+				<div class=" col s4">
+					<label for="id_proveedor">Proveedor*</label>
+					<select class="form-control" name="id_proveedor"
+						[(ngModel)]="servicio_info.servicio.id_proveedor">
+						<option [value]="null" hidden>Seleccione el proveedor del producto</option>
+						<option *ngFor="let proveedor of proveedor_list" [value]="proveedor.id">
+							{{proveedor_diccionario[proveedor.id].nombre}}</option>
+					</select>
+				</div>
+				<div class=" col s4">
+					<label for="id_unidad_de_medida">Unidad De Medida*</label>
+					<select class="form-control" name="id_unidad_de_medida"
+						[(ngModel)]="servicio_info.servicio.id_unidad_de_medida">
+						<option [value]="null" hidden>Seleccione la categoria del producto/servicio</option>
+						<option *ngFor="let unidad_de_medida of unidad_de_medida_list" [value]="unidad_de_medida.id">
+							{{unidad_de_medida_diccionario[unidad_de_medida.id].nombre}}</option>
+					</select>
+				</div>
+				<div class=" col s4">
+					<label for="id_categoria">Categoria*</label>
+					<select class="form-control" name="id_categoria" [(ngModel)]="servicio_info.servicio.id_categoria">
+						<option [value]="null" hidden>Seleccione la categoria del producto/servicio</option>
+						<option *ngFor="let categoria of categoria_list" [value]="categoria.id">
+							{{categoria_diccionario[categoria.id].nombre}}</option>
+					</select>
+				</div>
+
+
+			</div>
+
+		</div>
+	</div>
+
+
 	<div class="card" *ngIf="servicio_info.servicio.tipo=='SERVICIO'">
 		<div class="card-action">
 			<div class="row text-left">
@@ -68,8 +168,8 @@
 							<div class="">
 								Productos
 							</div>
-							<input type="text" placeholder="Buscar productos"
-								[matAutocomplete]="auto" (keyup)="changeSearchServicio($event)">
+							<input type="text" placeholder="Buscar productos" [matAutocomplete]="auto"
+								(keyup)="changeSearchServicio($event)">
 							<mat-autocomplete #auto="matAutocomplete">
 								<mat-option *ngFor="let servicio of search_servicios"
 									(click)="agregarServicio(servicio)">
@@ -84,7 +184,6 @@
 
 		<div class="card-content ">
 			<div class="table-responsive">
-
 				<table class="table table-striped table-bordered table-hover">
 					<thead>
 						<tr>
@@ -104,7 +203,7 @@
 									(change)="aumentarCantidadServicio(servicio_recurso)">
 							</td>
 							<!-- <td> -->
-								<!-- <input type="text" [name]="'precio_'+i"
+							<!-- <input type="text" [name]="'precio_'+i"
 									[(ngModel)]="servicio_recurso.servicio_recurso.precio"
 									(change)="aumentarPrecio(cotizacion_detalle)"> -->
 

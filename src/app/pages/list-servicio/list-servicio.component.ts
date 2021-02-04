@@ -42,6 +42,8 @@ export class ListServicioComponent extends BaseComponent implements OnInit {
 			this.servicio_search.lk.codigo	= "lk.codigo" in params ?params["lk.codigo"]:null;
 			this.servicio_search.lk.nombre	= "lk.nombre" in params ?params["lk.nombre"]:null;
 			this.servicio_search.limite			= this.pageSize;
+			// this.servicio_search.limite			= 99999;
+
 			this.servicio_search.pagina			= 'pagina' in params ? parseInt( params.pagina ):0;
 			this.is_loading = true;
 

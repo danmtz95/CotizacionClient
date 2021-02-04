@@ -112,11 +112,20 @@ export interface Servicio{
 	id?:number;
 	id_organizacion?:number;
 	id_sucursal?:number;
+	id_proveedor?:number;
+	id_unidad_de_medida?:number;
+	id_categoria?:number;
 	id_imagen?:number;
+	url_imagen?:string;
 	codigo?:string;
-	precio?:number;
+	codigo_sat?:string;
+	costo?:number;
+	iva?:number;
+	precio_especial?:number;
+	precio_venta?:number;
 	tipo?:string;
 	nombre?:string;
+	marca?:string;
 	fecha_creacion?:Date;
 	fecha_actualizacion?:Date;
 }
@@ -245,3 +254,21 @@ export interface Cotizacion_Detalle{
 	fecha_creacion?:Date;
 }
 
+export interface Servicio_Categoria{
+	id?:number;
+	id_organizacion?:number;
+	id_sucursal?:number;
+	nombre?:string;
+	fecha_actualizacion?:Date;
+	fecha_creacion?:Date;
+}
+
+export interface Unidad_De_Medida{
+	id?:number;
+	id_organizacion?:number;
+	id_sucursal?:number;
+	clave?:string;
+	nombre?:string;
+	fecha_actualizacion?:Date;
+	fecha_creacion?:Date;
+}

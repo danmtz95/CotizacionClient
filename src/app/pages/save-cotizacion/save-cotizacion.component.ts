@@ -147,7 +147,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 
 		for (let i of this.cotizacion_info.cotizacion_detalles) {
 			if(i.cotizacion_detalle.precio == null){
-				i.cotizacion_detalle.precio = i.servicio.precio;
+				i.cotizacion_detalle.precio = i.servicio.costo;
 			}
 
 			//subtota/

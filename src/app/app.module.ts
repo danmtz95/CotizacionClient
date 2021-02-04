@@ -39,6 +39,10 @@ import { SaveCotizacionComponent } from './pages/save-cotizacion/save-cotizacion
 import { ListServicioComponent } from './pages/list-servicio/list-servicio.component';
 import { SaveServicioComponent } from './pages/save-servicio/save-servicio.component';
 import { MaterialModule } from './material/material.module';
+import { ListServicioCategoriaComponent } from './pages/list-servicio-categoria/list-servicio-categoria.component';
+import { SaveServicioCategoriaComponent } from './pages/save-servicio-categoria/save-servicio-categoria.component';
+import { ListUnidadDeMedidaComponent } from './pages/list-unidad-de-medida/list-unidad-de-medida.component';
+import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-unidad-de-medida.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -66,6 +70,10 @@ import { MaterialModule } from './material/material.module';
 		SaveCotizacionComponent,
 		ListServicioComponent,
 		SaveServicioComponent,
+		ListServicioCategoriaComponent,
+		SaveServicioCategoriaComponent,
+		ListUnidadDeMedidaComponent,
+		SaveUnidadDeMedidaComponent,
 			],
 	imports: [
 		BrowserModule,

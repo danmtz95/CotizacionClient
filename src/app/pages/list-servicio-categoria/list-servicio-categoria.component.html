@@ -1,12 +1,13 @@
 <div class="header">
 	<h2 class="page-header">
-		Servicios
+		Categorias
 	</h2>
 	<ol class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">Servicios</a></li>
+		<li><a href="#">Categorias</a></li>
 		<li class="active">Data</li>
 	</ol>
+
 </div>
 <div id="page-inner">
 	<div class="row">
@@ -14,13 +15,17 @@
 			<!-- Advanced Tables -->
 			<div class="card">
 				<div class="card-action">
-					<div class="col s6 text-left">
-						Servicios
+					<div class="row">
+						<div class="col s12 m6 text-left">
+							Categorias
+						</div>
+						<div class="col s12 m6 text-right">
+							<a type="button" class="waves-effect waves-light btn-success btn "
+								[routerLink]="['/add-servicio-categoria']"><i class="fa fa-plus"></i> Agregar
+								Categoria</a>
+						</div>
 					</div>
-					<div class="col s6 text-right">
-						<a type="button" class="waves-effect waves-light btn-success btn "
-							[routerLink]="['/add-servicio']"><i class="fa fa-plus"></i> Agregar Servicio</a>
-					</div>
+
 				</div>
 
 				<div class="card-content">
@@ -30,25 +35,23 @@
 								<tr>
 									<th>ID</th>
 									<th>Nombre</th>
-									<th>Codigo</th>
-									<th>Costo</th>
 									<th>Acciones</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr *ngFor="let servicio of servicio_list">
-									<td><a [routerLink]="['/edit-usuario',servicio.id]">{{servicio.id}}</a></td>
-									<td>{{servicio.nombre}}</td>
-									<td>{{servicio.codigo}}</td>
-									<td>{{servicio.costo}}</td>
+								<tr *ngFor="let servicio_categoria of servicio_categoria_list">
+									<td><a
+											[routerLink]="['/edit-servicio_categoria',servicio_categoria.id]">{{servicio_categoria.id}}</a>
+									</td>
+									<td>{{servicio_categoria.nombre}}</td>
 
 									<td>
 										<a class="waves-effect waves-light btn-success btn icon-size-1"
-											[routerLink]="['/edit-servicio',servicio.id]"><i
+											[routerLink]="['/edit-servicio-categoria',servicio_categoria.id]"><i
 												class="material-icons icon-size-1">mode_edit</i></a>
 									</td>
 								</tr>
-								<tr *ngIf="servicio_list == null || servicio_list.length == 0 && !is_loading"
+								<tr *ngIf="servicio_categoria_list == null || servicio_categoria_list.length == 0 && !is_loading"
 									colspan="TEMPLATE_HEADERS_SIZE">
 									<td colspan="8" class="text-center">
 										<div class="alert alert-light m-3" role="alert">No elements found</div>
@@ -58,7 +61,7 @@
 							</tbody>
 						</table>
 					</div>
-					<app-pagination [path]="'/list-servicio'" [pages]="pages" [totalPages]="totalPages"
+					<app-pagination [path]="'/list-servicio_categoria'" [pages]="pages" [totalPages]="totalPages"
 						[currentPage]="currentPage">
 					</app-pagination>
 					<footer>
@@ -70,7 +73,6 @@
 		</div>
 	</div>
 </div>
-
 <app-modal [(show)]="show_import">
 	<div class="card p-3">
 		<h2>Import excel</h2>

@@ -1,9 +1,9 @@
-<div class="d-flex bd-hightlight" *ngIf="totalPages>1">
+<div class="" *ngIf="totalPages>1">
 	<div>
 		<button [disabled]="currentPage == 0" type="button" class="btn  mr-1"  (click)="gotoPage(0)">&lt;&lt;</button>
 		<button [disabled]="currentPage == 0" type="button" class="btn "  (click)="gotoPage(currentPage-1)">&lt;</button>
 	</div>
-	<div class="flex-grow-1 text-center indicador">Page {{currentPage+1}} of {{totalPages}}</div>
+	<div class="">Page {{currentPage+1}} of {{totalPages}}</div>
 	<div>
 		<button [disabled]="currentPage >= totalPages-1 "type="button" class="btn " (click)="gotoPage(currentPage+1)">&gt;</button>
 		<button [disabled]="currentPage >= totalPages-1 "type="button" class="btn  ml-1" (click)="gotoPage(totalPages-1)">&gt;&gt;</button>
