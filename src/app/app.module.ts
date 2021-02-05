@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { NgxCsvParserModule } from 'ngx-csv-parser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CommonModule } from '@angular/common';
-import { MatSliderModule } from '@angular/material/slider';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -38,11 +36,11 @@ import { ListCotizacionComponent } from './pages/list-cotizacion/list-cotizacion
 import { SaveCotizacionComponent } from './pages/save-cotizacion/save-cotizacion.component';
 import { ListServicioComponent } from './pages/list-servicio/list-servicio.component';
 import { SaveServicioComponent } from './pages/save-servicio/save-servicio.component';
-import { MaterialModule } from './material/material.module';
 import { ListServicioCategoriaComponent } from './pages/list-servicio-categoria/list-servicio-categoria.component';
 import { SaveServicioCategoriaComponent } from './pages/save-servicio-categoria/save-servicio-categoria.component';
 import { ListUnidadDeMedidaComponent } from './pages/list-unidad-de-medida/list-unidad-de-medida.component';
 import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-unidad-de-medida.component';
+import { ViewCotizacionComponent } from './pages/view-cotizacion/view-cotizacion.component';
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -74,6 +72,7 @@ import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-
 		SaveServicioCategoriaComponent,
 		ListUnidadDeMedidaComponent,
 		SaveUnidadDeMedidaComponent,
+		ViewCotizacionComponent,
 			],
 	imports: [
 		BrowserModule,
@@ -87,9 +86,7 @@ import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-
 		FormsModule,
 		NgxCsvParserModule,
 		NgxChartsModule,
-		MatAutocompleteModule,
-		MatSliderModule,
-		MaterialModule,
+
 	],
 	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AngularDateHttpInterceptor, multi: true }],
 	bootstrap: [AppComponent]

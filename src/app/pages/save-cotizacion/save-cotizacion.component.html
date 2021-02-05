@@ -16,16 +16,16 @@
 </div>
 
 <div id="page-inner">
-	<mat-card class="example-card ">
-		<mat-card-header>
+	<!-- <mat-card class="example-card ">
+		<mat-card-header> -->
 			<!-- <div mat-card-avatar class="example-header-image"></div> -->
 
-			<mat-card-title>Informacion de la cotización</mat-card-title>
+			<!-- <mat-card-title>Informacion de la cotización</mat-card-title> -->
 			<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
 
-		</mat-card-header>
+		<!-- </mat-card-header> -->
 		<!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-		<mat-card-content>
+		<!-- <mat-card-content> -->
 			<form ngNativeValidate id="cotizacionForm" (submit)="save()" class="col s12">
 				<div class="row">
 					<div class="col s6 m3">
@@ -141,25 +141,25 @@
 				</div>
 
 			</form>
-		</mat-card-content>
+		<!-- </mat-card-content>
 		<mat-card-actions class="right-align">
 			<button type="submit" form="cotizacionForm" [disabled]="is_loading"
 				class="waves-effect waves-light btn-success btn btn-success"><i
 					class="icon-size-1 material-icons">save</i> Guardar</button>
 		</mat-card-actions>
-	</mat-card>
+	</mat-card> -->
 	<!-- Agregar Productos -->
 	<!-- <mat-divider></mat-divider> -->
-	<mat-card class="example-card mt-2 ">
-		<mat-card-header>
+	<!-- <mat-card class="example-card mt-2 ">
+		<mat-card-header> -->
 			<!-- <div mat-card-avatar class="example-header-image"></div> -->
 
-			<mat-card-title>Agregar Productos A la Cotización</mat-card-title>
+			<!-- <mat-card-title>Agregar Productos A la Cotización</mat-card-title> -->
 			<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-
-		</mat-card-header>
+<!--
+		</mat-card-header> -->
 		<!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-		<mat-card-content>
+		<!-- <mat-card-content> -->
 			<ng-container>
 				<div class=" p-0 m-0">
 					<!-- <label for="nota">Buscar Servicio</label> -->
@@ -167,14 +167,14 @@
 						<div class="">
 							Buscar Productos
 						</div>
-						<input type="text" placeholder="Buscar productos" [formControl]="control"
+						<!-- <input type="text" placeholder="Buscar productos" [formControl]="control"
 							[matAutocomplete]="auto" (keyup)="changeSearchServicio($event)">
 						<mat-autocomplete #auto="matAutocomplete">
 							<mat-option *ngFor="let servicio of search_servicios" (click)="agregarServicio(servicio)">
 								{{servicio.nombre}}
 
 							</mat-option>
-						</mat-autocomplete>
+						</mat-autocomplete> -->
 					</form>
 				</div>
 			</ng-container>
@@ -265,8 +265,8 @@
 				<!-- <p>All right reserved. Template by: <a
 				href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
 			</footer>
-		</mat-card-content>
-	</mat-card>
+		<!-- </mat-card-content>
+	</mat-card> -->
 
 
 	<!--

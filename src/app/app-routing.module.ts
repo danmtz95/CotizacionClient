@@ -18,6 +18,7 @@ import { ListServicioCategoriaComponent } from './pages/list-servicio-categoria/
 import { SaveServicioCategoriaComponent } from './pages/save-servicio-categoria/save-servicio-categoria.component'
 import { ListUnidadDeMedidaComponent } from './pages/list-unidad-de-medida/list-unidad-de-medida.component'
 import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-unidad-de-medida.component'
+import { ViewCotizacionComponent } from './pages/view-cotizacion/view-cotizacion.component'
 
 
 const routes: Routes = [
@@ -50,6 +51,7 @@ const routes: Routes = [
 			{ path: 'list-unidad-de-medida', component: ListUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'add-unidad-de-medida', component: SaveUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			{ path: 'edit-unidad-de-medida/:id', component: SaveUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+			{ path: 'ver-cotizacion/:id', component: ViewCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 			//			,{ path:'list-transfer/:id' , component: ListTransferComponent, pathMatch: 'full',canActivate:[AuthGuard] }
 
 		],

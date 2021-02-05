@@ -13,14 +13,15 @@
 		<div class="col-md-12">
 			<!-- Advanced Tables -->
 			<div class="card">
-				<div class="card-action">
-					<div class="col s6 text-left">
-						Cotizaciones
+				<div class="card-action left-align">
+					<div class="row p-0 m-0">
+						<div class="col s6"> Listado de Cotizaciones </div>
+						<div class="col s6 right-align">
+							<a type="button" class="waves-effect waves-light btn-success btn "
+								[routerLink]="['/add-cotizacion']"><i class="fa fa-plus"></i> Agregar Cotización</a>
+						</div>
 					</div>
-					<div class="col s6 text-right">
-						<a type="button" class="waves-effect waves-light btn-success btn "
-							[routerLink]="['/add-cotizacion']"><i class="fa fa-plus"></i> Agregar Cotización</a>
-					</div>
+
 				</div>
 				<div class="card-content">
 					<div class="table-responsive">
@@ -43,29 +44,42 @@
 							<tbody>
 								<tr *ngFor="let cotizacion of cotizacion_list">
 									<td><a [routerLink]="['/edit-usuario',cotizacion.id]">{{cotizacion.id}}</a></td>
-									<td>{{cotizacion.fecha_creacion | date:'short'}}</td>
+									<td>{{cotizacion.fecha_creacion | date:'fullDate'}}</td>
 									<td>{{cliente_diccionario[cotizacion.id_cliente].nombre}}</td>
-									<td>{{cotizacion.costo}}</td>
-									<td>{{cotizacion.flete}}</td>
-									<td>{{cotizacion.costo_iva}}</td>
-									<td>{{cotizacion.costo_total}}</td>
-									<td>{{cotizacion.nota}}</td>
-									<td>{{cotizacion.fecha_de_entrega}}</td>
+									<td>{{cotizacion.costo}} $</td>
+									<td>{{cotizacion.flete}} $</td>
+									<td>{{cotizacion.costo_iva}} $</td>
+									<td>{{cotizacion.costo_total}} $</td>
+									<td>{{cotizacion.nota?cotizacion.nota:'SIN NOTA'}}</td>
+									<td>{{cotizacion.fecha_de_entrega?cotizacion.fecha_de_entrega:'PENDIENTE'}}</td>
 
-									<td class="text-center"> <button class="waves-effect waves-light btn-warning btn icon-size-1">
-										<i class="material-icons icon-size-1">watch_later</i>
-									</button>
-									<button class="waves-effect waves-light btn-warning btn icon-size-1">
-										<i class="material-icons icon-size-1">local_shipping</i>
-									</button>
-									<button class="waves-effect waves-light btn-warning btn icon-size-1">
-										<i class="material-icons icon-size-1">insert_drive_file</i>
-									</button>
-								</td>
-									<td>
+									<td class="text-center"> <button
+											class="waves-effect waves-light btn-warning btn icon-size-1">
+											<i class="material-icons icon-size-1">watch_later</i>
+										</button>
+										<button class="waves-effect waves-light btn-warning btn icon-size-1">
+											<i class="material-icons icon-size-1">local_shipping</i>
+										</button>
+										<button class="waves-effect waves-light btn-warning btn icon-size-1">
+											<i class="material-icons icon-size-1">insert_drive_file</i>
+										</button>
+									</td>
+									<td class="text-center">
+										<!-- <a class="waves-effect waves-light btn-success btn icon-size-1"
+											[matMenuTriggerFor]="menu"><i
+												class="material-icons icon-size-1 icon-size-1 p-0 m-0">settings</i></a>
+										<mat-menu #menu="matMenu">
+											<button mat-menu-item [routerLink]="['/edit-cotizacion',cotizacion.id]"><i class="material-icons icon-size-1"
+													>border_color</i>
+												Editar</button>
+											<button mat-menu-item><i
+													class="material-icons icon-size-1 icon-size-1 p-0 m-0">picture_as_pdf</i>
+												PDF</button>
+										</mat-menu> -->
+										<!--picture_as_pdf
 										<a class="waves-effect waves-light btn-success btn icon-size-1"
 											[routerLink]="['/edit-cotizacion',cotizacion.id]"><i
-												class="material-icons icon-size-1">border_color</i></a>
+												class="material-icons icon-size-1">border_color</i></a> -->
 									</td>
 								</tr>
 								<tr *ngIf="cotizacion_list == null || cotizacion_list.length == 0 && !is_loading"
@@ -90,6 +104,7 @@
 		</div>
 	</div>
 </div>
+
 
 <app-modal [(show)]="show_import">
 	<div class="card p-3">

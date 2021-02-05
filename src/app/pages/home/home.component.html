@@ -1,7 +1,15 @@
 <div id="wrapper">
-	<app-header title=""></app-header>
-	<div id="page-wrapper">
-		<router-outlet></router-outlet>
+	<!-- MENU -->
+	<app-menu title=""></app-menu>
+	<div id="content-wrapper" class="d-flex flex-column">
+		<div id="content">
+			<!-- NAVBAR -->
+			<app-header title=""></app-header>
+			<!-- CONTENIDO -->
+			<div class="container-fluid">
+				<router-outlet></router-outlet>
+			</div>
+			<!-- FIN CONTENIDO -->
+		</div>
 	</div>
 </div>
-
