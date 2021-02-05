@@ -43,15 +43,25 @@
 							<tbody>
 								<tr *ngFor="let cotizacion of cotizacion_list">
 									<td><a [routerLink]="['/edit-usuario',cotizacion.id]">{{cotizacion.id}}</a></td>
-									<td>{{cotizacion.fecha_creacion}}</td>
-									<td>{{cotizacion.id_cliente}}</td>
+									<td>{{cotizacion.fecha_creacion | date:'short'}}</td>
+									<td>{{cliente_diccionario[cotizacion.id_cliente].nombre}}</td>
 									<td>{{cotizacion.costo}}</td>
 									<td>{{cotizacion.flete}}</td>
-									<td>{{cotizacion.iva}}</td>
+									<td>{{cotizacion.costo_iva}}</td>
 									<td>{{cotizacion.costo_total}}</td>
 									<td>{{cotizacion.nota}}</td>
 									<td>{{cotizacion.fecha_de_entrega}}</td>
-									<td>{{cotizacion.estado}}</td>
+
+									<td class="text-center"> <button class="waves-effect waves-light btn-warning btn icon-size-1">
+										<i class="material-icons icon-size-1">watch_later</i>
+									</button>
+									<button class="waves-effect waves-light btn-warning btn icon-size-1">
+										<i class="material-icons icon-size-1">local_shipping</i>
+									</button>
+									<button class="waves-effect waves-light btn-warning btn icon-size-1">
+										<i class="material-icons icon-size-1">insert_drive_file</i>
+									</button>
+								</td>
 									<td>
 										<a class="waves-effect waves-light btn-success btn icon-size-1"
 											[routerLink]="['/edit-cotizacion',cotizacion.id]"><i

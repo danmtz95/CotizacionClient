@@ -6,7 +6,7 @@ http://creativecommons.org/licenses/by/3.0/
 
 
 /*----------------------------------------------
-    COMMON  STYLES    
+    COMMON  STYLES
 ------------------------------------------------*/
 body {
     font-family: 'Open Sans', sans-serif;
@@ -24,8 +24,8 @@ body {
 }
 #page-inner {
     width:100%;
-    margin:10px 20px 10px 0px;
-    padding: 15px 30px;
+    /* margin:10px 20px 10px 0px; */
+    padding: 10px;
     min-height:1200px;
 }
 .header .container-fluid{
@@ -49,7 +49,7 @@ h4 {
     padding-top:10px;
 }
 .square-btn-adjust {
-    border: 0px solid transparent; 
+    border: 0px solid transparent;
    -webkit-border-radius: 0px;
 -moz-border-radius: 0px;
 border-radius: 0px;
@@ -66,11 +66,11 @@ label {
     margin-bottom: 5px;
     font-weight: 400;
 }
-.alert { 
+.alert {
     border-radius: 0px;
 }
 .navbar-side {
-    z-index: 0; 
+    z-index: 0;
 }
 .panel{
 border-radius:0px;
@@ -129,14 +129,18 @@ border-color: #075CB3;
 .closed{
 	-ms-transform: rotate(180deg); /* IE 9 */
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
-    transform: rotate(180deg);	
+    transform: rotate(180deg);
 }
 .closed i{color: #adadad;}
 /*----------------------------------------------
-   DASHBOARD STYLES    
+   DASHBOARD STYLES
 ------------------------------------------------*/
-.page-header {padding-bottom: 0;margin: 0;border-bottom: 1px solid transparent;text-align: left;background-color: transparent;padding: 32px 22px 10px 28px;color: #323232;}
-.panel-left{  
+.page-header {padding-bottom: 0;margin: 0;border-bottom: 1px solid transparent;text-align: left;background-color: transparent;
+	padding-top: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #323232;}
+.panel-left{
 width: 100px;
 height: 100px;background: #0866C6;/* border: 2px solid #4590DA; */
 /* border-radius: 100%; */
@@ -147,13 +151,13 @@ margin: 12px;}
 font-size: 3em;color: rgb(240, 155, 34);
 padding: 29px 0;
 margin-bottom:30px;}
-.panel-right{  
+.panel-right{
 height: 124px;
 background: transparent;
 margin-bottom: 0;color: #AFAFAF;
 
 float: left;text-align: left;padding-left: 20px;font-size: 16px;text-shadow: none;font-weight: normal;text-align: center;}
-.panel-right h3{  
+.panel-right h3{
 font-size: 40px;
 padding: 18px 10px 13px 0;color: #5D5D5D;}
 .panel-right strong{
@@ -235,13 +239,13 @@ color:#fff;
   .brown {
 background-color: #F5B252;
 color:#fff;
-} 
+}
  .back-footer-red {
 background-color: #F0433D;
 color:#fff;
 border-top: 0px solid #fff;
 }
- 
+
  .icon-box-right {
 display: block;
 float: right;
@@ -329,7 +333,7 @@ line-height: 30px;
 #easypiechart-orange .percent { color: #ffb53e;}
 #easypiechart-red .percent { color: #ef4040;}
 
-	 
+
  .chat-panel .panel-body {
 height: 450px;
 overflow-y: scroll;
@@ -358,7 +362,7 @@ footer p{
 font-size: 14px;
 }
 /*----------------------------------------------
-    MENU STYLES    
+    MENU STYLES
 ------------------------------------------------*/
 div#sideNav:hover {
     color: #1f2837;
@@ -462,10 +466,10 @@ padding-top: 4px;
 ul.nav.nav-second-level.collapse.in {background: #121821;}
 .sidebar-collapse .nav > li > a:hover,
 .sidebar-collapse .nav > li > a:focus {
-	 
+
 	outline:0;
 }
- 
+
 .navbar-side {
 	border:none;
 	background: #1F2837;
@@ -546,10 +550,11 @@ ul.dropdown-menu.dropdown-messages li a div {
 	text-transform:uppercase;
 }
 .collection .collection-item{
-	padding: 16px 20px;
+
+padding: 16px 20px;
 }
 /*----------------------------------------------
-    UI ELEMENTS STYLES     
+    UI ELEMENTS STYLES
 ------------------------------------------------*/
 .btn-circle {
 width: 50px;
@@ -564,31 +569,31 @@ line-height: 1.428571429;
 }
 
 /*----------------------------------------------
-    MEDIA QUERIES     
+    MEDIA QUERIES
 ------------------------------------------------*/
- 
+
  @media(min-width:768px) {
      #page-wrapper{
                margin: 0 0 0 260px;
                padding: 0;
                min-height: 1200px;
     }
-	
-	
+
+
     .navbar-side {
         width: 260px;
         z-index: 1;
     }
 
    .navbar {
- border-radius: 0px; 
+ border-radius: 0px;
 }
-   
+
 }
  @media(max-width:768px) {
 	#sideNav{
 	display:none;
-} 
+}
  #page-wrapper {
 position: relative;
 top: 59px;
@@ -609,7 +614,7 @@ font-size: 19px;
 }
 .panel-left {
   width: 85px;
-  height: 85px; 
+  height: 85px;
   border-radius: 100%;
   overflow: hidden;
   margin: 14px;
@@ -685,9 +690,12 @@ font-size: 19px;
 	color: #f44336;
 }
 .dropdown-content li{
-	padding: 15px;
-	color: #233342;
-	font-size: 13px;
+
+padding: 15px;
+
+color: #233342;
+
+font-size: 13px;
 }
 .taskList li{padding: 20px 15px 5px;background: #fff;font-size: 12px;}
 .taskList > div{
@@ -704,7 +712,7 @@ padding: 0 15px 0px 15px;
     color: #f44336;
 }
  @media(max-width:768px) {
-	  
+
 	 .navbar-header {
 		background: #f44336;
 	}
@@ -738,3 +746,14 @@ padding: 0 15px 0px 15px;
 			padding:17px 9px;
 		}
  }
+
+ .mt-2{
+	 padding-top: 15px !important;
+ }
+
+.m-0{
+	margin:0px !important
+}
+.p-0{
+	padding:0px !important
+}

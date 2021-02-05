@@ -236,6 +236,7 @@ export interface Cotizacion{
 	flete?:number;
 	costo_total?:number;
 	iva?:number;
+	costo_iva?:number;
 	estado?:string;
 	estado_de_compra?:string;
 	fecha_de_entrega?:Date;
@@ -250,6 +251,9 @@ export interface Cotizacion_Detalle{
 	id_servicio?:number;
 	cantidad?:number;
 	precio?:number;
+	costo_total?:number;
+	iva?:number;
+	costo_iva?:number;
 	fecha_actualizacion?:Date;
 	fecha_creacion?:Date;
 }

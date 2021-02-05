@@ -41,6 +41,9 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 	cliente_diccionario:NumberDictionary<Cliente> = {};
 	session
 	cliente_list:Cliente[]=[];
+	//Variables generales subtotal,iva8,iva16,total
+	total_iva_8 =0;
+	total_iva_16 =0;
 	// busqueda de servicios
 	search_item:string = '';
 	search_servicios:Servicio[] = [];
@@ -72,7 +75,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 						responses.cliente.data.forEach((cliente)=>{
 							this.cliente_diccionario[ cliente.id ] = cliente;
 						});
-
+						this.calcularTotalCotizacion();
 						this.is_loading = false;
 					},(error)=>this.showError(error));
 				}else{
@@ -107,7 +110,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 	{
 		this.rest.servicio.search({
 			lk:{ nombre: evt.target.value }
-			,eq:{ id_organizacion: this.session.id_organizacion, tipo: 'PRODUCTO_FISICO' }
+			,eq:{ id_organizacion: this.session.id_organizacion, }
 		}).subscribe((response)=>
 		{
 			this.search_servicios = response.data;
@@ -127,7 +130,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 		{
 			this.cotizacion_info.cotizacion_detalles.push({
 				servicio: servicio
-				,cotizacion_detalle: { id_servicio: servicio.id, cantidad: 1 }
+				,cotizacion_detalle: { id_servicio: servicio.id, cantidad: 1, }
 			})
 		}
 		// this.search = '';
@@ -140,23 +143,44 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 	calcularTotalCotizacion() {
 		let costo = 0;
 		let costo_total = 0;
-		let iva = this.cotizacion_info.cotizacion.iva?this.cotizacion_info.cotizacion.iva:0;
-		let flete = this.cotizacion_info.cotizacion.flete?this.cotizacion_info.cotizacion.flete:0;
+		let flete = this.cotizacion_info.cotizacion.flete ? this.cotizacion_info.cotizacion.flete : 0;
 		let costo_iva = 0;
-
+		let costo_iva_total = 0;
+		//para separar los totales de iva de los productos
+		let total_iva_8 = 0;
+		let total_iva_16 = 0;
 
 		for (let i of this.cotizacion_info.cotizacion_detalles) {
 			if(i.cotizacion_detalle.precio == null){
 				i.cotizacion_detalle.precio = i.servicio.costo;
+				i.cotizacion_detalle.iva = i.servicio.iva;
+				i.cotizacion_detalle.costo_iva = (i.cotizacion_detalle.precio * i.cotizacion_detalle.cantidad)*(0.01*i.cotizacion_detalle.iva);
 			}
+			//cantidad correspondiente al iva del producto
+			i.cotizacion_detalle.costo_iva = (i.cotizacion_detalle.precio * i.cotizacion_detalle.cantidad)*(0.01*i.cotizacion_detalle.iva);
+			//costo total correspondiente al producto
+			i.cotizacion_detalle.costo_total = i.cotizacion_detalle.precio + i.cotizacion_detalle.costo_iva;
+			// suma de los totales de iva de los productos 8 y 16
+			if(i.cotizacion_detalle.iva == 8){
+				total_iva_8 += i.cotizacion_detalle.costo_iva;
+			}else if(i.cotizacion_detalle.iva == 16){
+				total_iva_16 += i.cotizacion_detalle.costo_iva;
+			}
+			costo_iva_total += (i.cotizacion_detalle.precio * i.cotizacion_detalle.cantidad)*(0.01*i.cotizacion_detalle.iva);
 
 			//subtota/
+
 			costo += i.cotizacion_detalle.precio * i.cotizacion_detalle.cantidad;
 		}
-
+		costo_total= (costo + costo_iva_total + flete);
+		this.total_iva_8 = total_iva_8;
+		this.total_iva_16 = total_iva_16;
+		this.cotizacion_info.cotizacion.costo_iva = costo_iva_total;
 		this.cotizacion_info.cotizacion.costo = costo;
-		costo_iva = costo*(0.1*iva);
-		this.cotizacion_info.cotizacion.costo_total = (costo + costo_iva + flete);
+
+		// costo_iva = costo*(0.1*iva);
+		this.cotizacion_info.cotizacion.costo_total = costo_total;
+		console.log('costototal',this.cotizacion_info.cotizacion.costo_total);
 
 	}
 
@@ -182,6 +206,21 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 		if( index > -1  )
 		{
 			this.cotizacion_info.cotizacion_detalles[index].cotizacion_detalle.precio ;
+		}
+
+
+		this.calcularTotalCotizacion();
+		console.log('Agregando Servicio', servicio);
+	}
+
+	aumentarIva(servicio:Servicio)
+	{
+
+		let index = this.cotizacion_info.cotizacion_detalles.findIndex(i=> i.servicio.id == servicio.id );
+
+		if( index > -1  )
+		{
+			this.cotizacion_info.cotizacion_detalles[index].cotizacion_detalle.iva ;
 		}
 
 

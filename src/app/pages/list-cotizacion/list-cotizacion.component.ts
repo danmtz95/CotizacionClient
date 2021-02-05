@@ -7,9 +7,9 @@ import { Location } from	'@angular/common';
 import { forkJoin } from 'rxjs';
 import { of } from 'rxjs';
 import { Title } from '@angular/platform-browser';
-import { StringDictionary } from '../../models/models';
+import { NumberDictionary, StringDictionary } from '../../models/models';
 
-import {Proveedor,Cotizacion} from '../../models/RestModels';
+import {Proveedor,Cotizacion, Cliente} from '../../models/RestModels';
 import {Organizacion} from '../../models/RestModels';
 import {Imagen} from '../../models/RestModels';
 import { BaseChartComponent } from '@swimlane/ngx-charts';
@@ -29,7 +29,8 @@ export class ListCotizacionComponent extends BaseComponent implements OnInit {
 	cotizacion_search:SearchObject<Cotizacion> = { };
 	search_extra:StringDictionary<string> = { };
 	cotizacion_list:Cotizacion[] = [];
-
+	cliente_list:Cliente[] = [];
+	cliente_diccionario:NumberDictionary<Cliente> = {};
 
 	organizacion_list:Organizacion[] = [];
 	imagen_list:Imagen[] = [];
@@ -101,12 +102,18 @@ export class ListCotizacionComponent extends BaseComponent implements OnInit {
 			this.is_loading = true;
 			forkJoin({
 				cotizacion : this.rest.cotizacion.search(this.cotizacion_search),
-				// imagen : this.rest.imagen.search({})
+				cliente: this.rest.cliente.search({})
 			})
 			.subscribe((responses)=>
 			{
 				this.cotizacion_list = responses.cotizacion.data;
+				// this.cliente_list = responses.cotizacion.data
+				responses.cliente.data.forEach((cliente)=>{
+					this.cliente_diccionario[ cliente.id ] = cliente;
+				});
+
 				this.setPages( this.cotizacion_search.page, responses.cotizacion.total );
+
 				// this.imagen_list = responses.imagen.data;
 				this.is_loading = false;
 			},(error)=>this.showError(error));
