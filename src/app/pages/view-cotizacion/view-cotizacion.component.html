@@ -1,9 +1,137 @@
-<div class="container">
-	<div class="row">
-		<div class="col-md-6">COTIZACION</div>
-		<div class="col-md-3 ">REFERENCIA</div>
-		<div class="col-md-3 ">FECHA:{{fecha_actual|date:'shortDate'}}</div>
-	</div>
+<div class="container-fluid" id="container-wrapper">
+    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4"> -->
+    <div class="row mb-4">
+        <div class="col-6">COTIZACION</div>
+        <div class="col-3 ">REFERENCIA</div>
+        <div class="col-3 text-right">FECHA:{{fecha_actual|date:'shortDate'}}</div>
+    </div>
+    <div class="row mt-4 mb-4">
+        <div class="col-4 text-center" *ngIf="sucursal">
+            <app-image-uploader [(image)]="sucursal.id_imagen"></app-image-uploader>
+        </div>
+        <div class="col-4">
+            <div>Empresa:</div>
+            <div>Teléfono:</div>
+            <div>Email:</div>
+            <div>Dirección:</div>
+        </div>
+        <div class="col-4" *ngIf="sucursal">
+            <div><i class="fas fa-map-marker-alt"></i> {{sucursal.direccion}}</div>
+            <div><i class="fas fa-phone-square"></i> {{sucursal.telefono}}</div>
+            <div><i class="fas fa-at"></i> {{sucursal.correo_electronico}}</div>
+            <div><i class="fas fa-globe"></i> {{sucursal.pagina_web}}</div>
+            <div><i class="fab fa-facebook"></i> {{sucursal.facebook}}</div>
+
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-4">
+        <div class="col-6" *ngIf="cotizacion_info ">
+            <div>FECHA: {{cotizacion_info.cotizacion.fecha_creacion |date:'shortDate'}}</div>
+            <div *ngIf="cliente_diccionario && cotizacion_info">EMPRESA:
+                {{cliente_diccionario[cotizacion_info?.cotizacion?.id_cliente].nombre}}</div>
+            <div>ATENCION: {{cotizacion_info.cotizacion.atencion}}</div>
+            <div>COTIZACION VIGENTE: {{cotizacion_info.cotizacion.vigencia}}</div>
+            <div>ANTICIPO: {{cotizacion_info.cotizacion.anticipo}}%</div>
+            <div>CONDICIONES DE PAGO: {{cotizacion_info.cotizacion.tipo_de_pago}}</div>
+
+        </div>
+        <div class="col-6 text-right"></div>
+    </div>
+
+
+    <div class="row mt-4 mb-4">
+        <div class="col-lg-12">
+            <!-- Simple Tables -->
+            <!-- <div class="border"> -->
+            <div class="table-responsive">
+                <table class="table align-items-center  table-bordered ">
+                    <thead class="thead-light">
+                        <tr>
+                            <!-- <th>Linea</th> -->
+                            <th>Cantidad</th>
+                            <th>Descripción</th>
+                            <th>Unidad de media</th>
+                            <th>Precio</th>
+                            <th>Iva %</th>
+                            <th>Iva $</th>
+                            <th>Total</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- {{cotizacion_detalle_categoria | json}} -->
+                        <ng-container *ngFor="let categoria of cotizacion_detalle_categoria | keyvalue">
+                            <!-- <tr colspan="7" >{{categoria | json}}</tr> -->
+                            <tr  class="text-center"> <td colspan="7">{{categoria.key}}</td></tr>
+                            <ng-container *ngFor="let cotizacion_detalle of categoria.value">
+                                <tr >
+                                    <!-- <td>{{index+1}}</td> -->
+                                    <td>{{cotizacion_detalle.cotizacion_detalle.cantidad}}</td>
+                                    <td>{{cotizacion_detalle.servicio.nombre}}</td>
+
+                                    <td>{{cotizacion_detalle.servicio.id_unidad_de_medida?
+                                        unidad_m_diccionario[cotizacion_detalle.servicio.id_unidad_de_medida].nombre:'N/A'
+                                        }}</td>
+                                    <td>{{cotizacion_detalle.cotizacion_detalle.precio}}</td>
+                                    <td>{{cotizacion_detalle.cotizacion_detalle.iva}}</td>
+                                    <td>{{cotizacion_detalle.cotizacion_detalle.costo_iva | number: '1.2-4'}}</td>
+                                    <td>{{cotizacion_detalle.cotizacion_detalle.costo_total | number: '1.2-4'}}</td>
+
+    <!--
+                                <tr>
+                                    <td>{{categoria.key}}</td>
+
+                                    <td>{{a |json}}</td>
+
+
+                                </tr> -->
+                                </tr>
+                            </ng-container>
+
+
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class=" justify-content-end mt-4 mb-4">
+        <div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-9 col-form-label text-right">Subtotal</label>
+                <div class="col-sm-3">
+                    <input type="number" name="costo" class="form-control" id="inputEmail3" placeholder="" disabled
+                        [(ngModel)]="cotizacion_info.cotizacion.costo">
+                </div>
+            </div>
+            <div class="form-group row" *ngIf="total_iva_8 !== 0">
+                <label for="inputEmail3" class="col-sm-9 col-form-label text-right">Iva 8%</label>
+                <div class="col-sm-3">
+                    <input type="number" name="total_iva_8" class="form-control" id="inputEmail3" placeholder=""
+                        disabled [(ngModel)]="total_iva_8">
+                </div>
+            </div>
+            <div class="form-group row" *ngIf="total_iva_16 !== 0">
+                <label for="inputEmail3" class="col-sm-9 col-form-label text-right">Iva 16%</label>
+                <div class="col-sm-3">
+                    <input type="number" name="total_iva_16" class="form-control" id="inputEmail3" placeholder=""
+                        disabled [(ngModel)]="total_iva_16">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-9 col-form-label text-right">Total</label>
+                <div class="col-sm-3">
+                    <input type="number" name="costo_total" class="form-control" id="inputEmail3" placeholder=""
+                        disabled [(ngModel)]="cotizacion_info.cotizacion.costo_total">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4 mb-4">
+        <div class="col-4 border">{{cotizacion_info.cotizacion.nota}}</div>
+        <div class="col-4"></div>
+        <div class="col-4"></div>
+    </div>
+    <!-- </div> -->
 </div>
-
-

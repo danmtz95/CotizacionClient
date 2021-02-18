@@ -5,10 +5,6 @@
     "outDir": "./out-tsc/app",
     "types": []
   },
-  "angularCompilerOptions": {
-      "fullTemplateTypeCheck": true,
-      "preserveWhitespaces": false,
-  },
   "files": [
     "src/main.ts",
     "src/polyfills.ts"

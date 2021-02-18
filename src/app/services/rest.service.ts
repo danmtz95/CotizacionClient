@@ -21,7 +21,7 @@ import { Proveedor } from '../models/RestModels';
 
 //import { forkJoin } from 'rxjs';
 
-import { NgxCsvParser } from 'ngx-csv-parser';
+// import { NgxCsvParser } from 'ngx-csv-parser';
 
 export class ErrorMessage {
 
@@ -64,7 +64,7 @@ export class RestService {
 	public servicio_info: Rest<Servicio, Servicio_Info> = this.initRest('servicio_info');
 
 
-	constructor(private http: HttpClient, public ngxCsvParser: NgxCsvParser) {
+	constructor(private http: HttpClient) {
 		//Produccion por cambiarx`x
 		this.keyUpObserver = fromEvent<KeyboardEvent>(window.document.body, 'keyup');
 
@@ -378,9 +378,9 @@ export class RestService {
 
 
 
-	csv2json(file: File, header: boolean, delimiter: string): Observable<any> {
-		return this.ngxCsvParser.parse(file, { header, delimiter });
-	}
+	// csv2json(file: File, header: boolean, delimiter: string): Observable<any> {
+	// 	return this.ngxCsvParser.parse(file, { header, delimiter });
+	// }
 
 	zero(n: number): string {
 		return n < 10 ? '0' + n : '' + n;

@@ -1,15 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgxCsvParserModule } from 'ngx-csv-parser';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ImageUploaderComponent} from './components/image-uploader/image-uploader.component'
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { AccessModule } from './modules/access/access.module';
+// import { AccessModule } from './modules/access/access.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularDateHttpInterceptor } from './services/AngularDateHttpInterceptor'
-import { ChartsModule } from 'ng2-charts';
+// import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {SaveUsuarioComponent} from './pages/save-usuario/save-usuario.component';
@@ -41,10 +40,11 @@ import { SaveServicioCategoriaComponent } from './pages/save-servicio-categoria/
 import { ListUnidadDeMedidaComponent } from './pages/list-unidad-de-medida/list-unidad-de-medida.component';
 import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-unidad-de-medida.component';
 import { ViewCotizacionComponent } from './pages/view-cotizacion/view-cotizacion.component';
+
 @NgModule({
-	declarations: [
-		AppComponent,
-		SaveUsuarioComponent,
+  declarations: [
+    AppComponent,
+    SaveUsuarioComponent,
 		ListUsuarioComponent,
 		HomeComponent,
  		DashboardComponent,
@@ -73,22 +73,22 @@ import { ViewCotizacionComponent } from './pages/view-cotizacion/view-cotizacion
 		ListUnidadDeMedidaComponent,
 		SaveUnidadDeMedidaComponent,
 		ViewCotizacionComponent,
-			],
-	imports: [
-		BrowserModule,
-		AppRoutingModule,
-		AccessModule,
+        ImageUploaderComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    // AccessModule,
 		HttpClientModule,
 		FormsModule,
 		ReactiveFormsModule,
 		CommonModule,
 		BrowserAnimationsModule,
 		FormsModule,
-		NgxCsvParserModule,
-		NgxChartsModule,
-
-	],
-	providers: [{ provide: HTTP_INTERCEPTORS, useClass: AngularDateHttpInterceptor, multi: true }],
-	bootstrap: [AppComponent]
+		// NgxCsvParserModule,
+		// NgxChartsModule,
+  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AngularDateHttpInterceptor, multi: true }],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,1 +1,154 @@
-<p>save-sucursal works!</p>
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{ sucursal.id ? sucursal.nombre :'Agregar Sucursal' | titlecase }}</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item">Sucursales</li>
+            <li class="breadcrumb-item active" aria-current="page">Agregar Sucursal/li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Form Basic -->
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Información de la sucursal</h6>
+                </div>
+                <div class="card-body">
+                    <form ngNativeValidate (submit)="save()">
+                        <div class="row">
+                            <div class="form-group col-4 text-center">
+                                <label for="">Imagen</label>
+                                <app-image-uploader [(image)]="sucursal.id_imagen"></app-image-uploader>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="nombre">Nombre</label>
+                                <input id="nombre" placeholder="Ingrese nombre de la sucursal" name="nombre"
+                                    [ngClass]="{'is-valid':sucursal.nombre,'form-control':sucursal }" type="text"
+                                    [(ngModel)]="sucursal.nombre" required>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="rfc">RFC</label>
+                                <input id="rfc" name="rfc" type="text" placeholder="Ingrese rfc de la sucursal"
+                                    [ngClass]="{'is-valid':sucursal.rfc,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.rfc">
+
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="direccion">Dirección</label>
+                                <input id="direccion" name="direccion" type="text"
+                                    placeholder="Ingrese direccion de la sucursal"
+                                    [ngClass]="{'is-valid':sucursal.direccion,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.direccion">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="estado">Estado</label>
+                                <input id="estado" type="text" name="estado" placeholder="Ingrese estado de la sucursal"
+                                    [ngClass]="{'is-valid':sucursal.estado,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.estado">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="ciudad">Ciudad</label>
+                                <input id="ciudad" type="number" name="ciudad"
+                                    placeholder="Ingrese ciudad de la sucursal"
+                                    [ngClass]="{'is-valid':sucursal.ciudad,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.ciudad">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="codigo_postal">Codigo Postal</label>
+                                <input id="codigo_postal" name="codigo_postal" type="number"
+                                    placeholder="Ingrese codigo postal del sucursal"
+                                    [ngClass]="{'is-valid':sucursal.codigo_postal,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.codigo_postal">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="correo_electronico">Correo Electronico</label>
+                                <input id="correo_electronico" name="correo_electronico" type="text"
+                                    placeholder="Ingrese correo_electronico del sucursal"
+                                    [ngClass]="{'is-valid':sucursal.correo_electronico,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.correo_electronico">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="telefono">Teléfono</label>
+                                <input id="telefono" name="telefono" type="text"
+                                    placeholder="Ingrese telefono de la sucursal"
+                                    [ngClass]="{'is-valid':sucursal.telefono,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.telefono">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="pagina_web">Pagina Web</label>
+                                <input id="pagina_web" name="pagina_web" type="text"
+                                    placeholder="Ingrese pagina web de la sucursal"
+                                    [ngClass]="{'is-valid':sucursal.pagina_web,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.pagina_web">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="facebook">Facebook</label>
+                                <input id="facebook" name="facebook" type="text"
+                                    placeholder="Ingrese facebook url de la sucursal"
+                                    [ngClass]="{'is-valid':sucursal.facebook,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.facebook">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="iva">IVA</label>
+                                <input id="iva" name="iva" type="number" placeholder="Ingrese pagina web de la sucursal"
+                                    [ngClass]="{'is-valid':sucursal.iva,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.iva">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="tipo_de_cambio">Tipo de cambio</label>
+                                <input id="tipo_de_cambio" name="tipo_de_cambio" type="number"
+                                    placeholder="Ingrese tipo de cambio de la sucursal"
+                                    [ngClass]="{'is-valid':sucursal.tipo_de_cambio,'form-control':sucursal }"
+                                    [(ngModel)]="sucursal.tipo_de_cambio">
+                            </div>
+
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                        </div>
+                        <div class=" text-right">
+                            <button type="submit" [disabled]="is_loading"
+                                class="waves-effect waves-light btn-success btn icon-size-1 text-right"><i
+                                    class="fa fa-save icon-size-1"></i> Guardar</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--Row-->
+
+        <!-- Documentation Link -->
+        <!-- <div class="row">
+            <div class="col-lg-12 text-center">
+
+            </div>
+        </div> -->
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="">Imagen</label>
+        <app-image-uploader [(image)]="centro_medico.id_imagen_ticket"></app-image-uploader>
+    </div>
+
+    <div class="form-group col-md-6">
+        <label for="">Imagen Ticket</label>
+        <app-image-uploader [(image)]="centro_medico.id_imagen"></app-image-uploader>
+    </div>
+</div> -->

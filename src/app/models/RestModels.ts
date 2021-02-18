@@ -188,7 +188,8 @@ export interface Sucursal{
 	tiempo_creacion?:Date;
 	tiempo_actualizacion?:Date;
 	iva?:number;
-	tipo_cambio_dolares?:number;
+	tipo_de_cambio?:number;
+    facebook?:string;
 }
 
 export interface Usuario{

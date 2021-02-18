@@ -1,119 +1,91 @@
-<div class="header">
-	<h2 class="page-header">
-		{{ proveedor.id ? proveedor.nombre :'Agregar Proveedor' | titlecase }}
-	</h2>
-	<ol class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Proveedores</a></li>
-		<li class="active">{{proveedor.id? 'Editar':'Crear'}}</li>
-	</ol>
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{ proveedor.id ? proveedor.nombre :'Agregar Proveedor' | titlecase }}</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item">Proveedores</li>
+            <li class="breadcrumb-item active" aria-current="page">Agregar Proveedor</li>
+        </ol>
+    </div>
 
-</div>
-<div id="page-inner">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Form Basic -->
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Información del proveedor</h6>
+                </div>
+                <div class="card-body">
+                    <form ngNativeValidate (submit)="save()">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label for="nombre">Nombre</label>
+                                <input id="nombre" placeholder="Ingrese nombre del cliente" name="nombre"
+                                    [ngClass]="{'is-valid':proveedor.nombre,'form-control':proveedor }" type="text"
+                                    [(ngModel)]="proveedor.nombre" required>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="direccion">Dirección</label>
+                                <input id="direccion" name="direccion" type="text"
+                                    placeholder="Ingrese direccion del proveedor"
+                                    [ngClass]="{'is-valid':proveedor.direccion,'form-control':proveedor }"
+                                    [(ngModel)]="proveedor.direccion">
+                            </div>
 
+                            <div class="form-group col-4">
+                                <label for="telefono">Teléfono</label>
+                                <input id="telefono" type="number" name="telefono"
+                                    placeholder="Ingrese telefono del proveedor"
+                                    [ngClass]="{'is-valid':proveedor.telefono,'form-control':proveedor }"
+                                    [(ngModel)]="proveedor.telefono">
+                            </div>
 
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="card">
-				<div class="card-action">
-					Información del proveedor
-				</div>
-				<div class="card-content">
-					<form ngNativeValidate (submit)="save()" class="col s12">
-						<div class="row">
-							<div class=" col s6">
-								<label for="nombre">Nombre</label>
-								<input id="nombre" name="nombre" type="text" class="validate"
-									[(ngModel)]="proveedor.nombre">
+                            <div class="form-group col-4">
+                                <label for="contacto">Contacto</label>
+                                <input id="contacto" name="contacto" type="text"
+                                    placeholder="Ingrese contacto del proveedor"
+                                    [ngClass]="{'is-valid':proveedor.contacto,'form-control':proveedor }"
+                                    [(ngModel)]="proveedor.contacto">
 
-							</div>
-							<div class=" col s6">
-								<label for="direccion">Dirección</label>
-								<input id="direccion" name="direccion" type="text" class="validate" [(ngModel)]="proveedor.direccion">
-							</div>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="rfc">RFC</label>
+                                <input id="rfc" name="rfc" type="number" placeholder="Ingrese RFC del proveedor"
+                                    [ngClass]="{'is-valid':proveedor.rfc,'form-control':proveedor }"
+                                    [(ngModel)]="proveedor.rfc">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="nota">Nota</label>
+                                <input id="nota" name="nota" type="number" placeholder="Ingrese nota"
+                                    [ngClass]="{'is-valid':proveedor.nota,'form-control':proveedor }"
+                                    [(ngModel)]="proveedor.nota">
+                            </div>
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                        </div>
+                        <div class=" text-right">
+                            <button type="submit" [disabled]="is_loading"
+                                class="waves-effect waves-light btn-success btn icon-size-1 text-right"><i
+                                    class="fa fa-save icon-size-1"></i> Guardar</button>
 
-						</div>
-						<div class="row">
-							<div class=" col s4">
-								<label for="telefono">Telefono</label>
-								<input id="telefono" type="number" name="telefono" class="validate"
-									[(ngModel)]="proveedor.telefono">
-							</div>
-							<div class=" col s4">
-								<label for="contacto">contacto</label>
-								<input id="contacto" type="text" name="contacto" class="validate"
-									[(ngModel)]="proveedor.contacto">
-							</div>
-							<div class=" col s4">
-								<label for="rfc">RFC</label>
-								<input id="rfc" name="rfc" type="text" class="validate" [(ngModel)]="proveedor.rfc">
-
-							</div>
-
-						</div>
-						<div class="row">
-							<div class=" col s12">
-								<label for="nota">Nota</label>
-								<textarea id="nota" name="nota" type="text" class="validate"
-									[(ngModel)]="proveedor.nota"></textarea>
-							</div>
-
-
-						</div>
-
-						<div class="row p-3">
-							<div class="col-12 text-right">
-								<button type="submit" [disabled]="is_loading" class="waves-effect waves-light btn-success btn icon-size-1"><i class="fa fa-save icon-size-1"></i> Guardar</button>
-							</div>
-						</div>
-
-					</form>
-					<div class="clearBoth"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!--
-	<div class="col-6 col-md-4">
-		<label class="">proveedor</label>
-		<input type="text" name="usuario" [(ngModel)]="usuario.usuario" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Nombre</label>
-		<input type="text" name="nombre" [(ngModel)]="usuario.nombre" class="form-control">
-	</div>
-
-	<div class="col-6 col-md-4">
-		<label class="">Tipo</label>
-		<select name="tipo" [(ngModel)]="usuario.tipo" class="form-control">
-			<option [ngValue]="null">Select</option>
-			<option value="PACIENTE">PRODUCCION</option>
-			<option value="RECEPCIONISTA">RECEPCION</option>
-			<option value="ADMIN">ADMIN</option>
-		</select>
-	</div>
-
-	<div class="col-6 col-md-4">
-		<label class="">Contrasena</label>
-		<input type="text" name="contrasena" [(ngModel)]="usuario.contrasena" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Telefono</label>
-		<input type="text" name="telefono" [(ngModel)]="usuario.telefono" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Correo electronico</label>
-		<input type="text" name="correo_electronico" [(ngModel)]="usuario.correo_electronico" class="form-control">
-	</div>
+                        </div>
+                    </form>
 
 
-</div>
+                </div>
+            </div>
+        </div>
 
-</div>
-</form> -->
 
-	<footer>
-		<!-- <p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
-	</footer>
+
+        <!--Row-->
+
+        <!-- Documentation Link -->
+        <div class="row">
+            <div class="col-lg-12 text-center">
+
+            </div>
+        </div>
+
+    </div>
 </div>

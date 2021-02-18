@@ -12,7 +12,7 @@ import { NumberDictionary, StringDictionary } from '../../models/models';
 import {Proveedor,Cotizacion, Cliente} from '../../models/RestModels';
 import {Organizacion} from '../../models/RestModels';
 import {Imagen} from '../../models/RestModels';
-import { BaseChartComponent } from '@swimlane/ngx-charts';
+// import { BaseChartComponent } from '@swimlane/ngx-charts';
 
 
 

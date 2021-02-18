@@ -263,7 +263,7 @@ export class SaveServicioComponent extends BaseComponent implements OnInit {
 		}
 	}
 
-	aumentarCantidadServicio(servicio: Servicio) {
+	aumentarCantidadServicio(servicio) {
 
 		let index = this.servicio_info.servicio_detalles.findIndex(i => i.servicio_secundario.id == servicio.id);
 

@@ -1,314 +1,299 @@
-<div class="header">
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{ cotizacion_info.cotizacion.id ? 'FOLIO: '+cotizacion_info.cotizacion.id
+            :'Agregar Cotización'
+            |
+            titlecase }}</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item">Cotizaciones</li>
+            <li class="breadcrumb-item active" aria-current="page">Agregar Cotización</li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Form Basic -->
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Información de la cotización</h6>
+                </div>
+                <div class="card-body">
+                    <form ngNativeValidate (submit)="save()">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label for="id_cliente">Cliente</label>
+                                <select class="form-control" name="id_cliente"
+                                    [(ngModel)]="cotizacion_info.cotizacion.id_cliente">
+                                    <option [value]="null" hidden>Seleccione una opcion</option>
+                                    <option *ngFor="let cliente of cliente_list" [value]="cliente.id">
+                                        {{cliente_diccionario[cliente.id].nombre}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="tipo_de_pago">Tipo de pago</label>
+
+                                <select class="form-control" name="tipo_de_pago"
+                                    [(ngModel)]="cotizacion_info.cotizacion.tipo_de_pago">
+                                    <option [value]="null" hidden>Seleccione una opcion</option>
+                                    <option [value]="'CONTADO'">CONTADO</option>
+                                    <option [value]="'TARJETA_DE_CREDITO'">TARJETA DE CREDITO</option>
+                                    <option [value]="'TARJETA_DE_DEBITO'">TARJETA DE DEBITO</option>
+                                    <option [value]="'CHEQUE'">CHEQUE</option>
+                                    <!-- <option *ngFor="let cliente of cliente_list" [value]="cliente.id">
+                                        {{cliente_diccionario[cliente.id].nombre}}</option> -->
+                                </select>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="atencion">Atención</label>
+                                <input id="atencion" name="atencion" type="text"
+                                    placeholder="Ingrese atencion de la requisición"
+                                    [ngClass]="{'is-valid':cotizacion_info.cotizacion.atencion,'form-control':cotizacion_info }"
+                                    [(ngModel)]="cotizacion_info.cotizacion.atencion">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="vigencia">Vigencia (Dias)</label>
+                                <input id="vigencia" type="number" name="vigencia"
+                                    placeholder="Ingrese vigencia de la requisión"
+                                    [ngClass]="{'is-valid':cotizacion_info.cotizacion.vigencia,'form-control':cotizacion_info }"
+                                    [(ngModel)]="cotizacion_info.cotizacion.vigencia">
+                            </div>
+                            <div class="form-group col-4">
+
+                                <label for="anticipo">Anticipo (%)</label>
+                                <input id="anticipo" placeholder="Ingrese porcentaje de anticipo" name="anticipo"
+                                    type="number"
+                                    [ngClass]="{'is-valid':cotizacion_info.cotizacion.anticipo,'form-control':cotizacion_info }"
+                                    [(ngModel)]="cotizacion_info.cotizacion.anticipo">
+
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="flete">Flete</label>
+                                <input id="flete" name="flete" type="number"
+                                    placeholder="Ingrese flete de la cotización"
+                                    [ngClass]="{'is-valid':cotizacion_info.cotizacion.flete,'form-control':cotizacion_info }"
+                                    [(ngModel)]="cotizacion_info.cotizacion.flete" (change)="calcularTotalCotizacion()">
 
 
-	<h2 class="page-header">
-		{{ cotizacion_info.cotizacion.id ? 'Folio: '+cotizacion_info.cotizacion.id :'Agregar Cotizacion' | titlecase
-		}}
-	</h2>
-	<!-- <ol class="breadcrumb">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">cotizaciones</a></li>
-			<li class="active">{{cotizacion_info.cotizacion.id? 'Editar':'Crear'}}</li>
-		</ol> -->
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="nota">Nota</label>
+
+                                <textarea id="nota" name="nota" type="number"
+                                    placeholder="Ingrese nota de la cotización"
+                                    [ngClass]="{'is-valid':cotizacion_info.cotizacion.nota,'form-control':cotizacion_info }"
+                                    [(ngModel)]="cotizacion_info.cotizacion.nota" (change)="calcularTotalCotizacion()"></textarea>
+
+
+                            </div>
+
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                        </div>
+                        <div class="row">
 
 
 
-</div>
+                            <!-- <div class=" col s3">
+                                        <label for="iva">Iva</label>
+                                        <input id="iva" name="iva" type="number" class="validate"
+                                            [(ngModel)]="cotizacion_info.cotizacion.iva" (change)="calcularTotalCotizacion()">
+                                    </div> -->
+                            <!-- <div class=" form-group col-4">
+                                <label for="costo">Subtotal</label>
+                                <input id="costo" name="costo" type="number"
+                                    [ngClass]="{'is-valid':cotizacion_info.cotizacion.costo,'form-control':cotizacion_info }"
+                                    disabled [(ngModel)]="cotizacion_info.cotizacion.costo">
+                            </div> -->
+                            <!-- <div class=" form-group col-4">
+                                <label for="costo_total">Costo Total</label>
+                                <input id="costo_total" name="costo_total" type="number"
+                                    [ngClass]="{'is-valid':cotizacion_info.cotizacion.costo_total,'form-control':cotizacion_info }"
+                                    disabled [(ngModel)]="cotizacion_info.cotizacion.costo_total">
+                            </div> -->
 
-<div id="page-inner">
-	<!-- <mat-card class="example-card ">
-		<mat-card-header> -->
-			<!-- <div mat-card-avatar class="example-header-image"></div> -->
-
-			<!-- <mat-card-title>Informacion de la cotización</mat-card-title> -->
-			<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-
-		<!-- </mat-card-header> -->
-		<!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-		<!-- <mat-card-content> -->
-			<form ngNativeValidate id="cotizacionForm" (submit)="save()" class="col s12">
-				<div class="row">
-					<div class="col s6 m3">
-						<label for="id_cliente">Cliente</label>
-						<select class="form-control" name="id_cliente"
-							[(ngModel)]="cotizacion_info.cotizacion.id_cliente">
-							<option [value]="null" hidden>Seleccione una opcion</option>
-							<option *ngFor="let cliente of cliente_list" [value]="cliente.id">
-								{{cliente_diccionario[cliente.id].nombre}}</option>
-						</select>
-					</div>
-
-					<div class=" col s3">
-						<label for="tipo_de_pago">Tipo de pago</label>
-
-						<select class="form-control" name="tipo_de_pago"
-							[(ngModel)]="cotizacion_info.cotizacion.tipo_de_pago">
-							<option [value]="null" hidden>Seleccione una opcion</option>
-							<option [value]="'CONTADO'">CONTADO</option>
-							<option [value]="'TARJETA_DE_CREDITO'">TARJETA DE CREDITO</option>
-							<option [value]="'TARJETA_DE_DEBITO'">TARJETA DE DEBITO</option>
-							<option [value]="'CHEQUE'">CHEQUE</option>
-							<!-- <option *ngFor="let cliente of cliente_list" [value]="cliente.id">
-								{{cliente_diccionario[cliente.id].nombre}}</option> -->
-						</select>
-					</div>
-					<div class=" col s2">
-						<label for="atencion">Atencion </label>
-						<input id="atencion" placeholder="A quien se dirige" name="atencion" type="text"
-							class="validate" [(ngModel)]="cotizacion_info.cotizacion.atencion">
-					</div>
-
-					<div class=" col s2">
-						<label for="vigencia">Vigencia (Dias) </label>
-						<input id="vigencia" placeholder="Vigencia en dias" name="vigencia" type="number"
-							class="validate" [(ngModel)]="cotizacion_info.cotizacion.vigencia">
-					</div>
-					<div class=" col s2">
-						<label for="anticipo">Anticipo (%)</label>
-						<input id="anticipo" placeholder="Porcentaje de anticipo" name="anticipo" type="number"
-							class="validate" [(ngModel)]="cotizacion_info.cotizacion.anticipo">
-					</div>
-
-				</div>
-				<div class="row">
+                        </div>
+                        <div class=" justify-content-end">
 
 
-					<div class=" col s3">
-						<label for="flete">Flete</label>
-						<input id="flete" name="flete" type="number" class="validate"
-							[(ngModel)]="cotizacion_info.cotizacion.flete" (change)="calcularTotalCotizacion()">
-					</div>
-					<!-- <div class=" col s3">
-						<label for="iva">Iva</label>
-						<input id="iva" name="iva" type="number" class="validate"
-							[(ngModel)]="cotizacion_info.cotizacion.iva" (change)="calcularTotalCotizacion()">
-					</div> -->
-					<div class=" col s3">
-						<label for="costo">Subtotal</label>
-						<input id="costo" name="costo" type="number" class="validate" disabled
-							[(ngModel)]="cotizacion_info.cotizacion.costo">
-					</div>
-					<div class=" col s3">
-						<label for="costo_total">Costo Total</label>
-						<input id="costo_total" name="costo_total" type="number" class="validate" disabled
-							[(ngModel)]="cotizacion_info.cotizacion.costo_total">
-					</div>
 
-				</div>
-				<div class="row">
-					<div class="col s12 m6">
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-8 col-form-label text-right">Subtotal</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" name="costo" class="form-control" id="inputEmail3"
+                                            placeholder="" disabled [(ngModel)]="cotizacion_info.cotizacion.costo">
+                                    </div>
+                                </div>
+                                <div class="form-group row" *ngIf="total_iva_8 !== 0">
+                                    <label for="inputEmail3" class="col-sm-8 col-form-label text-right">Iva 8%</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" name="total_iva_8" class="form-control" id="inputEmail3"
+                                            placeholder="" disabled [(ngModel)]="total_iva_8">
+                                    </div>
+                                </div>
+                                <div class="form-group row" *ngIf="total_iva_16 !== 0">
+                                    <label for="inputEmail3" class="col-sm-8 col-form-label text-right">Iva 16%</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" name="total_iva_16" class="form-control" id="inputEmail3"
+                                            placeholder="" disabled [(ngModel)]="total_iva_16">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-8 col-form-label text-right">Total</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" name="costo_total" class="form-control" id="inputEmail3"
+                                            placeholder="" disabled
+                                            [(ngModel)]="cotizacion_info.cotizacion.costo_total">
+                                    </div>
+                                </div>
+s
+                        </div>
 
-					</div>
-					<div class="col s12 m6 text-right">
+                        <div class=" text-right">
+                            <button type="submit" [disabled]="is_loading"
+                                class="waves-effect waves-light btn-success btn icon-size-1 text-right"><i
+                                    class="fa fa-save icon-size-1"></i> Guardar</button>
 
-
-						<div class="col s12 m-0 p-0">
-							Subtotal:
-							<div class="input-field inline m-0 p-0">
-								<input value="number:'1.0-0'" type="number: '1.2-4'" name="costo"  [(ngModel)]="cotizacion_info.cotizacion.costo" disabled>
-								<!-- <label for="email_inline">Email</label> -->
-								<!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
-							</div>
-						</div>
-						<div class=" sm-0 p-0" *ngIf="total_iva_8 !== 0">
-							iva 8%
-							<div class="input-field inline m-0 p-0">
-								<input  value="number:'1.0-2'" type="number: '1.2-4'" name="total_iva_8"  [(ngModel)]="total_iva_8" disabled>
-								<!-- <label for="email_inline">Email</label> -->
-								<!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
-							</div>
-						</div>
-						<div class="col s12 m-0 p-0 " *ngIf="total_iva_16 !== 0">
-							iva 16%
-							<div class="input-field inline m-0 p-0">
-								<input   value="number:'1.0-0'" type="number: '1.2-4'" name="total_iva_16"  [(ngModel)]="total_iva_16" disabled>
-								<!-- <label for="email_inline">Email</label> -->
-								<!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
-							</div>
-						</div>
-						<div class="col s12 m-0 p-0">
-							Total
-							<div class="input-field inline m-0 p-0">
-								<input   value="number:'1.0-0'" type="number: '1.2-4'" name="costo_total"  [(ngModel)]="cotizacion_info.cotizacion.costo_total" disabled>
-								<!-- <label for="email_inline">Email</label> -->
-								<!-- <span class="helper-text" data-error="wrong" data-success="right">Helper text</span> -->
-							</div>
-						</div>
+                        </div>
+                    </form>
 
 
-					</div>
+                </div>
+            </div>
+        </div>
 
-				</div>
 
-			</form>
-		<!-- </mat-card-content>
-		<mat-card-actions class="right-align">
-			<button type="submit" form="cotizacionForm" [disabled]="is_loading"
-				class="waves-effect waves-light btn-success btn btn-success"><i
-					class="icon-size-1 material-icons">save</i> Guardar</button>
-		</mat-card-actions>
-	</mat-card> -->
-	<!-- Agregar Productos -->
-	<!-- <mat-divider></mat-divider> -->
-	<!-- <mat-card class="example-card mt-2 ">
-		<mat-card-header> -->
-			<!-- <div mat-card-avatar class="example-header-image"></div> -->
 
-			<!-- <mat-card-title>Agregar Productos A la Cotización</mat-card-title> -->
-			<!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-<!--
-		</mat-card-header> -->
-		<!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-		<!-- <mat-card-content> -->
-			<ng-container>
-				<div class=" p-0 m-0">
-					<!-- <label for="nota">Buscar Servicio</label> -->
-					<form class="">
-						<div class="">
-							Buscar Productos
-						</div>
-						<!-- <input type="text" placeholder="Buscar productos" [formControl]="control"
+        <!--Row-->
+
+        <!-- Documentation Link -->
+        <!-- <div class="row">
+            <div class="col-lg-12 text-center">
+
+            </div>
+        </div> -->
+
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Form Basic -->
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Productos de la cotización</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-6 static-top">
+                            <label for="select2SinglePlaceholder">Productos</label>
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item dropdown no-arrow">
+                                    <input type="text" class="form-control" id="searchDropdown" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false"
+                                        (keyup)="changeSearchServicio($event)">
+                                    <div class="dropdown-menu  p-3 shadow " aria-labelledby="searchDropdown">
+                                        <div *ngFor="let servicio of search_servicios"
+                                            (click)="agregarServicio(servicio)">
+                                            {{servicio.nombre}}
+                                        </div>
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                        <!-- <input type="text" placeholder="Buscar productos" [formControl]="control"
 							[matAutocomplete]="auto" (keyup)="changeSearchServicio($event)">
 						<mat-autocomplete #auto="matAutocomplete">
-							<mat-option *ngFor="let servicio of search_servicios" (click)="agregarServicio(servicio)">
-								{{servicio.nombre}}
+							<mat-option *>
+								{{servicio.nombre}} -->
 
-							</mat-option>
-						</mat-autocomplete> -->
-					</form>
-				</div>
-			</ng-container>
+                    </div>
 
+                    <div class="table-responsive">
 
+                        <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Iva %</th>
+                                    <th>Iva $</th>
+                                    <th>Total</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let cotizacion_detalle of cotizacion_info.cotizacion_detalles;let i=index">
+                                    <!-- <td><a [routerLink]="['/edit-usuario',cotizacion.id]">{{cotizacion.id}}</a></td> -->
+                                    <td>{{cotizacion_detalle.servicio.nombre}}</td>
+                                    <td>
+                                        <input type="number" class="form-control" [name]="'cantidad_'+i"
+                                            [(ngModel)]="cotizacion_detalle.cotizacion_detalle.cantidad"
+                                            (change)="aumentarCantidad(cotizacion_detalle)">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" type="number" step="0.01" [name]="'precio_'+i"
+                                            [(ngModel)]="cotizacion_detalle.cotizacion_detalle.precio"
+                                            (change)="aumentarPrecio(cotizacion_detalle)">
+                                    </td>
 
-			<div class="table-responsive">
+                                    <td>
 
-				<table class="table table-striped table-bordered table-hover">
-					<thead>
-						<tr>
-							<th>Nombre</th>
-							<th>Cantidad</th>
-							<th>Precio</th>
-							<th>Iva %</th>
-							<th>Iva $</th>
-							<th>Total</th>
-							<th class="text-center">Acciones</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr *ngFor="let cotizacion_detalle of cotizacion_info.cotizacion_detalles;let i=index">
-							<!-- <td><a [routerLink]="['/edit-usuario',cotizacion.id]">{{cotizacion.id}}</a></td> -->
-							<td>{{cotizacion_detalle.servicio.nombre}}</td>
-							<td>
-								<input type="number" [name]="'cantidad_'+i"
-									[(ngModel)]="cotizacion_detalle.cotizacion_detalle.cantidad"
-									(change)="aumentarCantidad(cotizacion_detalle)">
-							</td>
-							<td>
-								<input class="form-control" type="number" step="0.01" [name]="'precio_'+i"
-									[(ngModel)]="cotizacion_detalle.cotizacion_detalle.precio"
-									(change)="aumentarPrecio(cotizacion_detalle)">
-							</td>
+                                        <select class="form-control" name="tipo_de_pago"
+                                            [(ngModel)]="cotizacion_detalle.cotizacion_detalle.iva"
+                                            (change)="aumentarPrecio(cotizacion_detalle)">
+                                            <option [value]="null" hidden>Seleccione el iva</option>
+                                            <option [value]="0">SIN IVA</option>
+                                            <option [value]="8">8</option>
+                                            <option [value]="16">16</option>
+                                            <!-- <option *ngFor="let cliente of cliente_list" [value]="cliente.id">
+                                                {{cliente_diccionario[cliente.id].nombre}}</option> -->
+                                        </select>
+                                        <!-- <input type="number" [name]="'iva_'+i"
+                                            [(ngModel)]="cotizacion_detalle.cotizacion_detalle.iva"
+                                            (change)="aumentarPrecio(cotizacion_detalle)"> -->
 
-							<td>
+                                    </td>
+                                    <td>
+                                        {{cotizacion_detalle.cotizacion_detalle.costo_iva | number: '1.2-4'}}
+                                    </td>
+                                    <td>
+                                        {{cotizacion_detalle.cotizacion_detalle.costo_total | number: '1.2-4'}}
+                                    </td>
+                                    <!-- <td>{{cotizacion.costo}}</td> -->
+                                    <!-- <td>{{co
+                                        tizacion.flete}}</td>
+                                    <td>{{cotizacion.iva}}</td>
+                                    <td>{{cotizacion.costo_total}}</td>
+                                    <td>{{cotizacion.nota}}</td>
+                                    <td>{{cotizacion.fecha_de_entrega}}</td>
+                                    <td>{{cotizacion.estado}}</td> -->
+                                    <td class="text-center">
+                                        <button class="waves-effect waves-light btn-danger btn btn-sm"
+                                            (click)="eliminar(cotizacion_detalle)"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="cotizacion_info == null || cotizacion_info.cotizacion_detalles.length == 0 && !is_loading"
+                                    colspan="TEMPLATE_HEADERS_SIZE">
+                                    <td colspan="7" class="text-center">
+                                        <div class="alert alert-light m-3" role="alert">No elements found</div>
 
-								<select class="form-control" name="tipo_de_pago"
-									[(ngModel)]="cotizacion_detalle.cotizacion_detalle.iva"
-									(change)="aumentarPrecio(cotizacion_detalle)">
-									<option [value]="null" hidden>Seleccione el iva</option>
-									<option [value]="0">SIN IVA</option>
-									<option [value]="8">8</option>
-									<option [value]="16">16</option>
-									<!-- <option *ngFor="let cliente of cliente_list" [value]="cliente.id">
-								{{cliente_diccionario[cliente.id].nombre}}</option> -->
-								</select>
-								<!-- <input type="number" [name]="'iva_'+i"
-							[(ngModel)]="cotizacion_detalle.cotizacion_detalle.iva"
-							(change)="aumentarPrecio(cotizacion_detalle)"> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-							</td>
-							<td>
-								{{cotizacion_detalle.cotizacion_detalle.costo_iva | number: '1.2-4'}}
-							</td>
-							<td>
-								{{cotizacion_detalle.cotizacion_detalle.costo_total | number: '1.2-4'}}
-							</td>
-							<!-- <td>{{cotizacion.costo}}</td> -->
-							<!-- <td>{{co
-						tizacion.flete}}</td>
-					<td>{{cotizacion.iva}}</td>
-					<td>{{cotizacion.costo_total}}</td>
-					<td>{{cotizacion.nota}}</td>
-					<td>{{cotizacion.fecha_de_entrega}}</td>
-					<td>{{cotizacion.estado}}</td> -->
-							<td class="text-center">
-								<button class="waves-effect waves-light btn-danger btn btn-sm"
-									(click)="eliminar(cotizacion_detalle)"><i
-										class="icon-size-1 material-icons">close</i></button>
-							</td>
-						</tr>
-						<tr *ngIf="cotizacion_info == null || cotizacion_info.cotizacion_detalles.length == 0 && !is_loading"
-							colspan="TEMPLATE_HEADERS_SIZE">
-							<td colspan="7" class="text-center">
-								<div class="alert alert-light m-3" role="alert">No elements found</div>
+                    </div>
+                    <app-pagination [path]="'/list-proveedor'" [pages]="pages" [totalPages]="totalPages"
+                        [currentPage]="currentPage">
+                    </app-pagination>
 
-							</td>
-						</tr>
-					</tbody>
-				</table>
+                </div>
 
-			</div>
-			<app-pagination [path]="'/list-proveedor'" [pages]="pages" [totalPages]="totalPages"
-				[currentPage]="currentPage">
-			</app-pagination>
-			<footer>
-				<!-- <p>All right reserved. Template by: <a
-				href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
-			</footer>
-		<!-- </mat-card-content>
-	</mat-card> -->
-
-
-	<!--
-	<div class="col-6 col-md-4">
-		<label class="">cotizacion</label>
-		<input type="text" name="usuario" [(ngModel)]="usuario.usuario" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Nombre</label>
-		<input type="text" name="nombre" [(ngModel)]="usuario.nombre" class="form-control">
-	</div>
-
-	<div class="col-6 col-md-4">
-		<label class="">Tipo</label>
-		<select name="tipo" [(ngModel)]="usuario.tipo" class="form-control">
-			<option [ngValue]="null">Select</option>
-			<option value="PACIENTE">PRODUCCION</option>
-			<option value="RECEPCIONISTA">RECEPCION</option>
-			<option value="ADMIN">ADMIN</option>
-		</select>
-	</div>
-
-	<div class="col-6 col-md-4">
-		<label class="">Contrasena</label>
-		<input type="text" name="contrasena" [(ngModel)]="usuario.contrasena" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Telefono</label>
-		<input type="text" name="telefono" [(ngModel)]="usuario.telefono" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Correo electronico</label>
-		<input type="text" name="correo_electronico" [(ngModel)]="usuario.correo_electronico" class="form-control">
-	</div>
-
-
-</div>
-
-</div>
-</form> -->
-
-	<footer>
-		<!-- <p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
-	</footer>
+            </div>
+        </div>
+    </div>
 </div>

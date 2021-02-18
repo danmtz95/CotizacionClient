@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';
-import { RestService,ErrorMessage } from '../../services/rest.service';
-
+// import { RestService } from '../../services/rest.service';
+import { RestService } from '../../services/rest.service';
 @Component({
 	selector: 'app-image-uploader',
 	templateUrl: './image-uploader.component.html',

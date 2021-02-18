@@ -117,7 +117,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 		});
 	}
 
-	agregarServicio(servicio:Servicio)
+	agregarServicio(servicio)
 	{
 
 		let index = this.cotizacion_info.cotizacion_detalles.findIndex(i=> i.servicio.id == servicio.id );
@@ -184,7 +184,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 
 	}
 
-	aumentarCantidad(servicio:Servicio)
+	aumentarCantidad(servicio)
 	{
 
 		let index = this.cotizacion_info.cotizacion_detalles.findIndex(i=> i.servicio.id == servicio.id );
@@ -198,7 +198,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 		this.calcularTotalCotizacion();
 		console.log('Agregando Servicio', servicio);
 	}
-	aumentarPrecio(servicio:Servicio)
+	aumentarPrecio(servicio)
 	{
 
 		let index = this.cotizacion_info.cotizacion_detalles.findIndex(i=> i.servicio.id == servicio.id );
@@ -213,7 +213,7 @@ export class SaveCotizacionComponent extends BaseComponent implements OnInit {
 		console.log('Agregando Servicio', servicio);
 	}
 
-	aumentarIva(servicio:Servicio)
+	aumentarIva(servicio)
 	{
 
 		let index = this.cotizacion_info.cotizacion_detalles.findIndex(i=> i.servicio.id == servicio.id );

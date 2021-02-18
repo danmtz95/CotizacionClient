@@ -19,53 +19,51 @@ import { SaveServicioCategoriaComponent } from './pages/save-servicio-categoria/
 import { ListUnidadDeMedidaComponent } from './pages/list-unidad-de-medida/list-unidad-de-medida.component'
 import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-unidad-de-medida.component'
 import { ViewCotizacionComponent } from './pages/view-cotizacion/view-cotizacion.component'
+import { SaveSucursalComponent } from './pages/save-sucursal/save-sucursal.component'
 
+const routes: Routes = [{ path: '', component: LoginComponent, pathMatch: 'full' },
+{ path: 'login', component: LoginComponent, pathMatch: 'full' },
+{
+  path: '',
+  component: HomeComponent,
+  children: [
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: 'dashboard', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'list-usuario', component: ListUsuarioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'add-usuario', component: SaveUsuarioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'edit-usuario/:id', component: SaveUsuarioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'list-cliente', component: ListClienteComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'add-cliente', component: SaveClienteComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'edit-cliente/:id', component: SaveClienteComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'list-proveedor', component: ListProveedorComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'add-proveedor', component: SaveProveedorComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'edit-proveedor/:id', component: SaveProveedorComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'list-servicio', component: ListServicioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'add-servicio', component: SaveServicioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'edit-servicio/:id', component: SaveServicioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'list-cotizacion', component: ListCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'add-cotizacion', component: SaveCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'edit-cotizacion/:id', component: SaveCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'list-servicio-categoria', component: ListServicioCategoriaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'add-servicio-categoria', component: SaveServicioCategoriaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'edit-servicio-categoria/:id', component: SaveServicioCategoriaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'list-unidad-de-medida', component: ListUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'add-unidad-de-medida', component: SaveUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'edit-unidad-de-medida/:id', component: SaveUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'view-cotizacion/:id', component: ViewCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'add-sucursal', component: SaveSucursalComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'edit-sucursal/:id', component: SaveSucursalComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    //			,{ path:'list-transfer/:id' , component: ListTransferComponent, pathMatch: 'full',canActivate:[AuthGuard] }
 
-const routes: Routes = [
-	{ path: '', component: LoginComponent, pathMatch: 'full' },
-	{ path: 'login', component: LoginComponent, pathMatch: 'full' },
-	{
-		path: '',
-		component: HomeComponent,
-		children: [
-			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-			{ path: 'dashboard', component: DashboardComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'list-usuario', component: ListUsuarioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'add-usuario', component: SaveUsuarioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'edit-usuario/:id', component: SaveUsuarioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'list-cliente', component: ListClienteComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'add-cliente', component: SaveClienteComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'edit-cliente/:id', component: SaveClienteComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'list-proveedor', component: ListProveedorComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'add-proveedor', component: SaveProveedorComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'edit-proveedor/:id', component: SaveProveedorComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'list-servicio', component: ListServicioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'add-servicio', component: SaveServicioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'edit-servicio/:id', component: SaveServicioComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'list-cotizacion', component: ListCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'add-cotizacion', component: SaveCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'edit-cotizacion/:id', component: SaveCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'list-servicio-categoria', component: ListServicioCategoriaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'add-servicio-categoria', component: SaveServicioCategoriaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'edit-servicio-categoria/:id', component: SaveServicioCategoriaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'list-unidad-de-medida', component: ListUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'add-unidad-de-medida', component: SaveUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'edit-unidad-de-medida/:id', component: SaveUnidadDeMedidaComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			{ path: 'ver-cotizacion/:id', component: ViewCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-			//			,{ path:'list-transfer/:id' , component: ListTransferComponent, pathMatch: 'full',canActivate:[AuthGuard] }
-
-		],
-	},
-]
+  ],
+},];
 
 @NgModule({
-	imports: [
-		RouterModule.forRoot(routes, {
+  imports: [RouterModule.forRoot(routes,{
     preloadingStrategy: PreloadAllModules,
     useHash: true,
     relativeLinkResolution: 'legacy'
-}),
-	],
-	exports: [RouterModule],
+})  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

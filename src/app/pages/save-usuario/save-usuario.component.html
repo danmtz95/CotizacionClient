@@ -1,125 +1,108 @@
-<div class="header">
-	<h2 class="page-header">
-		{{ usuario.id ? usuario.nombre :'Agregar Usuario' | titlecase }}
-	</h2>
-	<ol class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Usuarios</a></li>
-		<li class="active">{{usuario.id? 'Editar':'Crear'}}</li>
-	</ol>
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{ usuario.id ? usuario.nombre :'Agregar Usuario' | titlecase }}</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">Home</a></li>
+            <li class="breadcrumb-item">Usuarios</li>
+            <li class="breadcrumb-item active" aria-current="page">Agregar Usuario</li>
+        </ol>
+    </div>
 
-</div>
-<div id="page-inner">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Form Basic -->
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Información del usuario</h6>
+                </div>
+                <div class="card-body">
+                    <form ngNativeValidate (submit)="save()">
+                        <div class="row">
+                            <div class="form-group col-4">
+                                <label for="usuario">Usuario</label>
+                                <input id="usuario" placeholder="Ingrese su usuario" name="usuario"
+                                    [ngClass]="{'is-valid':usuario.usuario,'form-control':usuario }" type="text"
+                                    [(ngModel)]="usuario.usuario" required>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="contrasena">Contraseña</label>
+                                <input id="contrasena" name="contrasena" placeholder="Ingrese su contraseña" type="text"
+                                    [ngClass]="{'is-valid':usuario.contrasena,'form-control':usuario }"
+                                    [(ngModel)]="usuario.contrasena" required>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="exampleFormControlSelect1">Tipo</label>
+                                <select class="form-control" id="exampleFormControlSelect1"
+                                    [(ngModel)]="usuario.tipo_de_usuario" required>
+                                    <option value="null" hidden>Seleccione un tipo de usuario</option>
+                                    <option value="'VENTAS'">VENDEDOR</option>
+                                    <option value="'ADMINISTRADOR'">ADMINISTRADOR</option>
 
+                                </select>
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="nombre">Nombre</label>
+                                <input id="nombre" type="text" placeholder="Ingrese su nombre" name="nombre"
+                                    [ngClass]="{'is-valid':usuario.nombre,'form-control':usuario }"
+                                    [(ngModel)]="usuario.nombre">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="apellido_paterno">Apellido Paterno</label>
+                                <input id="apellido_paterno" type="text" placeholder="Ingrese su apellido paterno"
+                                    name="apellido_paterno"
+                                    [ngClass]="{'is-valid':usuario.apellido_paterno,'form-control':usuario }"
+                                    [(ngModel)]="usuario.apellido_paterno">
+                            </div>
+                            <div class="form-group col-4">
+                                <label for="apellido_materno">Apellido Materno</label>
+                                <input id="apellido_materno" type="text" placeholder="Ingrese su materno"
+                                    name="apellido_materno"
+                                    [ngClass]="{'is-valid':usuario.apellido_materno,'form-control':usuario }"
+                                    [(ngModel)]="usuario.apellido_materno">
+                            </div>
+                            <div class=" form-group col-6">
+                                <label for="correo_electronico">Correo Electronico</label>
+                                <input id="correo_electronico" placeholder="Ingrese su correo" name="correo_electronico"
+                                    type="text"
+                                    [ngClass]="{'is-valid':usuario.correo_electronico,'form-control':usuario }"
+                                    [(ngModel)]="usuario.correo_electronico">
 
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="card">
-				<div class="card-action">
-					Información del usuario
-				</div>
-				<div class="card-content">
-					<form ngNativeValidate (submit)="save()" class="col s12">
-						<div class="row">
-							<div class=" col s4">
-								<label for="usuario">Usuario</label>
-								<input id="usuario" name="usuario" type="text" class="validate"
-									[(ngModel)]="usuario.usuario">
-
-							</div>
-							<div class=" col s4">
-								<label for="contrasena">contraseña</label>
-								<input id="contrasena" name="contrasena" type="text" class="validate" [(ngModel)]="usuario.contrasena">
-							</div>
-							<div class=" col s4">
-								<label for="first_name">tipo</label>
-								<input id="tipo" name="tipo" type="text" class="validate"
-									[(ngModel)]="usuario.tipo_de_usuario">
-							</div>
-						</div>
-						<div class="row">
-							<div class=" col s4">
-								<label for="nombre">Nombre</label>
-								<input id="nombre" type="text" name="nombre" class="validate"
-									[(ngModel)]="usuario.nombre">
-							</div>
-							<div class=" col s4">
-								<label for="apellido_paterno">apellido paterno</label>
-								<input id="apellido_paterno" type="text" name="apellido_paterno" class="validate"
-									[(ngModel)]="usuario.apellido_paterno">
-							</div>
-							<div class=" col s4">
-								<label for="apellido_materno">apellido materno</label>
-								<input id="apellido_materno" type="text" name="apellido_materno" class="validate"
-									[(ngModel)]="usuario.apellido_materno">
-							</div>
-						</div>
-						<div class="row">
-							<div class=" col s6">
-								<label for="correo_electronico">correo electronico</label>
-								<input id="correo_electronico" name="correo_electronico" type="text" class="validate" [(ngModel)]="usuario.correo_electronico">
-
-							</div>
-							<div class=" col s6">
-								<label for="telefono">telefono</label>
-								<input id="telefono" name="telefono" type="text" class="validate"
-									[(ngModel)]="usuario.telefono">
-							</div>
-
-						</div>
-						<div class="row p-3">
-							<div class="col-12 text-right">
-								<button type="submit" [disabled]="is_loading" class="waves-effect waves-light btn-success btn icon-size-1"><i class="fa fa-save icon-size-1"></i> Guardar</button>
-							</div>
-						</div>
-
-					</form>
-					<div class="clearBoth"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!--
-	<div class="col-6 col-md-4">
-		<label class="">Usuario</label>
-		<input type="text" name="usuario" [(ngModel)]="usuario.usuario" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Nombre</label>
-		<input type="text" name="nombre" [(ngModel)]="usuario.nombre" class="form-control">
-	</div>
-
-	<div class="col-6 col-md-4">
-		<label class="">Tipo</label>
-		<select name="tipo" [(ngModel)]="usuario.tipo" class="form-control">
-			<option [ngValue]="null">Select</option>
-			<option value="PACIENTE">PRODUCCION</option>
-			<option value="RECEPCIONISTA">RECEPCION</option>
-			<option value="ADMIN">ADMIN</option>
-		</select>
-	</div>
-
-	<div class="col-6 col-md-4">
-		<label class="">Contrasena</label>
-		<input type="text" name="contrasena" [(ngModel)]="usuario.contrasena" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Telefono</label>
-		<input type="text" name="telefono" [(ngModel)]="usuario.telefono" class="form-control">
-	</div>
-	<div class="col-6 col-md-4">
-		<label class="">Correo electronico</label>
-		<input type="text" name="correo_electronico" [(ngModel)]="usuario.correo_electronico" class="form-control">
-	</div>
+                            </div>
+                            <div class=" form-group col-6">
+                                <label for="telefono">Teléfono</label>
+                                <input id="telefono" placeholder="Ingrese su telefono" name="telefono" type="text"
+                                    [ngClass]="{'is-valid':usuario.telefono,'form-control':usuario }"
+                                    [(ngModel)]="usuario.telefono">
+                            </div>
 
 
-</div>
 
-</div>
-</form> -->
+                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                        </div>
+                        <div class=" text-right">
+                            <button type="submit" [disabled]="is_loading"
+                                class="waves-effect waves-light btn-success btn icon-size-1 text-right"><i
+                                    class="fa fa-save icon-size-1"></i> Guardar</button>
 
-	<footer>
-		<!-- <p>All right reserved. Template by: <a href="https://webthemez.com/admin-template/">WebThemez.com</a></p> -->
-	</footer>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--Row-->
+
+        <!-- Documentation Link -->
+        <div class="row">
+            <div class="col-lg-12 text-center">
+
+            </div>
+        </div>
+
+    </div>
 </div>

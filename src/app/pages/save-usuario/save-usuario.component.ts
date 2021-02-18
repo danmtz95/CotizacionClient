@@ -30,7 +30,7 @@ export class SaveUsuarioComponent extends BaseComponent implements OnInit {
 			//this.company = this.rest.getCompanyFromSession();
 
 			let id_usuario = parseInt( params.get('id') );
-			let session = this.rest. getUsuarioSesion();
+			let session = this.rest.getUsuarioSesion();
 
 				this.is_loading = true;
 				if( id_usuario )
@@ -47,6 +47,7 @@ export class SaveUsuarioComponent extends BaseComponent implements OnInit {
 				}else{
 					this.usuario.id_organizacion = session.id_organizacion;
 					this.usuario.id_sucursal = session.id_sucursal;
+
 					this.is_loading = false;
 				}
 
