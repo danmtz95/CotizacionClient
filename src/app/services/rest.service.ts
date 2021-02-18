@@ -78,12 +78,12 @@ export class RestService {
 	getUrlBase() {
 
 		if (window.location.hostname.indexOf('127.0.') == 0 || window.location.hostname.indexOf('192.168') == 0)
-			return window.location.protocol + '//' + window.location.hostname + '/IntegranetCotizacion';
+			return window.location.protocol + '//' + window.location.hostname + '/CotizacionManager';
 
 		if (window.location.hostname.indexOf('localhost') == 0)
-			return window.location.protocol + '//127.0.0.1/IntegranetCotizacion';
+			return window.location.protocol + '//127.0.0.1/CotizacionManager';
 
-		return "http://54.175.170.17/IntegranetCotizacion/api"
+		return "http://127.0.0.53/CotizacionManager/api"
 	}
 
 	public initRest<T, U>(path: string) {

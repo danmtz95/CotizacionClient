@@ -93,7 +93,7 @@ export class ListServicioComponent extends BaseComponent implements OnInit {
 	uploadFile()
 	{
 		this.is_loading = true;
-		this.rest.xlsx2json( this.file,["id","proveedor","nombre","id_centro_medico","id_organizacion","id_imagen","tipo","id_tipo_precio","id_device_notification","contrasena","telefono","correo_electronico","factura_rfc","factura_razon_social","factura_codigo_postal","factura_correo_electronico","id_aseguranza","numero_aseguranza","tiempo_creacion","tiempo_actualizacion"]).then((json)=>
+		this.rest.xlsx2json( this.file,["codigo","marca","nombre","precio_venta","precio_especial","costo","codigo_sat","url_imagen","id_organizacion","id_sucursal","id_proveedor","id_unidad_de_medida","id_categoria","iva","tipo"]).then((json)=>
 		{
 			//Filter json then upload
 			this.rest.servicio.batchUpdate(json).subscribe((result)=>
