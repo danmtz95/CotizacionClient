@@ -1,82 +1,81 @@
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Cotizaciones</h1>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./">Home</a></li>
-            <li class="breadcrumb-item">Cotizaciones</li>
-            <li class="breadcrumb-item active" aria-current="page">Lista Cotizaciones</li>
-        </ol>
-    </div>
+	<div class="d-sm-flex align-items-center justify-content-between ">
+		<h1 class="h3 mb-0 text-gray-800">Cotizaciones</h1>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="./">Home</a></li>
+			<li class="breadcrumb-item">Cotizaciones</li>
+			<li class="breadcrumb-item active" aria-current="page">Lista Cotizaciones</li>
+		</ol>
+	</div>
 
-    <!-- Row -->
-    <div class="row">
+	<!-- Row -->
+	<div class="row">
 
-        <!-- DataTable with Hover -->
-        <div class="col-lg-12">
-            <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Lista Cotizaciones</h6>
-                    <button type="button" class="btn-success btn " [routerLink]="['/add-cotizacion']"><i
-                        class="fa fa-plus"></i> Agregar Cotización</button>
-                </div>
-                <div class="table-responsive p-3">
-                    <table class="table align-items-center table-flush table-hover" id="dataTableHover">
-                        <thead class="thead-light">
-                           <tr>
-									<th>ID</th>
-									<th>Fecha</th>
-									<th>Cliente</th>
-									<th>Costo</th>
-									<th>Flete</th>
-									<th>Iva</th>
-									<th>Costo Total</th>
-									<th>Nota</th>
-									<th>Fecha de Entrega</th>
-									<th>Estado</th>
-									<th>Acciones</th>
-								</tr>
-                        </thead>
-                        <tfoot>
-                           <tr>
-									<th>ID</th>
-									<th>Fecha</th>
-									<th>Cliente</th>
-									<th>Costo</th>
-									<th>Flete</th>
-									<th>Iva</th>
-									<th>Costo Total</th>
-									<th>Nota</th>
-									<th>Fecha de Entrega</th>
-									<th>Estado</th>
-									<th>Acciones</th>
-								</tr>
-                        </tfoot>
-                        <tbody>
-                            <tr *ngFor="let cotizacion of cotizacion_list">
-                                <td><a [routerLink]="['/edit-usuario',cotizacion.id]">{{cotizacion.id}}</a></td>
-                                <td>{{cotizacion.fecha_creacion | date:'fullDate'}}</td>
-                                <td>{{cliente_diccionario[cotizacion.id_cliente].nombre}}</td>
-                                <td>{{cotizacion.costo}} $</td>
-                                <td>{{cotizacion.flete}} $</td>
-                                <td>{{cotizacion.costo_iva}} $</td>
-                                <td>{{cotizacion.costo_total}} $</td>
-                                <td>{{cotizacion.nota?cotizacion.nota:'SIN NOTA'}}</td>
-                                <td>{{cotizacion.fecha_de_entrega?cotizacion.fecha_de_entrega:'PENDIENTE'}}</td>
+		<!-- DataTable with Hover -->
+		<div class="col-lg-12">
+			<div class="card">
+				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+					<h6 class="m-0 font-weight-bold text-primary">Lista Cotizaciones</h6>
+					<button type="button" class="btn-success btn " [routerLink]="['/add-cotizacion']"><i
+							class="fa fa-plus"></i> Agregar Cotización</button>
+				</div>
+				<div class="table-responsive">
+					<table class="table align-items-center table-flush table-hover" id="dataTableHover">
+						<thead class="thead-light">
+							<tr>
+								<th>ID</th>
+								<th>Fecha</th>
+								<th>Cliente</th>
+								<th>Costo</th>
+								<th>Flete</th>
+								<th>Iva</th>
+								<th>Costo Total</th>
+								<th>Nota</th>
+								<th>Fecha de Entrega</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<th>ID</th>
+								<th>Fecha</th>
+								<th>Cliente</th>
+								<th>Costo</th>
+								<th>Flete</th>
+								<th>Iva</th>
+								<th>Costo Total</th>
+								<th>Nota</th>
+								<th>Fecha de Entrega</th>
+								<th>Estado</th>
+								<th>Acciones</th>
+							</tr>
+						</tfoot>
+						<tbody>
+							<tr *ngFor="let cotizacion of cotizacion_list">
+								<td><a [routerLink]="['/edit-usuario',cotizacion.id]">{{cotizacion.id}}</a></td>
+								<td>{{cotizacion.fecha_creacion | date:'fullDate'}}</td>
+								<td>{{cliente_diccionario[cotizacion.id_cliente].nombre}}</td>
+								<td>{{cotizacion.costo}}$</td>
+								<td>{{cotizacion.flete}}$</td>
+								<td>{{cotizacion.costo_iva}}$</td>
+								<td>{{cotizacion.costo_total}}$</td>
+								<td>{{cotizacion.nota?cotizacion.nota:'SIN NOTA'}}</td>
+								<td>{{cotizacion.fecha_de_entrega?cotizacion.fecha_de_entrega:'PENDIENTE'}}</td>
 
-                                <td class="text-center"> <button
-                                        class="waves-effect waves-light btn-warning btn">
-                                        <i class="fas fa-clock"></i>
-                                    </button>
-                                    <button class="waves-effect waves-light btn-warning btn icon-size-1">
-                                        <i class="fas fa-truck "></i>
-                                    </button>
-                                    <button class="waves-effect waves-light btn-warning btn icon-size-1">
-                                        <i class="fas fa-file-invoice-dollar"></i>
-                                    </button>
-                                </td>
-                                <td class="text-center">
-                                    <!-- <a class="waves-effect waves-light btn-success btn icon-size-1"
+								<td class="text-center"> <button class="waves-effect waves-light btn-warning btn">
+										<i class="fas fa-clock"></i>
+									</button>
+									<button class="waves-effect waves-light btn-warning btn icon-size-1">
+										<i class="fas fa-truck "></i>
+									</button>
+									<button class="waves-effect waves-light btn-warning btn icon-size-1">
+										<i class="fas fa-file-invoice-dollar"></i>
+									</button>
+								</td>
+								<td class="text-center">
+									<!-- <a class="waves-effect waves-light btn-success btn icon-size-1"
                                         [matMenuTriggerFor]="menu"><i
                                             class="material-icons icon-size-1 icon-size-1 p-0 m-0">settings</i></a>
                                     <mat-menu #menu="matMenu">
@@ -87,91 +86,106 @@
                                                 class="material-icons icon-size-1 icon-size-1 p-0 m-0">picture_as_pdf</i>
                                             PDF</button>
                                     </mat-menu> -->
-                                    <!-- picture_as_pdf -->
-                                    <button class="waves-effect waves-light btn-success btn icon-size-1"
-                                        [routerLink]="['/edit-cotizacion',cotizacion.id]"><i
-                                            class="fas fa-edit"></i></button>
-                                </td>
-                            </tr>
-                            <tr *ngIf="cotizacion_list == null || cotizacion_list.length == 0 && !is_loading"
-                                colspan="TEMPLATE_HEADERS_SIZE">
-                                <td colspan="11" class="text-center">
-                                    <div class="alert alert-light m-3" role="alert">No elements found</div>
+									<!-- picture_as_pdf -->
+									<!-- <button class="waves-effect waves-light btn-success btn icon-size-1"
+										[routerLink]="['/edit-cotizacion',cotizacion.id]"><i
+											class="fas fa-edit"></i></button> -->
+									<div class="btn-group">
+										<button class="btn btn-success btn-sm" type="button" [routerLink]="['/edit-cotizacion',cotizacion.id]">
+											<i class="fas fa-edit"></i>
+										</button>
+										<button type="button"
+											class="btn btn-sm btn-success dropdown-toggle dropdown-toggle-split"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<span class="sr-only">Toggle Dropdown</span>
+										</button>
+										<div class="dropdown-menu">
+											<a class="dropdown-item"  [routerLink]="['/view-cotizacion',cotizacion.id]">PDF</a>
+											<!-- <a class="dropdown-item" href="#">Another action</a>
+											<a class="dropdown-item" href="#">Something else here</a> -->
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr *ngIf="cotizacion_list == null || cotizacion_list.length == 0 && !is_loading"
+								colspan="TEMPLATE_HEADERS_SIZE">
+								<td colspan="11" class="text-center">
+									<div class="alert alert-light m-3" role="alert">No elements found</div>
 
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-footer">
-                    <div class="row ">
-                        <div class="col-sm-12 col-md-6 ">
-                            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1
-                                to 10 of
-                                57 entries</div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 text-center">
-                            <div class="dataTables_paginate paging_simple_numbers text-right" id="dataTable_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a
-                                            href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0"
-                                            class="page-link">Previous</a></li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable"
-                                            data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                            data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                            data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                            data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                            data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                            data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
-                                    <li class="paginate_button page-item next" id="dataTable_next"><a href="#"
-                                            aria-controls="dataTable" data-dt-idx="7" tabindex="0"
-                                            class="page-link">Next</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="card-footer">
+					<div class="row ">
+						<div class="col-sm-12 col-md-6 ">
+							<div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1
+								to 10 of
+								57 entries</div>
+						</div>
+						<div class="col-sm-12 col-md-6 text-center">
+							<div class="dataTables_paginate paging_simple_numbers text-right" id="dataTable_paginate">
+								<ul class="pagination">
+									<li class="paginate_button page-item previous disabled" id="dataTable_previous"><a
+											href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0"
+											class="page-link">Previous</a></li>
+									<li class="paginate_button page-item active"><a href="#" aria-controls="dataTable"
+											data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+									<li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
+											data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+									<li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
+											data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+									<li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
+											data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+									<li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
+											data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+									<li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
+											data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
+									<li class="paginate_button page-item next" id="dataTable_next"><a href="#"
+											aria-controls="dataTable" data-dt-idx="7" tabindex="0"
+											class="page-link">Next</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
-        </div>
-    </div>
-    <!--Row-->
+		</div>
+	</div>
+	<!--Row-->
 
-    <!-- Documentation Link -->
-    <div class="row">
-        <div class="col-lg-12">
-            <!-- <p>DataTables is a third party plugin that is used to generate the demo table below. For more information
+	<!-- Documentation Link -->
+	<div class="row">
+		<div class="col-lg-12">
+			<!-- <p>DataTables is a third party plugin that is used to generate the demo table below. For more information
                 about DataTables, please visit the official <a href="https://datatables.net/" target="_blank">DataTables
                     documentation.</a></p> -->
-        </div>
-    </div>
+		</div>
+	</div>
 
 
 
 
 
 
-<app-modal [(show)]="show_import">
-    <div class="card p-3">
-        <h2>Import excel</h2>
-        <div class="from-group mb-3">
-            <label>Excel data</label>
-            <input name="file" type="file" (change)="onFileChanged($event)" accept="*/*" class="form-control">
-        </div>
-        <div class="row mt-3">
-            <div class="col-6">
-                <button type="button" class="btn btn-secondary w-100" (click)="show_import=false">Cancel</button>
-            </div>
-            <div class="col-6">
-                <button type="button" class="btn btn-primary w-100" (click)="uploadFile()"
-                    [disabled]="file==null">Upload</button>
-            </div>
-        </div>
-    </div>
-</app-modal>
+	<app-modal [(show)]="show_import">
+		<div class="card p-3">
+			<h2>Import excel</h2>
+			<div class="from-group mb-3">
+				<label>Excel data</label>
+				<input name="file" type="file" (change)="onFileChanged($event)" accept="*/*" class="form-control">
+			</div>
+			<div class="row mt-3">
+				<div class="col-6">
+					<button type="button" class="btn btn-secondary w-100" (click)="show_import=false">Cancel</button>
+				</div>
+				<div class="col-6">
+					<button type="button" class="btn btn-primary w-100" (click)="uploadFile()"
+						[disabled]="file==null">Upload</button>
+				</div>
+			</div>
+		</div>
+	</app-modal>

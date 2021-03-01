@@ -31,8 +31,8 @@ export interface CsvArray{
 
 export interface SearchObject<T>
 {
-	pagina?:number;
-	limite?:number;
+	page?:number;
+	limit?:number;
 
 	eq?:T; //Equals to
 	gt?:T; //Great than

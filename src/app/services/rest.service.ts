@@ -83,7 +83,7 @@ export class RestService {
 		if (window.location.hostname.indexOf('localhost') == 0)
 			return window.location.protocol + '//127.0.0.1/CotizacionManager';
 
-		return "http://127.0.0.53/CotizacionManager/api"
+		return "http://ec2-54-157-44-127.compute-1.amazonaws.com/CotizacionManager/api"
 	}
 
 	public initRest<T, U>(path: string) {

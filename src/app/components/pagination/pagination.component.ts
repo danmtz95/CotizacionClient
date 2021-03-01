@@ -3,9 +3,7 @@ import { RestService } from '../../services/rest.service';
 
 import { Router,ActivatedRoute} from "@angular/router"
 import { Location } from	'@angular/common';
-import { LoadingComponent } from '../../components/loading/loading.component';
-import { HeaderComponent } from '../../components/header/header.component';
-import { HttpErrorResponse } from '@angular/common/http';
+
 
 
 
@@ -41,15 +39,16 @@ export class PaginationComponent implements OnInit {
 
 	gotoPage(page:number)
 	{
+
 		//console.log("Go to page ",page);
 		if( this.path == null )
 		{
-		//	console.log('Emitting');
+			console.log('Emitting');
 			this.selectedPage.emit( page );
 		}
 		else
 		{
-		//	console.log('navigate');
+			console.log('navigate');
 			let params = { page: page }
 			this.router.navigate([this.path],{queryParams: params,  queryParamsHandling:"merge"});
 		}

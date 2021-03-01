@@ -6,7 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { Organizacion } from 'src/app/models/RestModels';
 import {StringDictionary} from 'src/app/models/models';
 import {SearchObject} from 'src/app/services/Rest';
-
+import { SubSink } from 'subsink';
 
 @Component({
 	selector: 'app-base',
@@ -23,11 +23,12 @@ export class BaseComponent implements OnInit {
 	public totalItems: number 	= 0;
 	public currentPage:number	= 0;
 	public pages:number[]		= [];
-	public pageSize:number		= 9999;
+	public pageSize:number		= 50;
 
 	public error_message:string		= null;
 	public success_message:string	= null;
 	public warning_message:string	= null;
+	public subs:SubSink	= new SubSink();
 	public path:string = '';
 
 	constructor(public rest: RestService, public router: Router, public route: ActivatedRoute, public location: Location, public titleService: Title)

@@ -1,6 +1,6 @@
 <!-- Container Fluid-->
 <div class="container-fluid" id="container-wrapper">
-	<div class="d-sm-flex align-items-center justify-content-between mb-4">
+	<div class="d-sm-flex align-items-center justify-content-between">
 		<h1 class="h3 mb-0 text-gray-800">Servicios</h1>
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a href="./">Home</a></li>
@@ -14,27 +14,29 @@
 
 		<!-- DataTable with Hover -->
 		<div class="col-lg-12">
-			<div class="card mb-4">
+			<div class="card ">
 				<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 					<h6 class="m-0 font-weight-bold text-primary">Lista Servicios</h6>
 					<div>
 
 						<button type="button" class="btn-warning btn mr-1" (click)="show_import=true"><i
 								class="fas fa-file-import"></i> Importar</button>
+								<button type="button" class="btn-warning btn mr-1" (click)="exportFile()"><i
+									class="fas fa-file-export"></i> Exportar</button>
 						<button type="button" class="btn-success btn " [routerLink]="['/add-servicio']"><i
 								class="fa fa-plus"></i> Agregar Servicio</button>
 					</div>
 
 				</div>
 
-				<div class="table-responsive p-3">
-					<table class="table align-items-center table-flush table-hover" id="dataTableHover">
+				<div class="table-responsive ">
+					<table class="table align-items-center table-flush table-hover" >
 						<thead class="thead-light">
 							<tr>
 								<th>ID</th>
 								<th>Nombre</th>
 								<th>Codigo</th>
-								<th>Costo</th>
+								<th>Marca</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -43,17 +45,34 @@
 								<th>ID</th>
 								<th>Nombre</th>
 								<th>Codigo</th>
-								<th>Costo</th>
+								<th>Marca</th>
 								<th>Acciones</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							<tr *ngFor="let servicio of servicio_list">
+							<tr class="d-print-none p-0 m-0 pb-0">
+								<th class="m-0 p-0">
+									<input type="text" (input)="search()" [(ngModel)]="servicio_search.lk.id"
+										class="form-control table-input" style="min-width:170px">
+								</th>
+								<th class="m-0 p-0">
+									<input type="text" (keyup)="search()" [(ngModel)]="servicio_search.lk.nombre"
+										class="form-control table-input">
+								</th>
+								<th class="m-0 p-0">
+									<input type="text" (keyup)="search()" [(ngModel)]="servicio_search.lk.codigo"
+										class="form-control table-input">
+								</th>
+								<th class="m-0 p-0">
+									<input type="text" (keyup)="search()" [(ngModel)]="servicio_search.lk.marca"
+										class="form-control table-input w100">
+								</th>
+							</tr>
+							<tr *ngFor="let servicio of servicio_list_tmp">
 								<td><a [routerLink]="['/edit-usuario',servicio.id]">{{servicio.id}}</a></td>
 								<td>{{servicio.nombre}}</td>
 								<td>{{servicio.codigo}}</td>
-								<td>{{servicio.costo}}</td>
-
+								<td>{{servicio.marca}}</td>
 								<td>
 									<a class="waves-effect waves-light btn-success btn icon-size-1"
 										[routerLink]="['/edit-servicio',servicio.id]"><i class="fas fa-edit"></i></a>
@@ -76,8 +95,8 @@
 								to 10 of
 								57 entries</div>
 						</div>
-						<div class="col-sm-12 col-md-6 text-center">
-							<div class="dataTables_paginate paging_simple_numbers text-right" id="dataTable_paginate">
+						<div class="col-sm-12 col-md-6 text-left">
+							<!-- <div class="dataTables_paginate paging_simple_numbers text-right" id="dataTable_paginate">
 								<ul class="pagination">
 									<li class="paginate_button page-item previous disabled" id="dataTable_previous"><a
 											href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0"
@@ -99,7 +118,8 @@
 											class="page-link">Next</a>
 									</li>
 								</ul>
-							</div>
+							</div> -->
+							<app-pagination [path]="'/list-servicio'" [pages]="pages" [totalPages]="totalPages" [currentPage]="currentPage"></app-pagination>
 						</div>
 					</div>
 				</div>
@@ -117,11 +137,6 @@
                     documentation.</a></p> -->
 		</div>
 	</div>
-
-
-
-
-
 
 	<app-modal [(show)]="show_import">
 		<div class="card p-3">

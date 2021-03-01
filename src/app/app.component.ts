@@ -7,7 +7,7 @@ import { RestService } from './services/rest.service';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent  {
     title = 'CotizacionManager';
     usuario: Usuario;
     menu=false;
@@ -16,22 +16,7 @@ export class AppComponent implements OnInit {
         this.usuario = this.rest.getUsuarioSesion();
 
     }
-    openNav() {
 
-        if (this.menu == false) {
-            document.getElementById("accordionSidebar").style.position = "absolute";
-            document.getElementById("accordionSidebar").style.zIndex = "-1";
-            this.menu =true;
-        }else{
-            document.getElementById("accordionSidebar").style.position = "relative";
-            document.getElementById("accordionSidebar").style.zIndex = "1";
-            this.menu =false;
-        }
-
-
-
-        // document.getElementById("sidebarToggleTop").style.marginLeft = "250px";
-    }
 
 
 

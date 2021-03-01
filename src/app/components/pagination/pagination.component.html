@@ -1,11 +1,34 @@
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+	<button type="button" class="btn btn-primary" (click)="gotoPage(currentPage-1)">Left</button>
+	<button type="button" class="btn btn-outline-primary">Page {{currentPage+1}} of {{totalPages}}</button>
+	<button type="button" class="btn btn-primary" (click)="gotoPage(currentPage+1)">Right</button>
+  </div>
+<!--
+<div *ngIf="totalPages>1" class="dataTables_paginate paging_simple_numbers text-right" id="dataTable_paginate">
+	<ul class="pagination">
+		<button class=" btn btn-primary" id="dataTable_previous"><a
+				aria-controls="dataTable" data-dt-idx="0" tabindex="0" class=""
+				(click)="gotoPage(currentPage-1)">Previous</a></button>
+		<li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0"
+				class="page-link">1</a></li>
+		<button class=" disabled"> <a class="">Page {{currentPage+1}} of {{totalPages}}</a> </button>
+		<button class=" btn btn-primary" id="dataTable_next" [disabled]="currentPage >= totalPages-1 ">
+			<a  (click)="gotoPage(currentPage+1)">Next</a>
+		</button>
+	</ul>
+</div> -->
+
+<!--
 <div class="" *ngIf="totalPages>1">
 	<div>
-		<button [disabled]="currentPage == 0" type="button" class="btn  mr-1"  (click)="gotoPage(0)">&lt;&lt;</button>
-		<button [disabled]="currentPage == 0" type="button" class="btn "  (click)="gotoPage(currentPage-1)">&lt;</button>
+		<button [disabled]="currentPage == 0" type="button" class="btn  mr-1" (click)="gotoPage(0)">&lt;&lt;</button>
+		<button [disabled]="currentPage == 0" type="button" class="btn " (click)="gotoPage(currentPage-1)">&lt;</button>
 	</div>
 	<div class="">Page {{currentPage+1}} of {{totalPages}}</div>
 	<div>
-		<button [disabled]="currentPage >= totalPages-1 "type="button" class="btn " (click)="gotoPage(currentPage+1)">&gt;</button>
-		<button [disabled]="currentPage >= totalPages-1 "type="button" class="btn  ml-1" (click)="gotoPage(totalPages-1)">&gt;&gt;</button>
+		<button [disabled]="currentPage >= totalPages-1 " type="button" class="btn "
+			(click)="gotoPage(currentPage+1)">&gt;</button>
+		<button [disabled]="currentPage >= totalPages-1 " type="button" class="btn  ml-1"
+			(click)="gotoPage(totalPages-1)">&gt;&gt;</button>
 	</div>
-</div>
+</div> -->

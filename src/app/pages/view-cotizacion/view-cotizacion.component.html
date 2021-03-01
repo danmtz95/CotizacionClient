@@ -29,7 +29,7 @@
         <div class="col-6" *ngIf="cotizacion_info ">
             <div>FECHA: {{cotizacion_info.cotizacion.fecha_creacion |date:'shortDate'}}</div>
             <div *ngIf="cliente_diccionario && cotizacion_info">EMPRESA:
-                {{cliente_diccionario[cotizacion_info?.cotizacion?.id_cliente].nombre}}</div>
+                {{cotizacion_info.cotizacion.id_cliente?cliente_diccionario[cotizacion_info?.cotizacion?.id_cliente].nombre:'N/A'}}</div>
             <div>ATENCION: {{cotizacion_info.cotizacion.atencion}}</div>
             <div>COTIZACION VIGENTE: {{cotizacion_info.cotizacion.vigencia}}</div>
             <div>ANTICIPO: {{cotizacion_info.cotizacion.anticipo}}%</div>
@@ -48,13 +48,13 @@
                 <table class="table align-items-center  table-bordered ">
                     <thead class="thead-light">
                         <tr>
-                            <!-- <th>Linea</th> -->
+                            <th>Linea</th>
                             <th>Cantidad</th>
                             <th>Descripción</th>
-                            <th>Unidad de media</th>
+                            <th>UM</th>
                             <th>Precio</th>
-                            <th>Iva %</th>
-                            <th>Iva $</th>
+                            <th>Iva</th>
+                            <th>Iva($)</th>
                             <th>Total</th>
 
                         </tr>
@@ -63,10 +63,11 @@
                         <!-- {{cotizacion_detalle_categoria | json}} -->
                         <ng-container *ngFor="let categoria of cotizacion_detalle_categoria | keyvalue">
                             <!-- <tr colspan="7" >{{categoria | json}}</tr> -->
-                            <tr  class="text-center"> <td colspan="7">{{categoria.key}}</td></tr>
-                            <ng-container *ngFor="let cotizacion_detalle of categoria.value">
-                                <tr >
-                                    <!-- <td>{{index+1}}</td> -->
+                            <tr  class="text-center"> <td colspan="8">{{categoria.key}}</td></tr>
+							<!-- {{categoria.value | json}} -->
+							<ng-container *ngFor="let cotizacion_detalle of categoria.value,let i = index">
+                                <tr>
+                                    <td>{{i+1}}</td>
                                     <td>{{cotizacion_detalle.cotizacion_detalle.cantidad}}</td>
                                     <td>{{cotizacion_detalle.servicio.nombre}}</td>
 
@@ -74,7 +75,7 @@
                                         unidad_m_diccionario[cotizacion_detalle.servicio.id_unidad_de_medida].nombre:'N/A'
                                         }}</td>
                                     <td>{{cotizacion_detalle.cotizacion_detalle.precio}}</td>
-                                    <td>{{cotizacion_detalle.cotizacion_detalle.iva}}</td>
+                                    <td>{{cotizacion_detalle.cotizacion_detalle.iva}}%</td>
                                     <td>{{cotizacion_detalle.cotizacion_detalle.costo_iva | number: '1.2-4'}}</td>
                                     <td>{{cotizacion_detalle.cotizacion_detalle.costo_total | number: '1.2-4'}}</td>
 
