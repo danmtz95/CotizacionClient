@@ -27,8 +27,6 @@ export class ListProveedorComponent extends BaseComponent implements OnInit {
 	proveedor_search:SearchObject<Proveedor> = { };
 	search_extra:StringDictionary<string> = { };
 	proveedor_list:Proveedor[] = [];
-
-
 	organizacion_list:Organizacion[] = [];
 	imagen_list:Imagen[] = [];
 

@@ -4,7 +4,7 @@ import * as XLSX from 'xlsx';
 import { map } from 'rxjs/operators';
 import { Rest, RestResponse } from './Rest';
 import { Cotizacion_Info, LoginResponse, Servicio_Info, Servicio_Recurso_Info } from '../models/Respuestas';
-import { Bitacora, Cotizacion, Servicio, Servicio_Categoria, Unidad_De_Medida,} from '../models/RestModels';
+import { Bitacora, Cotizacion, Cotizacion_Programada, Servicio, Servicio_Categoria, Unidad_De_Medida,} from '../models/RestModels';
 import { NumberDictionary, StringDictionary } from '../models/models';
 import { Cliente } from '../models/RestModels';
 import { Distribuidor } from '../models/RestModels';
@@ -62,6 +62,9 @@ export class RestService {
 	public cotizacion: Rest<Cotizacion, Cotizacion> = this.initRest('cotizacion');
 	public cotizacion_info: Rest<Cotizacion, Cotizacion_Info> = this.initRest('cotizacion_info');
 	public servicio_info: Rest<Servicio, Servicio_Info> = this.initRest('servicio_info');
+	public cotizacion_programada: Rest<Cotizacion_Programada, Cotizacion_Programada> = this.initRest('cotizacion_programada');
+
+
 
 
 	constructor(private http: HttpClient) {

@@ -20,6 +20,8 @@ import { ListUnidadDeMedidaComponent } from './pages/list-unidad-de-medida/list-
 import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-unidad-de-medida.component'
 import { ViewCotizacionComponent } from './pages/view-cotizacion/view-cotizacion.component'
 import { SaveSucursalComponent } from './pages/save-sucursal/save-sucursal.component'
+import { ListProgramarCotizacionComponent } from './pages/list-programar-cotizacion/list-programar-cotizacion.component'
+import { SaveProgramarCotizacionComponent } from './pages/save-programar-cotizacion/save-programar-cotizacion.component'
 
 const routes: Routes = [{ path: '', component: LoginComponent, pathMatch: 'full' },
 { path: 'login', component: LoginComponent, pathMatch: 'full' },
@@ -53,7 +55,9 @@ const routes: Routes = [{ path: '', component: LoginComponent, pathMatch: 'full'
     { path: 'view-cotizacion/:id', component: ViewCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
     { path: 'add-sucursal', component: SaveSucursalComponent, pathMatch: 'full', canActivate: [AuthGuard], },
     { path: 'edit-sucursal/:id', component: SaveSucursalComponent, pathMatch: 'full', canActivate: [AuthGuard], },
-    //			,{ path:'list-transfer/:id' , component: ListTransferComponent, pathMatch: 'full',canActivate:[AuthGuard] }
+	{ path: 'list-programar-cotizacion', component: ListProgramarCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'add-programar-cotizacion', component: SaveProgramarCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
+    { path: 'edit-programar-cotizacion/:id', component: SaveProgramarCotizacionComponent, pathMatch: 'full', canActivate: [AuthGuard], },
 
   ],
 },];

@@ -40,6 +40,8 @@ import { SaveServicioCategoriaComponent } from './pages/save-servicio-categoria/
 import { ListUnidadDeMedidaComponent } from './pages/list-unidad-de-medida/list-unidad-de-medida.component';
 import { SaveUnidadDeMedidaComponent } from './pages/save-unidad-de-medida/save-unidad-de-medida.component';
 import { ViewCotizacionComponent } from './pages/view-cotizacion/view-cotizacion.component';
+import { ListProgramarCotizacionComponent } from './pages/list-programar-cotizacion/list-programar-cotizacion.component';
+import { SaveProgramarCotizacionComponent } from './pages/save-programar-cotizacion/save-programar-cotizacion.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { ViewCotizacionComponent } from './pages/view-cotizacion/view-cotizacion
 		SaveUnidadDeMedidaComponent,
 		ViewCotizacionComponent,
         ImageUploaderComponent,
+        ListProgramarCotizacionComponent,
+        SaveProgramarCotizacionComponent,
   ],
   imports: [
     BrowserModule,

@@ -48,7 +48,7 @@
                         </tfoot>
                         <tbody>
                             <tr *ngFor="let proveedor of proveedor_list">
-                                <td><a [routerLink]="['/edit-usuario',proveedor.id]">{{proveedor.id}}</a></td>
+                                <td><a [routerLink]="['/edit-proveedor',proveedor.id]">{{proveedor.id}}</a></td>
                                 <td>{{proveedor.nombre}}</td>
                                 <td>{{proveedor.direccion}}</td>
                                 <td>{{proveedor.telefono}}</td>

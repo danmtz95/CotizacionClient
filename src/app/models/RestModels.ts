@@ -277,3 +277,16 @@ export interface Unidad_De_Medida{
 	fecha_actualizacion?:Date;
 	fecha_creacion?:Date;
 }
+
+export interface Cotizacion_Programada{
+	id?:number;
+	id_organizacion?:number;
+	id_sucursal?:number;
+	id_usuario?:number;
+	id_cliente?:number;
+	nota?:string;
+	fecha_limite?:Date;
+	estado?:string;
+	fecha_creacion?:Date;
+	fecha_actualizacion?:Date;
+}
